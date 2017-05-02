@@ -1,3 +1,8 @@
+lpdw_search_engine:
+    resource: "@lpdwSearchEngineBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

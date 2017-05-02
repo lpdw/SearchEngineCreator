@@ -1,0 +1,78 @@
+<?php
+
+namespace lpdw\SearchEngineBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FeatureValue
+ *
+ * @ORM\Table(name="feature_value")
+ * @ORM\Entity(repositoryClass="lpdw\SearchEngineBundle\Repository\FeatureValueRepository")
+ */
+class FeatureValue
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=255)
+     */
+    private $value;
+
+
+    /**
+     * One value has Many Features.
+     * @ORM\OneToMany(targetEntity="Feature", mappedBy="featureValue")
+     */
+    private $features;
+
+    /**
+     * One value has Many Elements.
+     * @ORM\OneToMany(targetEntity="Element", mappedBy="featureValue")
+     */
+    private $elements;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     *
+     * @return FeatureValue
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+}
+

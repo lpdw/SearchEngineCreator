@@ -1,0 +1,39 @@
+{% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Elements list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for element in elements %}
+            <tr>
+                <td><a href="{{ path('searchEngine_element_show', { 'id': element.id }) }}">{{ element.id }}</a></td>
+                <td>{{ element.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('searchEngine_element_show', { 'id': element.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('searchEngine_element_edit', { 'id': element.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('searchEngine_element_new') }}">Create a new element</a>
+        </li>
+    </ul>
+{% endblock %}

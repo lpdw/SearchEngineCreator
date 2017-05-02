@@ -1,0 +1,32 @@
+{% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Featurevalue</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ featureValue.id }}</td>
+            </tr>
+            <tr>
+                <th>Value</th>
+                <td>{{ featureValue.value }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('searchEngine_featureValue_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('searchEngine_featureValue_edit', { 'id': featureValue.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

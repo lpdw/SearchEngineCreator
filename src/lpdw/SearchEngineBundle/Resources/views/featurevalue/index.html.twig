@@ -1,0 +1,39 @@
+{% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Featurevalues list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for featureValue in featureValues %}
+            <tr>
+                <td><a href="{{ path('searchEngine_featureValue_show', { 'id': featureValue.id }) }}">{{ featureValue.id }}</a></td>
+                <td>{{ featureValue.value }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('searchEngine_featureValue_show', { 'id': featureValue.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('searchEngine_featureValue_edit', { 'id': featureValue.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('searchEngine_featureValue_new') }}">Create a new featureValue</a>
+        </li>
+    </ul>
+{% endblock %}

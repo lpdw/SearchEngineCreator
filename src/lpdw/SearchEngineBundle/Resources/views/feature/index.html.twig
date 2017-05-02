@@ -1,0 +1,45 @@
+{% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Features list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Multiple</th>
+                <th>Margin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for feature in features %}
+            <tr>
+                <td><a href="{{ path('searchEngine_feature_show', { 'id': feature.id }) }}">{{ feature.id }}</a></td>
+                <td>{{ feature.name }}</td>
+                <td>{{ feature.type }}</td>
+                <td>{% if feature.multiple %}Yes{% else %}No{% endif %}</td>
+                <td>{{ feature.margin }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('searchEngine_feature_show', { 'id': feature.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('searchEngine_feature_edit', { 'id': feature.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('searchEngine_feature_new') }}">Create a new feature</a>
+        </li>
+    </ul>
+{% endblock %}
