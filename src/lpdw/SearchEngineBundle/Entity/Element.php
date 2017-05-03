@@ -28,6 +28,13 @@ class Element
      */
     private $name;
 
+    /**
+     * Many Features have One Category.
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
 
     /**
      * Get id
@@ -61,5 +68,29 @@ class Element
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \lpdw\SearchEngineBundle\Entity\Category $category
+     *
+     * @return Element
+     */
+    public function setCategory(\lpdw\SearchEngineBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \lpdw\SearchEngineBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

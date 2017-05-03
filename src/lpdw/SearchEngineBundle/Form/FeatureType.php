@@ -2,8 +2,10 @@
 
 namespace lpdw\SearchEngineBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,15 +24,24 @@ class FeatureType extends AbstractType
             ->add('type', ChoiceType::class,[
                 'label' => 'Type:',
                 'choices'  => array(
-                    'choiceType' => 'choix déroulant',
-                    'Yes' => true,
-                    'No' => false,
+                    'select' => 'choix déroulant',
+                    'checkbox' => 'checkbox',
+                    'radio' => 'radio',
+                    'TextType' => 'text',
+                    'NumberType' => 'number',
+                    'RangeType' => 'range',
+                    'BooleanType' => 'boolean',
                 ),
             ])
             ->add('multiple')
-            ->add('margin')
-            ->add('category');
+            ->add('margin',NumberType::class)
+            ->add('category', EntityType::class, [
+                'class' => 'lpdwSearchEngineBundle:Category',
+                'choice_label' => 'name',
+            ]);
     }
+
+
     
     /**
      * {@inheritdoc}

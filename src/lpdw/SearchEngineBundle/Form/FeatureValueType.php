@@ -2,6 +2,7 @@
 
 namespace lpdw\SearchEngineBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,9 +14,19 @@ class FeatureValueType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('value');
+        $builder
+            ->add('value')
+            ->add('elements', EntityType::class, [
+                'class' => 'lpdwSearchEngineBundle:Element',
+                'choice_label' => 'name',
+            ])
+            ->add('features', EntityType::class, [
+                'class' => 'lpdwSearchEngineBundle:Feature',
+                'choice_label' => 'name',
+            ]);
+
     }
-    
+
     /**
      * {@inheritdoc}
      */

@@ -31,9 +31,9 @@ class FeatureValue
 
     /**
      * One value has Many Features.
-     * @ORM\OneToMany(targetEntity="Feature", mappedBy="featureValue")
+     * @ORM\OneToMany(targetEntity="FeatureCategoryValue", mappedBy="featureValue")
      */
-    private $features;
+    private $featuresCV;
 
     /**
      * One value has Many Elements.
@@ -83,39 +83,6 @@ class FeatureValue
         $this->elements = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add feature
-     *
-     * @param \lpdw\SearchEngineBundle\Entity\Feature $feature
-     *
-     * @return FeatureValue
-     */
-    public function addFeature(\lpdw\SearchEngineBundle\Entity\Feature $feature)
-    {
-        $this->features[] = $feature;
-
-        return $this;
-    }
-
-    /**
-     * Remove feature
-     *
-     * @param \lpdw\SearchEngineBundle\Entity\Feature $feature
-     */
-    public function removeFeature(\lpdw\SearchEngineBundle\Entity\Feature $feature)
-    {
-        $this->features->removeElement($feature);
-    }
-
-    /**
-     * Get features
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFeatures()
-    {
-        return $this->features;
-    }
 
     /**
      * Add element
@@ -149,5 +116,39 @@ class FeatureValue
     public function getElements()
     {
         return $this->elements;
+    }
+
+    /**
+     * Add featuresCV
+     *
+     * @param \lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featuresCV
+     *
+     * @return FeatureValue
+     */
+    public function addFeaturesCV(\lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featuresCV)
+    {
+        $this->featuresCV[] = $featuresCV;
+
+        return $this;
+    }
+
+    /**
+     * Remove featuresCV
+     *
+     * @param \lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featuresCV
+     */
+    public function removeFeaturesCV(\lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featuresCV)
+    {
+        $this->featuresCV->removeElement($featuresCV);
+    }
+
+    /**
+     * Get featuresCV
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFeaturesCV()
+    {
+        return $this->featuresCV;
     }
 }

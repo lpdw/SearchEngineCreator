@@ -35,21 +35,6 @@ class Feature
      */
     private $type; // select,checkbox,radio etc
 
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="multiple", type="boolean")
-     */
-    private $multiple;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="margin", type="float")
-     */
-    private $margin;
-
     /**
      * Many Features have One Category.
      * @ORM\ManyToOne(targetEntity="Category")
