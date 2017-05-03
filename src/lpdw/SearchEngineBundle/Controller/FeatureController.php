@@ -3,9 +3,11 @@
 namespace lpdw\SearchEngineBundle\Controller;
 
 use lpdw\SearchEngineBundle\Entity\Feature;
+use lpdw\SearchEngineBundle\Entity\FeatureCategoryValue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Feature controller.
@@ -17,36 +19,48 @@ class FeatureController extends Controller
     /**
      * Lists all feature entities.
      *
-     * @Route("/", name="searchEngine_feature_index")
+     * @Route("/category/{id}/", name="searchEngine_feature_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findAll();
+        //$features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findAll();
+        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findBy( array('category' => $id));
 
         return $this->render('lpdwSearchEngineBundle:feature:index.html.twig', array(
             'features' => $features,
+            'id' => $id,
         ));
     }
 
     /**
      * Creates a new feature entity.
      *
-     * @Route("/new", name="searchEngine_feature_new")
+     * @Route("/{id}/new", name="searchEngine_feature_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
         $feature = new Feature();
+
         $form = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureType', $feature);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            $type = $feature->getType();
+
+            $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneById($id);
+            $feature->setCategory($category);
+
             $em->persist($feature);
             $em->flush($feature);
+            $em->refresh($feature);
+
+            self::insertFCV($request->request, $feature, $type);
 
             return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId()));
         }
@@ -54,13 +68,14 @@ class FeatureController extends Controller
         return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
             'feature' => $feature,
             'form' => $form->createView(),
+            'id' => $id,
         ));
     }
 
     /**
      * Finds and displays a feature entity.
      *
-     * @Route("/{id}", name="searchEngine_feature_show")
+     * @Route("/{id}/", name="searchEngine_feature_show")
      * @Method("GET")
      */
     public function showAction(Feature $feature)
@@ -106,6 +121,9 @@ class FeatureController extends Controller
      */
     public function deleteAction(Request $request, Feature $feature)
     {
+
+        $id= $feature->getCategory();
+
         $form = $this->createDeleteForm($feature);
         $form->handleRequest($request);
 
@@ -115,7 +133,7 @@ class FeatureController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('searchEngine_feature_index');
+        return $this->redirectToRoute('searchEngine_feature_index', array('id' => $id->getId()));
     }
 
     /**
@@ -132,5 +150,25 @@ class FeatureController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    function insertFCV($request, $feature, $type){
+      $em = $this->getDoctrine()->getManager();
+
+      foreach ($request as $key => $value) {
+        if (strstr($key, 'input')) {
+            $FCV = new FeatureCategoryValue();
+            $FCV->setValue($value);
+            $FCV->setFeature($feature);
+            if($type="checkbox"){
+              //$FCV->setImage();
+            }
+            elseif ($type="range") {
+              //$FCV->setImage();
+            }
+            $em->persist($FCV);
+            $em->flush($FCV);
+        }
+      }
     }
 }

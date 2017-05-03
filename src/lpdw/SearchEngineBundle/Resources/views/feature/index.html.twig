@@ -1,7 +1,7 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 
 {% block body %}
-    <h1>Features list</h1>
+    <h1>Features list :</h1>
 
     <table>
         <thead>
@@ -20,8 +20,6 @@
                 <td><a href="{{ path('searchEngine_feature_show', { 'id': feature.id }) }}">{{ feature.id }}</a></td>
                 <td>{{ feature.name }}</td>
                 <td>{{ feature.type }}</td>
-                <td>{% if feature.multiple %}Yes{% else %}No{% endif %}</td>
-                <td>{{ feature.margin }}</td>
                 <td>
                     <ul>
                         <li>
@@ -39,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('searchEngine_feature_new') }}">Create a new feature</a>
+            <a href="{{ path('searchEngine_feature_new', { 'id': id }) }}">Create a new feature</a>
         </li>
     </ul>
 {% endblock %}

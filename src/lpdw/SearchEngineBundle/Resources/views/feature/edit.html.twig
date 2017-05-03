@@ -9,7 +9,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('searchEngine_feature_index') }}">Back to the list</a>
+            <a href="{{ path('searchEngine_feature_index', { 'id': feature.category.id }) }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

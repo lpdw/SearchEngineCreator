@@ -33,16 +33,15 @@ class FeatureType extends AbstractType
                     'BooleanType' => 'boolean',
                 ),
             ])
-            ->add('multiple')
-            ->add('margin',NumberType::class)
-            ->add('category', EntityType::class, [
+            /*->add('category', EntityType::class, [
                 'class' => 'lpdwSearchEngineBundle:Category',
                 'choice_label' => 'name',
-            ]);
+            ])*/
+            ;
     }
 
 
-    
+
     /**
      * {@inheritdoc}
      */

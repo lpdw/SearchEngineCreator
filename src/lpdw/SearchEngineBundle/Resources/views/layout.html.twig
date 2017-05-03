@@ -5,6 +5,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="{{ asset('bundles/lpdwsearchengine/js/jquery.js') }}"></script>
+        <script src="{{ asset('bundles/lpdwsearchengine/js/javascript.js') }}"></script>
     </head>
     <body>
         {% block body %}{% endblock %}

@@ -5,12 +5,15 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+
+        <div id="addInput"></div>
+
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('searchEngine_feature_index') }}">Back to the list</a>
+            <a href="{{ path('searchEngine_feature_index', { 'id': id }) }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}

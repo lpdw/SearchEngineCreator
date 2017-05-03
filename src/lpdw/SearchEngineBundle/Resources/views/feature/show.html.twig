@@ -17,20 +17,12 @@
                 <th>Type</th>
                 <td>{{ feature.type }}</td>
             </tr>
-            <tr>
-                <th>Multiple</th>
-                <td>{% if feature.multiple %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Margin</th>
-                <td>{{ feature.margin }}</td>
-            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('searchEngine_feature_index') }}">Back to the list</a>
+            <a href="{{ path('searchEngine_feature_index', {'id' : feature.category.id }) }}">Back to the list</a>
         </li>
         <li>
             <a href="{{ path('searchEngine_feature_edit', { 'id': feature.id }) }}">Edit</a>
