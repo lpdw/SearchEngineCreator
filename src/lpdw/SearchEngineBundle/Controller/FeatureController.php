@@ -171,9 +171,17 @@ class FeatureController extends Controller
             $em->flush($FCV);
         }*/
       }
-        for($i=1; $i<count($request); $i++){
-          dump($request);
+//      dump($request);die;
+        if($request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
+            $taille = (count($request)-1)/3;
+            for($i=1; $i<count($request); $i++){
+                dump($request);
+                dump($request->get('input_checkbox_'.$i));
+                dump($request->get('comment_checkbox_'.$i));
+                dump($request->get('image_checkbox_'.$i));
+            }
         }
+
 
 
       die();
