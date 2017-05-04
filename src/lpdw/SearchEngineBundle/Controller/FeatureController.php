@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Feature controller.
@@ -50,7 +51,7 @@ class FeatureController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            dump($request);
             $type = $feature->getType();
 
             $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneById($id);
@@ -158,12 +159,23 @@ class FeatureController extends Controller
 
       if($request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
         $taille = (count($request)-1)/3;
-        for($i=1; $i<$taille; $i++){
+        for($i=1; $i<=$taille; $i++){
           $FCV = new FeatureCategoryValue();
           $FCV->setValue($request->get('input_checkbox_'.$i));
           $FCV->setFeature($feature);
           $FCV->setComment($request->get('comment_checkbox_'.$i));
-          $FCV->setImage($request->get('image_checkbox_'.$i));
+
+          $file = new File($request->get('image_checkbox_'.$i), false);
+
+          $fileName = md5(uniqid()).'.'.$file->getExtension();
+
+          $file->move(
+              $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+              $fileName
+          );
+
+          $FCV->setImage($fileName);
+
           $em->persist($FCV);
           $em->flush($FCV);
         }

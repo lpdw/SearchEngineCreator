@@ -9,6 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class FeatureType extends AbstractType
 {
@@ -37,7 +40,25 @@ class FeatureType extends AbstractType
                 'class' => 'lpdwSearchEngineBundle:Category',
                 'choice_label' => 'name',
             ])*/
-            ;
+            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+                $form = $event->getForm();
+                dump($event);die;
+
+                if($event->getData()["type"] == "checkbox") {
+                    $form->add('image', FileType::class, ['mapped' => false]);
+                }
+
+                // Check whether the user has chosen to display his email or not.
+                // If the data was submitted previously, the additional value that is
+                // included in the request variables needs to be removed.
+                /*if (true === $user['show_email']) {
+                    $form->add('email', EmailType::class);
+                } else {
+                    unset($user['email']);
+                    $event->setData($user);
+                }*/
+            })
+            ->getForm();
     }
 
 

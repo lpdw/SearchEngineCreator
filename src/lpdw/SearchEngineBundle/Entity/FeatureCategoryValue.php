@@ -3,6 +3,7 @@
 namespace lpdw\SearchEngineBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * FeatureCategoryValue
@@ -33,6 +34,10 @@ class FeatureCategoryValue
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={"image/png", "image/jpeg"},
+     *             mimeTypesMessage="L'extension du fichier est invalide {{ type }}). Les extensions valides sont {{ types }}",
+     *             maxSize="1M",
+     *             maxSizeMessage="Le fichier ({{ size }} {{ suffix }}) dépasse la taille maximum autorisée ({{ limit }} {{ suffix }})")
      */
     private $image;
 
