@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Feature creation</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'multipart': 'true'}) }}
         {{ form_widget(form) }}
 
         <div id="addInput"></div>

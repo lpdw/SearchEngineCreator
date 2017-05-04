@@ -51,7 +51,6 @@ class FeatureController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($request);
             $type = $feature->getType();
 
             $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneById($id);
@@ -61,7 +60,7 @@ class FeatureController extends Controller
             $em->flush($feature);
             $em->refresh($feature);
 
-            self::insertFCV($request->request, $feature, $type);
+            self::insertFCV($request, $feature, $type);
 
             return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId()));
         }
@@ -157,17 +156,17 @@ class FeatureController extends Controller
       $em = $this->getDoctrine()->getManager();
 
 
-      if($request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
-        $taille = (count($request)-1)/3;
+      if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
+        $taille = ceil((count($request->request)-1)/2);
         for($i=1; $i<=$taille; $i++){
           $FCV = new FeatureCategoryValue();
-          $FCV->setValue($request->get('input_checkbox_'.$i));
+          $FCV->setValue($request->request->get('input_checkbox_'.$i));
           $FCV->setFeature($feature);
-          $FCV->setComment($request->get('comment_checkbox_'.$i));
+          $FCV->setComment($request->request->get('comment_checkbox_'.$i));
 
-          $file = new File($request->get('image_checkbox_'.$i), false);
+          $file = $request->files->get('image_checkbox_'.$i);
 
-          $fileName = md5(uniqid()).'.'.$file->getExtension();
+          $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
           $file->move(
               $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
@@ -180,15 +179,15 @@ class FeatureController extends Controller
           $em->flush($FCV);
         }
       }
-      elseif ($request->get('lpdw_searchenginebundle_feature')['type'] == "range") {
+      elseif ($request->request->get('lpdw_searchenginebundle_feature')['type'] == "range") {
         $FCV = new FeatureCategoryValue();
-        $FCV->setValue($request->get('input_min')."-".$request->get('input_max'));
+        $FCV->setValue($request->request->get('input_min')."-".$request->request->get('input_max'));
         $FCV->setFeature($feature);
         $em->persist($FCV);
         $em->flush($FCV);
       }
       else{
-        foreach ($request as $key => $value) {
+        foreach ($request->request as $key => $value) {
           if (strstr($key, 'input')) {
               $FCV = new FeatureCategoryValue();
               $FCV->setValue($value);
