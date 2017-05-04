@@ -156,7 +156,8 @@ class FeatureController extends Controller
       $em = $this->getDoctrine()->getManager();
 
       foreach ($request as $key => $value) {
-        if (strstr($key, 'input')) {
+
+        /*if (strstr($key, 'input')) {
             $FCV = new FeatureCategoryValue();
             $FCV->setValue($value);
             $FCV->setFeature($feature);
@@ -168,7 +169,13 @@ class FeatureController extends Controller
             }
             $em->persist($FCV);
             $em->flush($FCV);
-        }
+        }*/
       }
+        for($i=1; $i<count($request); $i++){
+          dump($request);
+        }
+
+
+      die();
     }
 }
