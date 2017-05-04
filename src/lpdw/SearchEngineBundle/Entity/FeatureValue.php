@@ -28,18 +28,18 @@ class FeatureValue
      */
     private $value;
 
-
     /**
-     * One value has Many Features.
-     * @ORM\OneToMany(targetEntity="FeatureCategoryValue", mappedBy="featureValue")
+     * Many FeatureValue have One Element.
+     * @ORM\ManyToOne(targetEntity="Element")
+     * @ORM\JoinColumn(name="element_id", referencedColumnName="id")
      */
-    private $featuresCV;
-
+    private $element;
     /**
-     * One value has Many Elements.
-     * @ORM\OneToMany(targetEntity="Element", mappedBy="featureValue")
+     * Many FeatureValue have One Element.
+     * @ORM\ManyToOne(targetEntity="FeatureCategoryValue")
+     * @ORM\JoinColumn(name="featureCV_id", referencedColumnName="id")
      */
-    private $elements;
+    private $featureCV;
 
     /**
      * Get id
@@ -150,5 +150,53 @@ class FeatureValue
     public function getFeaturesCV()
     {
         return $this->featuresCV;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \lpdw\SearchEngineBundle\Entity\Element $element
+     *
+     * @return FeatureValue
+     */
+    public function setElement(\lpdw\SearchEngineBundle\Entity\Element $element = null)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \lpdw\SearchEngineBundle\Entity\Element
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+
+    /**
+     * Set featureCV
+     *
+     * @param \lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featureCV
+     *
+     * @return FeatureValue
+     */
+    public function setFeatureCV(\lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featureCV = null)
+    {
+        $this->featureCV = $featureCV;
+
+        return $this;
+    }
+
+    /**
+     * Get featureCV
+     *
+     * @return \lpdw\SearchEngineBundle\Entity\FeatureCategoryValue
+     */
+    public function getFeatureCV()
+    {
+        return $this->featureCV;
     }
 }

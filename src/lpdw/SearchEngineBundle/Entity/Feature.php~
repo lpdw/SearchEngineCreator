@@ -24,31 +24,16 @@ class Feature
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255, unique=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255, unique=true)
+     * @ORM\Column(name="type", type="string", length=255, unique=false)
      */
     private $type; // select,checkbox,radio etc
-
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="multiple", type="boolean")
-     */
-    private $multiple;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="margin", type="float")
-     */
-    private $margin;
 
     /**
      * Many Features have One Category.
@@ -116,53 +101,6 @@ class Feature
     }
 
     /**
-     * Set multiple
-     *
-     * @param boolean $multiple
-     *
-     * @return Feature
-     */
-    public function setMultiple($multiple)
-    {
-        $this->multiple = $multiple;
-
-        return $this;
-    }
-
-    /**
-     * Get multiple
-     *
-     * @return bool
-     */
-    public function getMultiple()
-    {
-        return $this->multiple;
-    }
-
-    /**
-     * Set margin
-     *
-     * @param float $margin
-     *
-     * @return Feature
-     */
-    public function setMargin($margin)
-    {
-        $this->margin = $margin;
-
-        return $this;
-    }
-
-    /**
-     * Get margin
-     *
-     * @return float
-     */
-    public function getMargin()
-    {
-        return $this->margin;
-    }
-    /**
      * Constructor
      */
     public function __construct()
@@ -177,7 +115,7 @@ class Feature
      *
      * @return Feature
      */
-    public function setCategory(\lpdw\SearchEngineBundle\Entity\Category $category = null)
+    public function setCategory(\lpdw\SearchEngineBundle\Entity\Category $category)
     {
         $this->category = $category;
 

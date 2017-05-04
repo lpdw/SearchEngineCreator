@@ -47,6 +47,7 @@ class FeatureController extends Controller
         $em = $this->getDoctrine()->getManager();
         $feature = new Feature();
 
+//        dump($feature);die;
         $form = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureType', $feature);
         $form->handleRequest($request);
 
