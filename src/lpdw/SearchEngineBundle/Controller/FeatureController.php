@@ -155,35 +155,36 @@ class FeatureController extends Controller
     function insertFCV($request, $feature, $type){
       $em = $this->getDoctrine()->getManager();
 
-      foreach ($request as $key => $value) {
 
-        /*if (strstr($key, 'input')) {
-            $FCV = new FeatureCategoryValue();
-            $FCV->setValue($value);
-            $FCV->setFeature($feature);
-            if($type="checkbox"){
-              //$FCV->setImage();
-            }
-            elseif ($type="range") {
-              //$FCV->setImage();
-            }
-            $em->persist($FCV);
-            $em->flush($FCV);
-        }*/
-      }
-//      dump($request);die;
-        if($request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
-            $taille = (count($request)-1)/3;
-            for($i=1; $i<count($request); $i++){
-                dump($request);
-                dump($request->get('input_checkbox_'.$i));
-                dump($request->get('comment_checkbox_'.$i));
-                dump($request->get('image_checkbox_'.$i));
-            }
+      if($request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
+        $taille = (count($request)-1)/3;
+        for($i=1; $i<$taille; $i++){
+          $FCV = new FeatureCategoryValue();
+          $FCV->setValue($request->get('input_checkbox_'.$i));
+          $FCV->setFeature($feature);
+          $FCV->setComment($request->get('comment_checkbox_'.$i));
+          $FCV->setImage($request->get('image_checkbox_'.$i));
+          $em->persist($FCV);
+          $em->flush($FCV);
         }
-
-
-
-      die();
+      }
+      elseif ($request->get('lpdw_searchenginebundle_feature')['type'] == "range") {
+        $FCV = new FeatureCategoryValue();
+        $FCV->setValue($request->get('input_min')."-".$request->get('input_max'));
+        $FCV->setFeature($feature);
+        $em->persist($FCV);
+        $em->flush($FCV);
+      }
+      else{
+        foreach ($request as $key => $value) {
+          if (strstr($key, 'input')) {
+              $FCV = new FeatureCategoryValue();
+              $FCV->setValue($value);
+              $FCV->setFeature($feature);
+              $em->persist($FCV);
+              $em->flush($FCV);
+          }
+        }
+      }
     }
 }

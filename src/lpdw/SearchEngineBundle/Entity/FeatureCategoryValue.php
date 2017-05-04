@@ -28,6 +28,12 @@ class FeatureCategoryValue
      */
     private $value;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
     private $image;
 
     /**
@@ -151,5 +157,30 @@ class FeatureCategoryValue
     public function getComment()
     {
         return $this->comment;
+    }
+
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return FeatureCategoryValue
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
