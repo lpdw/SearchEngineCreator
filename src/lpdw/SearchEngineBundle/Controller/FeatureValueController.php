@@ -89,21 +89,43 @@ class FeatureValueController extends Controller
                     ]);
                 }
                 if($feature->getType() == 'RangeType'){
-                    dump($feature);die;
+
+                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
+   
+                    $values = explode("-", $featureCatVal->getValue());
+
                     $form->add('value'.$i, NumberType::class,[
-                    'label'=> $feature->getName()
+                    'label'=> $feature->getName(),
+                    'attr' =>['min' => $values[0],
+                    'max' => $values[1]]
                     ]);
                 }
                 if($feature->getType() == 'checkbox'){
+
+                    // dump($feature);
+                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
+                    // dump($featureCatVal);
+                    $tab = [];
+                    foreach ($featureCatVal as $key => $value) {
+                        // dump($value->getValue());
+                        $tab[$value->getValue()] = $value->getValue();
+                    }
                     $form->add('value'.$i, ChoiceType::class,[
                     'label'=> $feature->getName(),
+                    'choices' => $tab,
                     'expanded' => true,
                     'multiple' => true,
                     ]);
                 }
                 if($feature->getType() == 'radio'){
+                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);      
+                    // dump($featureCatVal);              
                     $form->add('value'.$i, ChoiceType::class,[
-                    'label'=> $feature->getName(),                    
+                    'label'=> $feature->getName(),   
+
+                    'choices' => [
+
+                    ]      ,           
                     'expanded' => true,
                     'multiple' => false,
                     ]);
@@ -118,9 +140,10 @@ class FeatureValueController extends Controller
                 }
                 
 
+                   
 
                 $i++;
-            }
+            } 
         
 
 //        die;

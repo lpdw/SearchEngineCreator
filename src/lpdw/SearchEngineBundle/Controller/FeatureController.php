@@ -343,7 +343,7 @@ class FeatureController extends Controller
       else{
 
         if($request->request->get('form')){
-          dump($request->request->get('form'));
+          dump($request->request->get('form'));die;
 
           for($i=1; $i<(count($request->request)); $i++){
             if($request->request->get('form')['value'.$i]){
