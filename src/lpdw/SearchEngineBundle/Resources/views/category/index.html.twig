@@ -1,39 +1,50 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 
 {% block body %}
-    <h1>Categories list</h1>
+    <div class="container">
+        <div class="row">
+            <h1 class="fontTitle ft-50 darkBlue smallCaps">
+                Lorem ipsum dolor sit amet<br />
+                consectetur adipiscing elit.
+            </h1>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td><a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('searchEngine_category_edit', { 'id': category.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="row">
+            <h2 class="text-right fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('searchEngine_category_new') }}">Create a new category</a>
-        </li>
-    </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td><a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('searchEngine_category_edit', { 'id': category.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('searchEngine_category_new') }}">Create a new category</a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

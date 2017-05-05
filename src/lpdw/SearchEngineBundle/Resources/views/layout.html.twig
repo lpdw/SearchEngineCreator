@@ -5,11 +5,15 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
         <script src="{{ asset('bundles/lpdwsearchengine/js/jquery.js') }}"></script>
         <script src="{{ asset('bundles/lpdwsearchengine/js/javascript.js') }}"></script>
     </head>
     <body>
         {% block body %}{% endblock %}
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
