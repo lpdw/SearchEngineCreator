@@ -14,16 +14,9 @@
         <tbody>
         {% for element in elements %}
             <tr>
-                <td><a href="{{ path('searchEngine_element_show', { 'id': element.id }) }}">{{ element.id }}</a></td>
                 <td>{{ element.name }}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('searchEngine_element_show', { 'id': element.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('searchEngine_element_edit', { 'id': element.id }) }}">edit</a>
-                        </li>
                         <li>
                             <a href="{{ path('searchEngine_featureValue_new', { 'name': element.name }) }}">ajouter valeurs</a>
                         </li>

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 /**
  * Feature controller.
@@ -107,6 +108,8 @@ class FeatureController extends Controller
         $FeatureCategoryValue = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findBy( array('feature' => $id));
         $form = $this->createFormBuilder();
 
+        $checkboxList = [];
+
         $i=1;
 
         $type = $feature->getType();
@@ -125,8 +128,12 @@ class FeatureController extends Controller
                 $form->get('value'.$i)->setData($value->getValue());
                 $form->add('comment'.$i, TextareaType::class, ["required" => false, 'attr' => ['id' => 'checkbox_comment_'.$id]]);
                 $form->get('comment'.$i)->setData($value->getComment());
-                $form->add('image'.$i, TextType::class, ["required" => false, 'attr' => ['id' => 'checkbox_image_'.$id]]);
-                $form->get('image'.$i)->setData($value->getImage());
+                $form->add('image'.$i, FileType::class, ["required" => false]);
+                if($value->getImage()) {
+                    $form->get('image'.$i)->setData(new File($this->container->getParameter('kernel.root_dir') . '/../web/uploads/images/' . $value->getImage()));
+                }
+
+                array_push($checkboxList, [$form->get('value'.$i), $form->get('comment'.$i), $form->get('image'.$i)]);
                 $i++;
             }
           }
@@ -173,10 +180,16 @@ class FeatureController extends Controller
 
             self::insertFCV($request, $feature, $type);
 
+            foreach ($FeatureCategoryValue as $value){
+              $em->remove($value);
+              $em->flush();
+            }
+
             return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId()));
         }
 
         return $this->render('lpdwSearchEngineBundle:feature:edit.html.twig', array(
+            'checkboxList' => $checkboxList,
             'feature' => $feature,
             'form' => $send_form->createView(),
             'edit_form' => $editForm->createView(),
@@ -227,8 +240,37 @@ class FeatureController extends Controller
       $em = $this->getDoctrine()->getManager();
 
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
-
+        //EDIT
+        dump($request->request);die();
         if($request->request->get('form')){
+
+          //GENERATE JS
+          for($i=1; $i<=(count($request->request)); $i++){
+            if($request->request->get('input_checkbox_'.$i)){
+              $FCV = new FeatureCategoryValue();
+              $FCV->setValue($request->request->get('input_checkbox_'.$i));
+              $FCV->setFeature($feature);
+              $FCV->setComment($request->request->get('comment_checkbox_'.$i));
+
+              $file = $request->files->get('image_checkbox_'.$i);
+
+              if($file) {
+                  $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                  $file->move(
+                      $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+                      $fileName
+                  );
+
+                  $FCV->setImage($fileName);
+              }
+
+              $em->persist($FCV);
+              $em->flush($FCV);
+            }
+          }
+
+          //GENERATE SYMFONY
           $taille = ceil((count($request->request->get('form'))-1)/3);
           for($i=1; $i<=$taille; $i++){
             $FCV = new FeatureCategoryValue();
@@ -254,8 +296,8 @@ class FeatureController extends Controller
           }
         }
         else{
-          dump($request->request);
-          die();
+          //news
+
           $taille = ceil((count($request->request)-1)/2);
           for($i=1; $i<=$taille; $i++){
             $FCV = new FeatureCategoryValue();

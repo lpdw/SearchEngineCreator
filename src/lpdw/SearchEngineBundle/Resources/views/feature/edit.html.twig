@@ -1,13 +1,29 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 {% block body %}
     <h1>Feature edit</h1>
-
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
         <div id="addInputEdit">
-          {{ form_start(form) }}
-          {{ form_end(form) }}
-          <input type="submit" value="Edit" id="edit_value"/>
+            {{ form_start(form) }}
+                {% if checkboxList|length == 0 %}
+                    {{ form_widget(form) }}
+                {% else %}
+                    {% for checkbox in checkboxList %}
+                        {% set value = 'value' ~ (loop.index) %}
+                        {% set comment = 'comment' ~ (loop.index) %}
+                        {% set image = 'image' ~ (loop.index) %}
+
+                        {{ form_row(attribute(form, value)) }}
+                        {{ form_row(attribute(form, comment)) }}
+                        {% if checkbox[2].data %}
+                            <img src="{{ asset('uploads/images/' ~ checkbox[2].data.filename) }}" alt="Image pour {{ checkbox[0].data }}">
+                        {% endif %}
+                        {{ form_row(attribute(form, image)) }}
+                    {% endfor %}
+                {% endif %}
+
+            {{ form_end(form) }}
+            <input type="submit" value="Edit" id="edit_value" />
         </div>
     {{ form_end(edit_form) }}
     <ul>
