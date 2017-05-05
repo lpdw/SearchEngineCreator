@@ -33,13 +33,25 @@ class FeatureValueController extends Controller {
 	/**
 	 * Creates a new featureValue entity.
 	 *
-	 * @Route("/new", name="searchEngine_featureValue_new")
+	 * @Route("/{name}/new", name="searchEngine_featureValue_new")
 	 * @Method({"GET", "POST"})
 	 */
-	public function newAction(Request $request) {
+	public function newAction(Request $request,$name) {
 		$featureValue = new Featurevalue();
 		$form         = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureValueType', $featureValue);
 		$form->handleRequest($request);
+		$element = $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByName($name);
+		dump("toto");die;
+		if(empty($element)){
+			return $this->redirectToRoute('searchEngine_element_index');
+		}else {
+			$feature = $em->getRepository('lpdwSearchEngineBundle:feature')->findOneByCategory($element->getCategory())
+			if(empty($feature)){
+				return $this->redirectToRoute('searchEngine_feature_index');
+			}
+		}
+
+
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em = $this->getDoctrine()->getManager();

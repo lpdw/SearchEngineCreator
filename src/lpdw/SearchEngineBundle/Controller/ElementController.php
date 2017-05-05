@@ -46,6 +46,8 @@ class ElementController extends Controller
 
         $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
 
+
+
         if(empty($category)){
 
             return $this->redirectToRoute('searchEngine_category_index');
