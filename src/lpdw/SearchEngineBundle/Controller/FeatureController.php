@@ -121,11 +121,11 @@ class FeatureController extends Controller
           }
           if($type=="checkbox"){
             foreach ($FeatureCategoryValue as $value){
-                $form->add('value'.$i, TextType::class, ["required" => false]);
+                $form->add('value'.$i, TextType::class, ["required" => false, 'attr' => ['id' => 'checkbox_input_'.$id]]);
                 $form->get('value'.$i)->setData($value->getValue());
-                $form->add('comment'.$i, TextareaType::class, ["required" => false]);
+                $form->add('comment'.$i, TextareaType::class, ["required" => false, 'attr' => ['id' => 'checkbox_comment_'.$id]]);
                 $form->get('comment'.$i)->setData($value->getComment());
-                $form->add('image'.$i, TextType::class, ["required" => false]);
+                $form->add('image'.$i, TextType::class, ["required" => false, 'attr' => ['id' => 'checkbox_image_'.$id]]);
                 $form->get('image'.$i)->setData($value->getImage());
                 $i++;
             }
@@ -228,9 +228,6 @@ class FeatureController extends Controller
 
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
 
-        dump($request->request);
-        die();
-
         if($request->request->get('form')){
           $taille = ceil((count($request->request->get('form'))-1)/3);
           for($i=1; $i<=$taille; $i++){
@@ -257,7 +254,9 @@ class FeatureController extends Controller
           }
         }
         else{
-          $taille = ceil((count($request->request)-1)/3);
+          dump($request->request);
+          die();
+          $taille = ceil((count($request->request)-1)/2);
           for($i=1; $i<=$taille; $i++){
             $FCV = new FeatureCategoryValue();
             $FCV->setValue($request->request->get('input_checkbox_'.$i));
