@@ -137,19 +137,19 @@ class FeatureController extends Controller
                 $i++;
             }
           }
-          if($type=="text"){
+          if($type=="TextType"){
             foreach ($FeatureCategoryValue as $value){
                 $form->add('value', TextType::class);
                 $form->get('value')->setData($value->getValue());
             }
           }
-          if($type=="number"){
+          if($type=="NumberType"){
             foreach ($FeatureCategoryValue as $value){
                 $form->add('value', NumberType::class);
                 $form->get('value')->setData($value->getValue());
             }
           }
-          if($type=="range"){
+          if($type=="RangeType"){
             foreach ($FeatureCategoryValue as $value){
               $pieces = explode("-", $value->getValue());
               $form->add('min', TextType::class);
@@ -158,7 +158,7 @@ class FeatureController extends Controller
               $form->get('max')->setData($pieces[1]);
             }
           }
-          if($type=="boolean"){
+          if($type=="BooleanType"){
             foreach ($FeatureCategoryValue as $value){
                 $form->add('value', TextType::class);
                 $form->get('value')->setData($value->getValue());
@@ -282,7 +282,7 @@ class FeatureController extends Controller
           }
         }
       }
-      elseif ($request->request->get('lpdw_searchenginebundle_feature')['type'] == "range") {
+      elseif ($request->request->get('lpdw_searchenginebundle_feature')['type'] == "RangeType") {
         $FCV = new FeatureCategoryValue();
         $FCV->setValue($request->request->get('input_min')."-".$request->request->get('input_max'));
         $FCV->setFeature($feature);
