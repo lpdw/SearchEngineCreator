@@ -3,30 +3,32 @@
     <h1>Feature edit</h1>
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        {{ form_start(form) }}
-            {% if checkboxList|length == 0 %}
-                {{ form_widget(form) }}
-            {% else %}
-                {% for checkbox in checkboxList %}
-                    {% set value = 'value' ~ (loop.index - 1) %}
-                    {% set comment = 'comment' ~ (loop.index - 1) %}
-                    {% set image = 'image' ~ (loop.index - 1) %}
+        <div id="addInputEdit">
+            {{ form_start(form) }}
+                {% if checkboxList|length == 0 %}
+                    {{ form_widget(form) }}
+                {% else %}
+                    {% for checkbox in checkboxList %}
+                        {% set value = 'value' ~ (loop.index) %}
+                        {% set comment = 'comment' ~ (loop.index) %}
+                        {% set image = 'image' ~ (loop.index) %}
 
-                    {{ form_row(attribute(form, value)) }}
-                    {{ form_row(attribute(form, comment)) }}
-                    {% if checkbox[2].data %}
-                        <img src="{{ asset('uploads/images/' ~ checkbox[2].data.filename) }}" alt="Image pour {{ checkbox[0].data }}">
-                    {% endif %}
-                    {{ form_row(attribute(form, image)) }}
-                {% endfor %}
-            {% endif %}
+                        {{ form_row(attribute(form, value)) }}
+                        {{ form_row(attribute(form, comment)) }}
+                        {% if checkbox[2].data %}
+                            <img src="{{ asset('uploads/images/' ~ checkbox[2].data.filename) }}" alt="Image pour {{ checkbox[0].data }}">
+                        {% endif %}
+                        {{ form_row(attribute(form, image)) }}
+                    {% endfor %}
+                {% endif %}
 
-        {{ form_end(form) }}
-        <input type="submit" value="Edit" />
+            {{ form_end(form) }}
+            <input type="submit" value="Edit" id="edit_value" />
+        </div>
     {{ form_end(edit_form) }}
     <ul>
         <li>
-            <a href="{{ path('searchEngine_feature_index', { 'id': feature.category.id }) }}">Back to the list</a>
+            <a href="{{ path('searchEngine_feature_index', { 'name': feature.category.name }) }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
