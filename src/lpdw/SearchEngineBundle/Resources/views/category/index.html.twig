@@ -1,34 +1,62 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 
 {% block body %}
-    <h1>Categories list</h1>
+    {{ parent() }}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                
-                <td>{{ category.name }}</td>
+    <div class="container">
+        <div class="row">
+            <h1 class="fontTitle ft-50 darkBlue smallCaps">
+                BCPE<br />
+                consectetur adipiscing elit.
+            </h1>
+        </div>
+
+        <div class="row">
+            <h2 class="text-right fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
+        </div>
+
+        <!-- <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td><a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                    <td>{{ category.name }}</td>
                 <td>
                     <li>
                         <a href="{{ path('searchEngine_element_new', { 'name': category.name }) }}">Create a new Element</a>
                         <a href="{{ path('searchEngine_feature_new', { 'name': category.name }) }}">Create a new Feature</a>
                     </li>
-                </td>    
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                </td>   
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table> -->
 
-    <ul>
-        <li>
-            <a href="{{ path('searchEngine_category_new') }}">Create a new category</a>
-        </li>
-    </ul>
+        <div class="col-md-12 col-sm-12">
+           <div class="grid-socials">
+               {% set i = 0 %}
+               {% for category in categories %}
+               <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
+                   <div class="grid-item-when-socials visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}" data-cat="grande-salle">
+                       <div class="w100">{{ category.name }}</div>
+                       <div class="gutter-sizer"></div>
+                   </div>
+               </a>
+
+               {% set i = i + 1 %}
+               {% endfor %}
+           </div>
+       </div>
+
+       <a href="{{ path('searchEngine_category_new') }}">Create a new category</a>
+
+
+    </div>
 {% endblock %}
