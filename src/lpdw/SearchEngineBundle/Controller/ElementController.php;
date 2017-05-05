@@ -46,7 +46,7 @@ class ElementController extends Controller {
 			$em->persist($element);
 			$em->flush($element);
 
-			return $this->redirectToRoute('searchEngine_element_show', array('id' => $element->getId()));
+			return $this->redirectToRoute('searchEngine_element_index');
 		}
 
 		return $this->render('lpdwSearchEngineBundle:element:new.html.twig', array(
