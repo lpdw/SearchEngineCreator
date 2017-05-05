@@ -146,14 +146,14 @@ class FeatureController extends Controller
           }
           if($type=="TextType"){
             foreach ($FeatureCategoryValue as $value){
-                $form->add('value', TextType::class);
-                $form->get('value')->setData($value->getValue());
+                $form->add('value'.$i, TextType::class);
+                $form->get('value'.$i)->setData($value->getValue());
             }
           }
           if($type=="NumberType"){
             foreach ($FeatureCategoryValue as $value){
-                $form->add('value', NumberType::class);
-                $form->get('value')->setData($value->getValue());
+                $form->add('value'.$i, NumberType::class);
+                $form->get('value'.$i)->setData(intval($value->getValue()));
             }
           }
           if($type=="RangeType"){
@@ -167,8 +167,8 @@ class FeatureController extends Controller
           }
           if($type=="BooleanType"){
             foreach ($FeatureCategoryValue as $value){
-                $form->add('value', TextType::class);
-                $form->get('value')->setData($value->getValue());
+                $form->add('value'.$i, TextType::class);
+                $form->get('value'.$i)->setData($value->getValue());
             }
           }
         }
@@ -340,6 +340,7 @@ class FeatureController extends Controller
         }
       }
       else{
+
         if($request->request->get('form')){
           dump($request->request->get('form'));
 
