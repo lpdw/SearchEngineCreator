@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 /**
  * Feature controller.
  *
@@ -107,24 +107,73 @@ class FeatureController extends Controller
         $FeatureCategoryValue = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findBy( array('feature' => $id));
         $form = $this->createFormBuilder();
 
-        $i=0;
+        $i=1;
+
+        $type = $feature->getType();
+
         if($FeatureCategoryValue!=0){
-          foreach ($FeatureCategoryValue as $value){
-              $form->add('value'.$i, TextType::class);
-              $form->get('value'.$i)->setData($value->getValue());
-              $form->add('comment'.$i, TextareaType::class);
-              $form->get('comment'.$i)->setData($value->getComment());
-              $form->add('image'.$i, TextType::class);
-              $form->get('image'.$i)->setData($value->getImage());
-              $i++;
+          if($type=="select"){
+            foreach ($FeatureCategoryValue as $value){
+                $form->add('value'.$i, TextType::class);
+                $form->get('value'.$i)->setData($value->getValue());
+                $i++;
+            }
+          }
+          if($type=="checkbox"){
+            foreach ($FeatureCategoryValue as $value){
+                $form->add('value'.$i, TextType::class, ["required" => false]);
+                $form->get('value'.$i)->setData($value->getValue());
+                $form->add('comment'.$i, TextareaType::class, ["required" => false]);
+                $form->get('comment'.$i)->setData($value->getComment());
+                $form->add('image'.$i, TextType::class, ["required" => false]);
+                $form->get('image'.$i)->setData($value->getImage());
+                $i++;
+            }
+          }
+          if($type=="radio"){
+            foreach ($FeatureCategoryValue as $value){
+                $form->add('value'.$i, TextType::class);
+                $form->get('value'.$i)->setData($value->getValue());
+                $i++;
+            }
+          }
+          if($type=="text"){
+            foreach ($FeatureCategoryValue as $value){
+                $form->add('value', TextType::class);
+                $form->get('value')->setData($value->getValue());
+            }
+          }
+          if($type=="number"){
+            foreach ($FeatureCategoryValue as $value){
+                $form->add('value', NumberType::class);
+                $form->get('value')->setData($value->getValue());
+            }
+          }
+          if($type=="range"){
+            foreach ($FeatureCategoryValue as $value){
+              $pieces = explode("-", $value->getValue());
+              $form->add('min', TextType::class);
+              $form->get('min')->setData($pieces[0]);
+              $form->add('max', TextType::class);
+              $form->get('max')->setData($pieces[1]);
+            }
+          }
+          if($type=="boolean"){
+            foreach ($FeatureCategoryValue as $value){
+                $form->add('value', TextType::class);
+                $form->get('value')->setData($value->getValue());
+            }
           }
         }
         $send_form = $form->getForm();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('searchEngine_feature_edit', array('id' => $feature->getId()));
+            self::insertFCV($request, $feature, $type);
+
+            return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId()));
         }
 
         return $this->render('lpdwSearchEngineBundle:feature:edit.html.twig', array(
@@ -177,31 +226,60 @@ class FeatureController extends Controller
     function insertFCV($request, $feature, $type){
       $em = $this->getDoctrine()->getManager();
 
-
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
 
-        $taille = ceil((count($request->request)-1)/3);
-        for($i=1; $i<=$taille; $i++){
-          $FCV = new FeatureCategoryValue();
-          $FCV->setValue($request->request->get('input_checkbox_'.$i));
-          $FCV->setFeature($feature);
-          $FCV->setComment($request->request->get('comment_checkbox_'.$i));
+        dump($request->request);
+        die();
 
-          $file = $request->files->get('image_checkbox_'.$i);
+        if($request->request->get('form')){
+          $taille = ceil((count($request->request->get('form'))-1)/3);
+          for($i=1; $i<=$taille; $i++){
+            $FCV = new FeatureCategoryValue();
+            $FCV->setValue($request->request->get('form')["value".$i]);
+            $FCV->setFeature($feature);
+            $FCV->setComment($request->request->get('form')["comment".$i]);
 
-          if($file) {
-              $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file = $request->files->get('image_checkbox_'.$i);
 
-              $file->move(
-                  $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
-                  $fileName
-              );
+            if($file) {
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-              $FCV->setImage($fileName);
+                $file->move(
+                    $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+                    $fileName
+                );
+
+                $FCV->setImage($fileName);
+            }
+
+            $em->persist($FCV);
+            $em->flush($FCV);
           }
+        }
+        else{
+          $taille = ceil((count($request->request)-1)/3);
+          for($i=1; $i<=$taille; $i++){
+            $FCV = new FeatureCategoryValue();
+            $FCV->setValue($request->request->get('input_checkbox_'.$i));
+            $FCV->setFeature($feature);
+            $FCV->setComment($request->request->get('comment_checkbox_'.$i));
 
-          $em->persist($FCV);
-          $em->flush($FCV);
+            $file = $request->files->get('image_checkbox_'.$i);
+
+            if($file) {
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+                    $fileName
+                );
+
+                $FCV->setImage($fileName);
+            }
+
+            $em->persist($FCV);
+            $em->flush($FCV);
+          }
         }
       }
       elseif ($request->request->get('lpdw_searchenginebundle_feature')['type'] == "range") {
