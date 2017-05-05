@@ -47,6 +47,7 @@ class FeatureController extends Controller
         $em = $this->getDoctrine()->getManager();
         $feature = new Feature();
 
+//        dump($feature);die;
         $form = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureType', $feature);
         $form->handleRequest($request);
 
@@ -166,14 +167,16 @@ class FeatureController extends Controller
 
           $file = $request->files->get('image_checkbox_'.$i);
 
-          $fileName = md5(uniqid()).'.'.$file->guessExtension();
+          if($file) {
+              $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-          $file->move(
-              $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
-              $fileName
-          );
+              $file->move(
+                  $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+                  $fileName
+              );
 
-          $FCV->setImage($fileName);
+              $FCV->setImage($fileName);
+          }
 
           $em->persist($FCV);
           $em->flush($FCV);

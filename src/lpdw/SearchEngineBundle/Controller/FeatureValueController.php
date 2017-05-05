@@ -3,9 +3,12 @@
 namespace lpdw\SearchEngineBundle\Controller;
 
 use lpdw\SearchEngineBundle\Entity\FeatureValue;
+use lpdw\SearchEngineBundle\Form\FeatureValueType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Featurevalue controller.
@@ -34,17 +37,35 @@ class FeatureValueController extends Controller
     /**
      * Creates a new featureValue entity.
      *
-     * @Route("/new", name="searchEngine_featureValue_new")
+     * @Route("/{name}/new", name="searchEngine_featureValue_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $name)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $featureValue = new Featurevalue();
+        $element =  $em->getRepository('lpdwSearchEngineBundle:Element')->findByName($name);
+
+        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($element[0]->getCategory());
+        $i = 0;
+        $form = $this->createFormBuilder();
+            foreach ($features as $feature){
+                $form->add('value'.$i, TextType::class);
+                $i++;
+            }
+        $form->getForm();
+
+//        die;
+        if(empty($element)){
+            return $this->redirectToRoute('searchEngine_element_index');
+        }
         $form = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureValueType', $featureValue);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            $featureValue->setElement($element[0]);
             $em->persist($featureValue);
             $em->flush($featureValue);
 

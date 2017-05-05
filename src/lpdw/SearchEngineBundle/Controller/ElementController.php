@@ -2,6 +2,7 @@
 
 namespace lpdw\SearchEngineBundle\Controller;
 
+use lpdw\SearchEngineBundle\Entity\Category;
 use lpdw\SearchEngineBundle\Entity\Element;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -34,18 +35,28 @@ class ElementController extends Controller
     /**
      * Creates a new element entity.
      *
-     * @Route("/new", name="searchEngine_element_new")
+     * @Route("/{name}/new", name="searchEngine_element_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,$name)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $element = new Element();
+
+        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
+
+        if(empty($category)){
+
+            return $this->redirectToRoute('searchEngine_category_index');
+        }
         $form = $this->createForm('lpdw\SearchEngineBundle\Form\ElementType', $element);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $element->setCategory($category[0]);
             $em->persist($element);
+
             $em->flush($element);
 
             return $this->redirectToRoute('searchEngine_element_show', array('id' => $element->getId()));
