@@ -1,10 +1,13 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 
 {% block body %}
+
+    {{ parent() }}
+
     <div class="container">
         <div class="row">
             <h1 class="fontTitle ft-50 darkBlue smallCaps">
-                Lorem ipsum dolor sit amet<br />
+                BCPE<br />
                 consectetur adipiscing elit.
             </h1>
         </div>
@@ -13,7 +16,7 @@
             <h2 class="text-right fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
         </div>
 
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <th>Id</th>
@@ -39,12 +42,28 @@
                 </tr>
             {% endfor %}
             </tbody>
-        </table>
+        </table> -->
 
-        <ul>
-            <li>
-                <a href="{{ path('searchEngine_category_new') }}">Create a new category</a>
-            </li>
-        </ul>
+        <div class="col-md-12 col-sm-12">
+           <div class="grid-socials">
+               {% set i = 0 %}
+               {% for category in categories %}
+               <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
+                   <div class="grid-item-when-socials visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}" data-cat="grande-salle">
+                       <div class="w100">{{ category.name }}</div>
+                       <div class="gutter-sizer"></div>
+                   </div>
+               </a>
+
+               {% set i = i + 1 %}
+               {% endfor %}
+           </div>
+       </div>
+
+       <a href="{{ path('searchEngine_category_new') }}">Create a new category</a>
+
+
     </div>
+
+
 {% endblock %}
