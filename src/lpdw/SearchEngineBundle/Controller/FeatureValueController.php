@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\BooleanType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -47,19 +50,74 @@ class FeatureValueController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $featureValue = new Featurevalue();
+
+        //recupération des élément en fonction du nom en param
         $element =  $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByName($name);
-        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($element->getCategory());
 
-
+        //si le nom en param n'est pas un element valide on redirige vers la liste des element
+        if(empty($element)){
+            return $this->redirectToRoute('searchEngine_element_index');
+        }else { //sinon
+            //on recupere les features de cet element
+            $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($element->getCategory());
+            //si la categorie de l'element n'a pas de feature on redirige vers la page des feature de la categorie
+            if(empty($features)){
+                return $this->redirectToRoute('searchEngine_feature_index', [ 'name' => $element->getCategory()->getName() ]);
+            }
+        }
+        //var incrément
         $i = 0;
+        //nouveau formulaire
         $form = $this->createFormBuilder();
-
+            // boucle de parcourt des features
             foreach ($features as $feature){
-                dump($feature);die;
-                $form->add('value'.$i, TextType::class,[
-                    'label'=> $feature->getName(),
+                //verification du type de feature pour generer le form
 
-            ]);
+                if($feature->getType() == 'TextType' ){
+                    $form->add('value'.$i, TextType::class,[
+                    'label'=> $feature->getName()
+                    ]);
+                } 
+                if($feature->getType() == 'NumberType'){
+                    $form->add('value'.$i, NumberType::class,[
+                    'label'=> $feature->getName()
+                    ]);
+                }
+                if($feature->getType() == 'BooleanType'){
+                    $form->add('value'.$i, BooleanType::class,[
+                    'label'=> $feature->getName()
+                    ]);
+                }
+                if($feature->getType() == 'RangeType'){
+                    dump($feature);die;
+                    $form->add('value'.$i, NumberType::class,[
+                    'label'=> $feature->getName()
+                    ]);
+                }
+                if($feature->getType() == 'checkbox'){
+                    $form->add('value'.$i, ChoiceType::class,[
+                    'label'=> $feature->getName(),
+                    'expanded' => true,
+                    'multiple' => true,
+                    ]);
+                }
+                if($feature->getType() == 'radio'){
+                    $form->add('value'.$i, ChoiceType::class,[
+                    'label'=> $feature->getName(),                    
+                    'expanded' => true,
+                    'multiple' => false,
+                    ]);
+                }
+                    
+                if($feature->getType() == 'select'){
+                    $form->add('value'.$i, ChoiceType::class,[
+                    'label'=> $feature->getName(),
+                    'expanded' => false,
+                    'multiple' => false,
+                    ]);
+                }
+                
+
 
                 $i++;
             }

@@ -241,6 +241,7 @@ class FeatureController extends Controller
 
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
         //EDIT
+
         if($request->request->get('form')){
 
           //GENERATE JS

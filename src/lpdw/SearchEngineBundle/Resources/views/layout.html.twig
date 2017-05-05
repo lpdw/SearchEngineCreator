@@ -4,11 +4,58 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Search Enfine Creator{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
         <script src="{{ asset('bundles/lpdwsearchengine/js/jquery.js') }}"></script>
         <script src="{{ asset('bundles/lpdwsearchengine/js/javascript.js') }}"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href='#'>Accueil</a></li>
+                            <li><a href='#'>Blabla</a></li>
+                            <li><a href='#'>Documentation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% endblock %}
+
         {% block javascripts %}{% endblock %}
+
+        <script type="text/javascript">
+
+        var height = [50,65,80,95,110];
+
+        $('.grid-item-when-socials').each(function() {
+            var randomHeight = Math.floor(Math.random() * height.length);
+            $(this).css('height', height[randomHeight]+"px");
+        });
+
+        $gridSocials = $('.grid-socials').masonry({
+            // set itemSelector so .grid-sizer is not used in layout
+            itemSelector: '.grid-item-when-socials.visible',
+            // use element for option
+            columnWidth: '.grid-item-when-socials',
+            gutter :  '.gutter-sizer',
+            percentPosition: true
+        });
+
+        </script>
     </body>
 </html>
