@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Feature controller.
@@ -95,11 +97,29 @@ class FeatureController extends Controller
      * @Route("/{id}/edit", name="searchEngine_feature_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Feature $feature)
+    public function editAction(Request $request, Feature $feature, $id)
     {
         $deleteForm = $this->createDeleteForm($feature);
         $editForm = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureType', $feature);
         $editForm->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        $FeatureCategoryValue = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findBy( array('feature' => $id));
+        $form = $this->createFormBuilder();
+
+        $i=0;
+        if($FeatureCategoryValue!=0){
+          foreach ($FeatureCategoryValue as $value){
+              $form->add('value'.$i, TextType::class);
+              $form->get('value'.$i)->setData($value->getValue());
+              $form->add('comment'.$i, TextareaType::class);
+              $form->get('comment'.$i)->setData($value->getComment());
+              $form->add('image'.$i, TextType::class);
+              $form->get('image'.$i)->setData($value->getImage());
+              $i++;
+          }
+        }
+        $send_form = $form->getForm();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -109,6 +129,7 @@ class FeatureController extends Controller
 
         return $this->render('lpdwSearchEngineBundle:feature:edit.html.twig', array(
             'feature' => $feature,
+            'form' => $send_form->createView(),
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -158,7 +179,8 @@ class FeatureController extends Controller
 
 
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
-        $taille = ceil((count($request->request)-1)/2);
+
+        $taille = ceil((count($request->request)-1)/3);
         for($i=1; $i<=$taille; $i++){
           $FCV = new FeatureCategoryValue();
           $FCV->setValue($request->request->get('input_checkbox_'.$i));

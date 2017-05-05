@@ -4,9 +4,11 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
-
     <ul>
         <li>
             <a href="{{ path('searchEngine_feature_index', { 'id': feature.category.id }) }}">Back to the list</a>
