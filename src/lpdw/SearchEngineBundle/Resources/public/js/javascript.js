@@ -19,8 +19,8 @@ $( document ).ready(function() {
       '<label for="checkbox_comment_'+i+'">Commentaire '+i+'</label>'+
       '<textarea name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea><br>'+
       '<br><label for="checkbox_image_'+i+'">Image '+i+'</label>'+
-      '<input type="text" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
-      '<button id="add_checkbox" type="button" onClick="addCheckbox()">+</button><br>'
+      '<input type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
+      '<button id="add_select" type="button" onClick="addCheckbox()">+</button><br>'
     );
     $('#edit_value').before(
       '<button id="add_select" type="button" onClick="addCheckbox()">+</button><br>'
@@ -86,8 +86,8 @@ $( document ).ready(function() {
         '<label for="checkbox_comment_'+i+'">Commentaire '+i+'</label>'+
         '<textarea name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea><br>'+
         '<br><label for="checkbox_image_'+i+'">Image '+i+'</label>'+
-        '<input type="text" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
-        '<button id="add_checkbox" type="button" onClick="addCheckbox()">+</button><br>'
+        '<input type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
+        '<button id="add_select" type="button" onClick="addCheckbox()">+</button><br>'
       );
       $('#addInputEdit').html(
         '<label for="checkbox_'+i+'">Valeur '+i+'</label>'+
@@ -95,8 +95,8 @@ $( document ).ready(function() {
         '<label for="checkbox_comment_'+i+'">Commentaire '+i+'</label>'+
         '<textarea name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea><br>'+
         '<br><label for="checkbox_image_'+i+'">Image '+i+'</label>'+
-        '<input type="text" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
-        '<button id="add_checkbox" type="button" onClick="addCheckbox()">+</button><br>'+
+        '<input type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
+        '<button id="add_select" type="button" onClick="addCheckbox()">+</button><br>'+
         '<input type="submit" value="Edit" id="edit_value"/>'
       );
     }
@@ -171,21 +171,20 @@ $( document ).ready(function() {
 
 function addSelect(){
   i++;
-  alert("ta mere");
-  $('#select_'+(i-1)+'').after(
-    '<br><label for="select_'+i+'">Valeur '+i+'</label>'+
-    '<input type="text" name="input_select_'+i+'" id="select_'+i+'">'
+  $('#add_select').before(
+    '<label for="select_'+i+'">Valeur '+i+'</label>'+
+    '<input type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'
   );
 }
 
 function addCheckbox(){
   i++;
-  $('#checkbox_image_'+(i-1)+'').after(
-    '<br><label for="checkbox_'+i+'">Valeur '+i+'</label>'+
+  $('#add_select').before(
+    '<label for="checkbox_'+i+'">Valeur '+i+'</label>'+
     '<input type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'">'+
     '<br><label for="checkbox_comment_'+i+'">Commentaire '+i+'</label>'+
     '<textarea name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea>'+
     '<br><label for="checkbox_image_'+i+'">Image '+i+'</label>'+
-    '<input type="text" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'">'
+    '<input type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'
   );
 }
