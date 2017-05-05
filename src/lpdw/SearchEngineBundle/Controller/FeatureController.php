@@ -241,7 +241,6 @@ class FeatureController extends Controller
 
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
         //EDIT
-        dump($request->request);die();
         if($request->request->get('form')){
 
           //GENERATE JS
@@ -324,20 +323,54 @@ class FeatureController extends Controller
         }
       }
       elseif ($request->request->get('lpdw_searchenginebundle_feature')['type'] == "RangeType") {
-        $FCV = new FeatureCategoryValue();
-        $FCV->setValue($request->request->get('input_min')."-".$request->request->get('input_max'));
-        $FCV->setFeature($feature);
-        $em->persist($FCV);
-        $em->flush($FCV);
+
+        if($request->request->get('form')){
+          $FCV = new FeatureCategoryValue();
+          $FCV->setValue($request->request->get('form')["min"]."-".$request->request->get('form')["max"]);
+          $FCV->setFeature($feature);
+          $em->persist($FCV);
+          $em->flush($FCV);
+        }
+        else{
+          $FCV = new FeatureCategoryValue();
+          $FCV->setValue($request->request->get('input_min')."-".$request->request->get('input_max'));
+          $FCV->setFeature($feature);
+          $em->persist($FCV);
+          $em->flush($FCV);
+        }
       }
       else{
-        foreach ($request->request as $key => $value) {
-          if (strstr($key, 'input')) {
+        if($request->request->get('form')){
+          dump($request->request->get('form'));
+
+          for($i=1; $i<(count($request->request)); $i++){
+            if($request->request->get('form')['value'.$i]){
               $FCV = new FeatureCategoryValue();
-              $FCV->setValue($value);
+              $FCV->setValue($request->request->get('form')['value'.$i]);
               $FCV->setFeature($feature);
               $em->persist($FCV);
               $em->flush($FCV);
+            }
+          }
+          for($i=1; $i<=count($request->request); $i++){
+            if($request->request->get('input_select_'.$i)){
+              $FCV = new FeatureCategoryValue();
+              $FCV->setValue($request->request->get('input_select_'.$i));
+              $FCV->setFeature($feature);
+              $em->persist($FCV);
+              $em->flush($FCV);
+            }
+          }
+        }
+        else{
+          foreach ($request->request as $key => $value) {
+            if (strstr($key, 'input')) {
+                $FCV = new FeatureCategoryValue();
+                $FCV->setValue($value);
+                $FCV->setFeature($feature);
+                $em->persist($FCV);
+                $em->flush($FCV);
+            }
           }
         }
       }
