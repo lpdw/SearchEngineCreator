@@ -22,29 +22,27 @@ class FeatureController extends Controller
     /**
      * Lists all feature entities.
      *
-     * @Route("/category/{id}/", name="searchEngine_feature_index")
+     * @Route("/{name}/", name="searchEngine_feature_index")
      * @Method("GET")
      */
-    public function indexAction($id)
+    public function indexAction($name)
     {
         $em = $this->getDoctrine()->getManager();
 
-        //$features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findAll();
-        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findBy( array('category' => $id));
-
+        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($name);
+        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($category);
         return $this->render('lpdwSearchEngineBundle:feature:index.html.twig', array(
             'features' => $features,
-            'id' => $id,
         ));
     }
 
     /**
      * Creates a new feature entity.
      *
-     * @Route("/{id}/new", name="searchEngine_feature_new")
+     * @Route("/{name}/new", name="searchEngine_feature_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, $id)
+    public function newAction(Request $request, $name)
     {
         $em = $this->getDoctrine()->getManager();
         $feature = new Feature();
@@ -56,7 +54,10 @@ class FeatureController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $type = $feature->getType();
 
-            $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneById($id);
+            $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($name);
+            if(empty($category)){
+                return $this->redirectToRoute('searchEngine_category_index');
+            }
             $feature->setCategory($category);
 
             $em->persist($feature);
@@ -71,7 +72,6 @@ class FeatureController extends Controller
         return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
             'feature' => $feature,
             'form' => $form->createView(),
-            'id' => $id,
         ));
     }
 

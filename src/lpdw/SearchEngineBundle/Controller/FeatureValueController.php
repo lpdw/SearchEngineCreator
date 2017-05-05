@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 /**
  * Featurevalue controller.
@@ -45,36 +47,44 @@ class FeatureValueController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $featureValue = new Featurevalue();
-        $element =  $em->getRepository('lpdwSearchEngineBundle:Element')->findByName($name);
+        $element =  $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByName($name);
+        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($element->getCategory());
 
-        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($element[0]->getCategory());
+
         $i = 0;
         $form = $this->createFormBuilder();
+
             foreach ($features as $feature){
-                $form->add('value'.$i, TextType::class);
+                dump($feature);die;
+                $form->add('value'.$i, TextType::class,[
+                    'label'=> $feature->getName(),
+
+            ]);
+
                 $i++;
             }
-        $form->getForm();
+        
 
 //        die;
+
+
         if(empty($element)){
             return $this->redirectToRoute('searchEngine_element_index');
         }
-        $form = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureValueType', $featureValue);
-        $form->handleRequest($request);
+        // $form = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureValueType', $featureValue);
+        // $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        // if ($form->isSubmitted() && $form->isValid()) {
 
-            $featureValue->setElement($element[0]);
-            $em->persist($featureValue);
-            $em->flush($featureValue);
+        //     $featureValue->setElement($element[0]);
+        //     $em->persist($featureValue);
+        //     $em->flush($featureValue);
 
-            return $this->redirectToRoute('searchEngine_featureValue_show', array('id' => $featureValue->getId()));
-        }
+        //     return $this->redirectToRoute('searchEngine_featureValue_show', array('id' => $featureValue->getId()));
+        // }
 
         return $this->render('lpdwSearchEngineBundle:featurevalue:new.html.twig', array(
-            'featureValue' => $featureValue,
-            'form' => $form->createView(),
+                'form' => $form->getForm()->createView(),
         ));
     }
 

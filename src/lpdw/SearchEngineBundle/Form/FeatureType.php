@@ -27,13 +27,13 @@ class FeatureType extends AbstractType
             ->add('type', ChoiceType::class,[
                 'label' => 'Type:',
                 'choices'  => array(
-                    'select' => 'choix déroulant',
+                    'select' => 'select',
                     'checkbox' => 'checkbox',
                     'radio' => 'radio',
-                    'TextType' => 'text',
-                    'NumberType' => 'number',
-                    'RangeType' => 'range',
-                    'BooleanType' => 'boolean',
+                    'Text' => 'TextType',
+                    'Number' => 'NumberType',
+                    'Range' => 'RangeType',
+                    'Boolean' => 'BooleanType',
                 ),
             ])
             /*->add('category', EntityType::class, [
