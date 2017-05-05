@@ -15,11 +15,20 @@
             <h2 class="text-right fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
         </div>
 
-
+        <!-- <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for category in categories %}
                      <a href="{{ path('searchEngine_element_new', { 'name': category.name }) }}">Create a new Element</a>
                         <a href="{{ path('searchEngine_feature_new', { 'name': category.name }) }}">Create a new Feature</a>
             {% endfor %}
+            </tbody>
+        </table> -->
 
         <div class="col-md-12 col-sm-12">
            <div class="grid-socials">
