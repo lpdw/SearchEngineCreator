@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Feature controller.
@@ -107,6 +108,8 @@ class FeatureController extends Controller
         $FeatureCategoryValue = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findBy( array('feature' => $id));
         $form = $this->createFormBuilder();
 
+        $checkboxList = [];
+
         $i=0;
         if($FeatureCategoryValue!=0){
           foreach ($FeatureCategoryValue as $value){
@@ -114,20 +117,27 @@ class FeatureController extends Controller
               $form->get('value'.$i)->setData($value->getValue());
               $form->add('comment'.$i, TextareaType::class);
               $form->get('comment'.$i)->setData($value->getComment());
-              $form->add('image'.$i, TextType::class);
-              $form->get('image'.$i)->setData($value->getImage());
+              $form->add('image'.$i, FileType::class);
+              if($value->getImage()) {
+                  $form->get('image'.$i)->setData(new File($this->container->getParameter('kernel.root_dir') . '/../web/uploads/images/' . $value->getImage()));
+              }
+
+              array_push($checkboxList, [$form->get('value'.$i), $form->get('comment'.$i), $form->get('image'.$i)]);
+
               $i++;
           }
         }
         $send_form = $form->getForm();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted()) {
+            dump($send_form);die();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('searchEngine_feature_edit', array('id' => $feature->getId()));
         }
 
         return $this->render('lpdwSearchEngineBundle:feature:edit.html.twig', array(
+            'checkboxList' => $checkboxList,
             'feature' => $feature,
             'form' => $send_form->createView(),
             'edit_form' => $editForm->createView(),
