@@ -178,7 +178,7 @@ class FeatureController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            self::insertFCV($request, $feature, $type);
+            self::insertFCV($request, $feature, $type, $form);
 
             foreach ($FeatureCategoryValue as $value){
               $em->remove($value);
@@ -236,13 +236,47 @@ class FeatureController extends Controller
         ;
     }
 
-    function insertFCV($request, $feature, $type){
+    function insertFCV($request, $feature, $type, $form=null){
       $em = $this->getDoctrine()->getManager();
 
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
         //EDIT
 
         if($request->request->get('form')){
+          //GENERATE SYMFONY
+          $taille = ceil((count($request->request->get('form'))-1)/2);
+          for($i=1; $i<=$taille; $i++){
+            $FCV = new FeatureCategoryValue();
+            $FCV->setValue($request->request->get('form')["value".$i]);
+            $FCV->setFeature($feature);
+            $FCV->setComment($request->request->get('form')["comment".$i]);
+
+            $file = $request->files->get('form')['image'.$i];
+
+            if($file) {
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+                    $fileName
+                );
+
+                $FCV->setImage($fileName);
+
+                if($form->get('image'.$i)->getData()) {
+                    unlink($this->container->getParameter('kernel.root_dir') . '/../web/uploads/images/'.$form->get('image'.$i)->getData()->getFileName());
+                }
+
+            } else if($form->get('image'.$i)->getData()) {
+                $file = $form->get('image'.$i)->getData();
+
+                $FCV->setImage($file->getFileName());
+            }
+
+            $em->persist($FCV);
+            $em->flush($FCV);
+          }
+
 
           //GENERATE JS
           for($i=1; $i<=(count($request->request)); $i++){
@@ -270,30 +304,6 @@ class FeatureController extends Controller
             }
           }
 
-          //GENERATE SYMFONY
-          $taille = ceil((count($request->request->get('form'))-1)/3);
-          for($i=1; $i<=$taille; $i++){
-            $FCV = new FeatureCategoryValue();
-            $FCV->setValue($request->request->get('form')["value".$i]);
-            $FCV->setFeature($feature);
-            $FCV->setComment($request->request->get('form')["comment".$i]);
-
-            $file = $request->files->get('image_checkbox_'.$i);
-
-            if($file) {
-                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-                $file->move(
-                    $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
-                    $fileName
-                );
-
-                $FCV->setImage($fileName);
-            }
-
-            $em->persist($FCV);
-            $em->flush($FCV);
-          }
         }
         else{
           //news

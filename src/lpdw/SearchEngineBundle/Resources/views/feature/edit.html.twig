@@ -1,7 +1,7 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 {% block body %}
     <h1>Feature edit</h1>
-    {{ form_start(edit_form) }}
+    {{ form_start(edit_form, {'multipart': 'true'}) }}
         {{ form_widget(edit_form) }}
         <div id="addInputEdit">
             {{ form_start(form) }}
