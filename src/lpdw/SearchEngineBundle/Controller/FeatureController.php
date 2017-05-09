@@ -366,6 +366,7 @@ class FeatureController extends Controller
         }
         else{
           foreach ($request->request as $key => $value) {
+
             if (strstr($key, 'input')) {
                 $FCV = new FeatureCategoryValue();
                 $FCV->setValue($value);

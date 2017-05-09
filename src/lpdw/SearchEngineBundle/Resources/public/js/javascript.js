@@ -29,9 +29,9 @@ $( document ).ready(function() {
   else if (type=="radio") {
     $('#addInput').html(
       '<label for="radio_1">Valeur 1</label>'+
-      '<input type="text" name="input_radio" id="radio_1"><br>'+
+      '<input type="text" name="input_radio_1" id="radio_1"><br>'+
       '<label for="radio_2">Valeur 2</label>'+
-      '<input type="text" name="input_radio" id="radio_2">'
+      '<input type="text" name="input_radio_2" id="radio_2">'
     );
   }
   else if (type=="TextType") {
