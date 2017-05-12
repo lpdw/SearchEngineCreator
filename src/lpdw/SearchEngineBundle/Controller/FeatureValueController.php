@@ -71,71 +71,70 @@ class FeatureValueController extends Controller
         $form = $this->createFormBuilder();
             // boucle de parcourt des features
             foreach ($features as $feature){
-                //verification du type de feature pour generer le form
-
                 if($feature->getType() == 'TextType' ){
                     $form->add('value'.$i, TextType::class,[
-                    'label'=> $feature->getName()
+                    'label'=> $feature->getName(), 'mapped' => false
                     ]);
                 } 
                 if($feature->getType() == 'NumberType'){
                     $form->add('value'.$i, NumberType::class,[
-                    'label'=> $feature->getName()
+                    'label'=> $feature->getName(), 'mapped' => false
                     ]);
                 }
                 if($feature->getType() == 'BooleanType'){
-                    $form->add('value'.$i, BooleanType::class,[
-                    'label'=> $feature->getName()
+                    $form->add('value'.$i, [
+                    'label'=> $feature->getName(), 'mapped' => false
                     ]);
                 }
                 if($feature->getType() == 'RangeType'){
-
                     $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
-   
-                    $values = explode("-", $featureCatVal->getValue());
-
+                       $values = explode("-", $featureCatVal->getValue());
                     $form->add('value'.$i, NumberType::class,[
                     'label'=> $feature->getName(),
                     'attr' =>['min' => $values[0],
-                    'max' => $values[1]]
+                    'max' => $values[1]], 'mapped' => false
                     ]);
                 }
                 if($feature->getType() == 'checkbox'){
-
-                    // dump($feature);
                     $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
-                    // dump($featureCatVal);
                     $tab = [];
                     foreach ($featureCatVal as $key => $value) {
-                        // dump($value->getValue());
                         $tab[$value->getValue()] = $value->getValue();
                     }
                     $form->add('value'.$i, ChoiceType::class,[
                     'label'=> $feature->getName(),
                     'choices' => $tab,
                     'expanded' => true,
-                    'multiple' => true,
+                    'multiple' => true, 'mapped' => false
                     ]);
                 }
                 if($feature->getType() == 'radio'){
-                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);      
-                    // dump($featureCatVal);              
+                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
+                    $tab = [];
+                    foreach ($featureCatVal as $key => $value) {
+                        $tab[$value->getValue()] = $value->getValue();
+                    }
                     $form->add('value'.$i, ChoiceType::class,[
                     'label'=> $feature->getName(),   
 
-                    'choices' => [
-
-                    ]      ,           
+                    'choices' => $tab,
                     'expanded' => true,
-                    'multiple' => false,
+                    'multiple' => false, 'mapped' => false
                     ]);
                 }
                     
                 if($feature->getType() == 'select'){
+
+                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
+                    $tab = [];
+                    foreach ($featureCatVal as $key => $value) {
+                        $tab[$value->getValue()] = $value->getValue();
+                    }
                     $form->add('value'.$i, ChoiceType::class,[
                     'label'=> $feature->getName(),
-                    'expanded' => false,
-                    'multiple' => false,
+                        'choices' => $tab,
+                        'expanded' => false,
+                    'multiple' => false, 'mapped' => false
                     ]);
                 }
                 
@@ -143,8 +142,7 @@ class FeatureValueController extends Controller
                    
 
                 $i++;
-            } 
-        
+            }
 
 //        die;
 
@@ -152,6 +150,18 @@ class FeatureValueController extends Controller
         if(empty($element)){
             return $this->redirectToRoute('searchEngine_element_index');
         }
+
+
+        if($request->get('form') != NULL){
+            dump($request->get('form'));die;
+
+        }
+//        if ($form->isSubmitted()) {
+//            dump($request);die;
+////            $em = $this->getDoctrine()->getManager();
+////            $em->remove($featureValue);
+////            $em->flush();
+//        }
         // $form = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureValueType', $featureValue);
         // $form->handleRequest($request);
 
