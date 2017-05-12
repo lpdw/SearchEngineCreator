@@ -103,15 +103,15 @@ $( document ).ready(function() {
     else if ($(this).val()=="radio") {
       $('#addInput').html(
         '<label for="radio_1">Valeur 1</label>'+
-        '<input type="text" name="input_radio" id="radio_1"><br>'+
+        '<input type="text" name="input_radio_1" id="radio_1"><br>'+
         '<label for="radio_2">Valeur 2</label>'+
-        '<input type="text" name="input_radio" id="radio_2">'
+        '<input type="text" name="input_radio_2" id="radio_2">'
       );
       $('#addInputEdit').html(
         '<label for="radio_1">Valeur 1</label>'+
-        '<input type="text" name="input_radio" id="radio_1"><br>'+
+        '<input type="text" name="input_radio_1" id="radio_1"><br>'+
         '<label for="radio_2">Valeur 2</label>'+
-        '<input type="text" name="input_radio" id="radio_2">'+
+        '<input type="text" name="input_radio_2" id="radio_2">'+
         '<input type="submit" value="Edit" id="edit_value"/>'
       );
     }
