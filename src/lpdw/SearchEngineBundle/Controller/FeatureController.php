@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use lpdw\SearchEngineBundle\Services\insertFCV;
+
 /**
  * Feature controller.
  *
@@ -45,6 +47,7 @@ class FeatureController extends Controller
      */
     public function newAction(Request $request, $name)
     {
+        $insertFCV = $this->container->get('app.insertfcv');
         $em = $this->getDoctrine()->getManager();
         $feature = new Feature();
 
@@ -65,7 +68,8 @@ class FeatureController extends Controller
             $em->flush($feature);
             $em->refresh($feature);
 
-            self::insertFCV($request, $feature, $type);
+            //self::insertFCV($request, $feature, $type);
+            $insertFCV->insertFCV($request, $feature, $type);
 
             return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId()));
         }
@@ -100,6 +104,8 @@ class FeatureController extends Controller
      */
     public function editAction(Request $request, Feature $feature, $id)
     {
+        $insertFCV = $this->container->get('app.insertfcv');
+
         $deleteForm = $this->createDeleteForm($feature);
         $editForm = $this->createForm('lpdw\SearchEngineBundle\Form\FeatureType', $feature);
         $editForm->handleRequest($request);
@@ -178,7 +184,8 @@ class FeatureController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            self::insertFCV($request, $feature, $type, $form);
+            //self::insertFCV($request, $feature, $type, $form);
+            $insertFCV->insertFCV($request, $feature, $type, $form);
 
             foreach ($FeatureCategoryValue as $value){
               $em->remove($value);
@@ -236,7 +243,7 @@ class FeatureController extends Controller
         ;
     }
 
-    function insertFCV($request, $feature, $type, $form=null){
+    /*function insertFCV($request, $feature, $type, $form=null){
       $em = $this->getDoctrine()->getManager();
 
       if($request->request->get('lpdw_searchenginebundle_feature')['type'] == "checkbox"){
@@ -387,5 +394,5 @@ class FeatureController extends Controller
           }
         }
       }
-    }
+    }*/
 }
