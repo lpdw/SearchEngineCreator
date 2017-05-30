@@ -8,10 +8,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("searchEngine/")
      */
     public function indexAction()
     {
-        return $this->render('lpdwSearchEngineBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $categories = $em->getRepository('lpdwSearchEngineBundle:Category')->findAll();
+
+        return $this->render('lpdwSearchEngineBundle:Default:index.html.twig', array(
+            'categories' => $categories,
+        ));
     }
 }
