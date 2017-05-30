@@ -1,57 +1,69 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Search Enfine Creator{% endblock %}</title>
+        <title>{% block title %}Search Engine Creator{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
-        <script src="{{ asset('bundles/lpdwsearchengine/js/jquery.js') }}"></script>
-        <script src="{{ asset('bundles/lpdwsearchengine/js/javascript.js') }}"></script>
-        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+        <link rel="stylesheet" href="{{ asset('bundles/lpdwsearchengine/css/bootstrap/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/lpdwsearchengine/css/main.css') }}">
     </head>
     <body>
         {% block body %}
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
 
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href='#'>Accueil</a></li>
-                            <li><a href='#'>Blabla</a></li>
-                            <li><a href='#'>Documentation</a></li>
-                        </ul>
-                    </div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand white" href="{{ path('home') }}">Search Engine Creator</a>
                 </div>
-            </nav>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catégorie<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('searchEngine_category_new') }}">Nouvelle catégorie</a></li>
+                                <li><a href="{{ path('searchEngine_category_index') }}">Toutes les catégories</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
         {% endblock %}
 
         {% block javascripts %}{% endblock %}
+
+        <script src="{{ asset('bundles/lpdwsearchengine/js/jquery.js') }}"></script>
+        <script src="{{ asset('bundles/lpdwsearchengine/js/javascript.js') }}"></script>
+        <script src="{{ asset('bundles/lpdwsearchengine/js/masonry/masonry.min.js') }}"></script>
+        <script src="{{ asset('bundles/lpdwsearchengine/js/bootstrap/bootstrap.min.js') }}" charset="utf-8"></script>
 
         <script type="text/javascript">
 
         var height = [50,65,80,95,110];
 
-        $('.grid-item-when-socials').each(function() {
+        $('.grid-item').each(function() {
             var randomHeight = Math.floor(Math.random() * height.length);
             $(this).css('height', height[randomHeight]+"px");
         });
 
-        $gridSocials = $('.grid-socials').masonry({
+        $gridSocials = $('.grid').masonry({
             // set itemSelector so .grid-sizer is not used in layout
-            itemSelector: '.grid-item-when-socials.visible',
+            itemSelector: '.grid-item.visible',
             // use element for option
-            columnWidth: '.grid-item-when-socials',
+            columnWidth: '.grid-item',
             gutter :  '.gutter-sizer',
             percentPosition: true
         });

@@ -4,29 +4,22 @@
     {{ parent() }}
 
     <div class="container">
-        <div class="row">
-            <h1 class="fontTitle ft-50 darkBlue smallCaps">
-                BCPE<br />
-                consectetur adipiscing elit.
-            </h1>
-        </div>
 
         <div class="row">
-            <h2 class="text-right fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
+            <h2 class="fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
         </div>
 
         <div class="col-md-12 col-sm-12">
-           <div class="grid-socials">
+           <div class="grid">
                {% set i = 0 %}
                {% for category in categories %}
 
                <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
-                   <div class="grid-item-when-socials visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}" data-cat="grande-salle">
-                   
+                   <div class="grid-item visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}" data-cat="grande-salle">
                         <a href="{{ path('searchEngine_element_new', { 'name': category.name }) }}">Create a new Element</a>
                         <a href="{{ path('searchEngine_feature_new', { 'name': category.name }) }}">Create a new Feature</a>
-                       <div class="w100">{{ category.name }}</div><br/>
-                       <div class="gutter-sizer"></div>
+                        <div class="w100">{{ category.name }}</div><br/>
+                        <div class="gutter-sizer"></div>
                    </div>
                </a>
 
@@ -34,8 +27,6 @@
                {% endfor %}
            </div>
        </div>
-
-       <a href="{{ path('searchEngine_category_new') }}">Create a new category</a>
 
 
     </div>
