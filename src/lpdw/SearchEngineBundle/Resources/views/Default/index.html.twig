@@ -4,26 +4,38 @@
     {{ parent() }}
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <h2 class="fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
+        <div class="chooseCategory">
+            <div class="content">
+
+                <div class="text-center stepsNumber white">
+                    <div id="step1"><span class="ft-30">1</span></div>
+                    <div class="line"></div>
+                    <div id="step2"><span class="ft-30">2</span></div>
+                </div>
+
+                <h2 class="fontTitle ft-40 lightBlue">Choisissez une <span class="darkBlue">catégorie</span></h2>
+                <p class="white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                    Morbi eu finibus nisi, ullamcorper faucibus est.
+                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                </p>
             </div>
 
-            <div class="col-md-8 col-sm-12">
-               <div class="grid">
+        </div>
+
+        <div class="row">
+            <div class="everyCategories col-md-12 col-sm-12">
+               <div id="grid" data-columns>
                    {% set i = 0 %}
                    {% for category in categories %}
-
-                   <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
-                       <div class="grid-item visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}">
-                           <div class="w100">{{ category.name }}</div><br/>
-                           <div class="gutter-sizer"></div>
-                       </div>
-                   </a>
-
-                   {% set i = i + 1 %}
+                       <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
+                           <div class="grid-item text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}">
+                               <div class="w100 ft-20">{{ category.name }}</div><br/>
+                           </div>
+                       </a>
+                       {% set i = i + 1 %}
                    {% endfor %}
-               </div>
+                </div>
            </div>
         </div>
     </div>
