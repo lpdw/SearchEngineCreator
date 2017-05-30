@@ -103,7 +103,7 @@ class FeatureController extends Controller
     /**
      * Displays a form to edit an existing feature entity.
      *
-     * @Route("/{id}/edit", name="searchEngine_feature_edit")
+     * @Route("/{name}/{id}/edit", name="searchEngine_feature_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Feature $feature, $id)

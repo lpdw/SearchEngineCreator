@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32aca5a3-5c2f-4c2b-9ab7-61f6de37a577" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,33 +19,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ElementType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/ElementType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-              <folding>
-                <element signature="e#48#104#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FeatureValue.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FeatureValueController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FeatureValueController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+            <state relative-caret-position="228">
+              <caret line="130" column="38" lean-forward="false" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
               <folding>
                 <element signature="e#54#102#0#PHP" expanded="true" />
               </folding>
@@ -49,46 +31,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeatureController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/feature/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FeatureController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding>
-                <marker date="1496134250349" expanded="true" signature="1003:1390" ph="{...}" />
-                <marker date="1496134250349" expanded="true" signature="1288:1390" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="1344:1390" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="3524:3534" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="3551:3717" ph=" Displays a form to edit an existing feature entity. ..." />
-                <marker date="1496134250349" expanded="true" signature="3791:7888" ph="{...}" />
-                <marker date="1496134250349" expanded="true" signature="4402:7000" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="4433:4661" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="4488:4649" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="4695:5615" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="4750:5603" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="5267:5447" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="5646:5874" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="5701:5862" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="5908:6114" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="5963:6102" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="6150:6366" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="6205:6354" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="6401:6747" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="6456:6735" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="6784:6990" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="6839:6978" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="7105:7547" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="7354:7430" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="7579:7880" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="7634:7879" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="7897:8027" ph=" Deletes a feature entity. ..." />
-                <marker date="1496134250349" expanded="true" signature="8098:8522" ph="{...}" />
-                <marker date="1496134250349" expanded="true" signature="8292:8416" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="8531:8704" ph=" Creates a form to delete a feature entity. ..." />
-                <marker date="1496134250349" expanded="true" signature="8762:8993" ph="{...}" />
-                <marker date="1496134250349" expanded="true" signature="8835:8918" ph="..." />
-                <marker date="1496134250349" expanded="true" signature="8944:8952" ph="..." />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="106" column="29" lean-forward="false" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TextType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,6 +79,7 @@
       <find>class</find>
       <find>die</find>
       <find>dump</find>
+      <find>dum</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,15 +97,17 @@
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Feature.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureElementValue.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureCategoryValue.php" />
-        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureType.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/ElementType.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/new.html.twig" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php" />
+        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
+        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php" />
       </list>
     </option>
   </component>
@@ -456,59 +437,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Repository" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SearchEngineCreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SearchEngineCreator" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lpdw" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SearchEngineBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Form" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SearchEngineCreator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SearchEngineCreator" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lpdw" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SearchEngineBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -710,12 +639,12 @@
       <workItem from="1494573145071" duration="5804000" />
       <workItem from="1496064927465" duration="648000" />
       <workItem from="1496128474565" duration="14000" />
-      <workItem from="1496128502389" duration="5497000" />
+      <workItem from="1496128502389" duration="9507000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34815000" />
+    <option name="totallyTimeSpent" value="38825000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
@@ -770,39 +699,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-          <folding>
-            <element signature="e#54#102#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="40" column="37" lean-forward="false" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Feature.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="48" column="7" lean-forward="false" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -863,9 +759,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding>
-            <element signature="e#48#97#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1015,31 +909,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/feature/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/category/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="65" column="11" lean-forward="false" selection-start-line="65" selection-start-column="11" selection-end-line="66" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" column="75" lean-forward="false" selection-start-line="20" selection-start-column="75" selection-end-line="20" selection-end-column="75" />
         </state>
       </provider>
     </entry>
@@ -1090,14 +963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Feature.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Category.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1122,13 +987,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php">
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Feature.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="26" column="26" lean-forward="false" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding>
-            <element signature="e#48#97#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="324">
+          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1150,55 +1021,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php">
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Repository/FeatureRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding>
-            <marker date="1496134250349" expanded="true" signature="1003:1390" ph="{...}" />
-            <marker date="1496134250349" expanded="true" signature="1288:1390" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="1344:1390" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="3524:3534" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="3551:3717" ph=" Displays a form to edit an existing feature entity. ..." />
-            <marker date="1496134250349" expanded="true" signature="3791:7888" ph="{...}" />
-            <marker date="1496134250349" expanded="true" signature="4402:7000" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="4433:4661" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="4488:4649" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="4695:5615" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="4750:5603" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="5267:5447" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="5646:5874" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="5701:5862" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="5908:6114" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="5963:6102" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="6150:6366" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="6205:6354" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="6401:6747" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="6456:6735" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="6784:6990" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="6839:6978" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="7105:7547" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="7354:7430" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="7579:7880" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="7634:7879" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="7897:8027" ph=" Deletes a feature entity. ..." />
-            <marker date="1496134250349" expanded="true" signature="8098:8522" ph="{...}" />
-            <marker date="1496134250349" expanded="true" signature="8292:8416" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="8531:8704" ph=" Creates a form to delete a feature entity. ..." />
-            <marker date="1496134250349" expanded="true" signature="8762:8993" ph="{...}" />
-            <marker date="1496134250349" expanded="true" signature="8835:8918" ph="..." />
-            <marker date="1496134250349" expanded="true" signature="8944:8952" ph="..." />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php;">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1724">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="20" column="75" lean-forward="false" selection-start-line="20" selection-start-column="75" selection-end-line="20" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/TextType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/feature/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+        <state relative-caret-position="228">
+          <caret line="130" column="38" lean-forward="false" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
           <folding>
             <element signature="e#54#102#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="106" column="29" lean-forward="false" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
