@@ -74,7 +74,6 @@ class FeatureValueController extends Controller
         $form = $this->createFormBuilder();
         // boucle de parcourt des features
         foreach ($features as $feature) {
-
             if ($feature->getType() == 'TextType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
                 $form->add('value' . $i, TextType::class, [
@@ -188,6 +187,7 @@ class FeatureValueController extends Controller
                 }
             }
 
+            return $this->redirectToRoute('searchEngine_element_index');
         }
 
         return $this->render('lpdwSearchEngineBundle:featurevalue:new.html.twig', array(
@@ -240,21 +240,21 @@ class FeatureValueController extends Controller
                 return $this->redirectToRoute('searchEngine_featureValue_new',[ 'name' => $name]);
             }
         }
+
         //var incrément
         $i = 0;
         //nouveau formulaire
         $form = $this->createFormBuilder();
         // boucle de parcourt des features
         foreach ($features as $feature) {
-
             if ($feature->getType() == 'TextType') {
-                $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal,$element);
                 $form->add('value' . $i, TextType::class, [
                     'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
                 ]);
             }
             if ($feature->getType() == 'NumberType') {
-                $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal,$element);
 
                 $form->add('value' . $i, NumberType::class, [
                     'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
@@ -263,6 +263,12 @@ class FeatureValueController extends Controller
             if ($feature->getType() == 'BooleanType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
 
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal,$element);
+                $data = [];
+                foreach ($featureVal as $item){
+                    $data[$item->getFeatureCV()->getValue()] = $item->getFeatureCV()->getId();
+
+                }
                 $originFeature = $featureCatVal[0]->getFeature();
                 $form->add('value' . $i, [
                     'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
@@ -270,6 +276,13 @@ class FeatureValueController extends Controller
             }
             if ($feature->getType() == 'RangeType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
+
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal,$element);
+                $data = [];
+                foreach ($featureVal as $item){
+                    $data[$item->getFeatureCV()->getValue()] = $item->getFeatureCV()->getId();
+
+                }
 
                 $values = explode("-", $featureCatVal->getValue());
                 $form->add('value' . $i, NumberType::class, [
@@ -280,7 +293,13 @@ class FeatureValueController extends Controller
             }
             if ($feature->getType() == 'checkbox') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal,$element);
 
+                $data = [];
+                foreach ($featureVal as $item){
+                    $data[$item->getFeatureCV()->getValue()] = $item->getFeatureCV()->getId();
+
+                }
                 $tab = [];
                 foreach ($featureCatVal as $key => $value) {
                     $tab[$value->getValue()] = $value->getId();
@@ -291,11 +310,13 @@ class FeatureValueController extends Controller
                     'expanded' => true,
                     'multiple' => true,
                     'mapped' => false,
+                    'data' => $data
                 ]);
             }
 
             if ($feature->getType() == 'radio') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal,$element);
                 $tab = [];
                 foreach ($featureCatVal as $key => $value) {
                     $tab[$value->getValue()] = $value->getId();
@@ -306,11 +327,16 @@ class FeatureValueController extends Controller
                     'expanded' => true,
                     'multiple' => false,
                     'mapped' => false,
+                    'data' => $featureVal->getFeatureCV()->getId()
                 ]);
             }
 
             if ($feature->getType() == 'select') {
+
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal,$element);
+
+
                 $tab = [];
                 foreach ($featureCatVal as $key => $value) {
                     $tab[$value->getValue()] = $value->getId();
@@ -321,6 +347,8 @@ class FeatureValueController extends Controller
                     'expanded' => false,
                     'multiple' => false,
                     'mapped' => false,
+
+                    'data' => $featureVal->getFeatureCV()->getId()
                 ]);
             }
 
@@ -330,9 +358,14 @@ class FeatureValueController extends Controller
 
 
 
-        //traitement du form
+//        traitement du form
         if ($request->get('form') != NULL) {
-            //on parcout les champs du form submit
+            $featValOld = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByElement($element);
+            foreach ($featValOld as $featVal){
+                $em->remove($featVal);
+                $em->flush();
+            }
+           //on parcout les champs du form submit
             foreach ($request->get('form') as $key => $value) {
                 //si le champ commande par value il s'agit d'une ligne correcte
                 if (substr($key, 0, 5) == "value") {
@@ -359,6 +392,8 @@ class FeatureValueController extends Controller
                     }
                 }
             }
+
+            return $this->redirectToRoute('searchEngine_element_index');
 
         }
         return $this->render('lpdwSearchEngineBundle:featurevalue:edit.html.twig', array(

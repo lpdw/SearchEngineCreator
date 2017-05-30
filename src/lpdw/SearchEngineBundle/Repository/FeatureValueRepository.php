@@ -10,4 +10,31 @@ namespace lpdw\SearchEngineBundle\Repository;
  */
 class FeatureValueRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
+    public function findByFeatureCVandElement($featureCV, $element){
+
+        $result = $this->createQueryBuilder('f')
+            ->where('f.element=:element')
+            ->AndWhere('f.featureCV IN (:featureCV)')
+            ->setParameter("element", $element)
+            ->setParameter("featureCV", $featureCV)
+            ->getQuery()
+            ->getResult();
+
+        return $result;
+    }
+    public function findOneByFeatureCVandElement($featureCV, $element){
+
+        $result = $this->createQueryBuilder('f')
+            ->where('f.element=:element')
+            ->AndWhere('f.featureCV IN (:featureCV)')
+            ->setParameter("element", $element)
+            ->setParameter("featureCV", $featureCV)
+            ->getQuery()
+            ->getSingleResult();
+
+        return $result;
+    }
+
 }
