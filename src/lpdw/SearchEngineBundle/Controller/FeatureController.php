@@ -36,6 +36,7 @@ class FeatureController extends Controller
         $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($category);
         return $this->render('lpdwSearchEngineBundle:feature:index.html.twig', array(
             'features' => $features,
+            'name' => $name
         ));
     }
 
@@ -71,7 +72,7 @@ class FeatureController extends Controller
             //self::insertFCV($request, $feature, $type);
             $insertFCV->insertFCV($request, $feature, $type);
 
-            return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId()));
+            return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId(), 'name' => $name));
         }
 
         return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
@@ -83,16 +84,19 @@ class FeatureController extends Controller
     /**
      * Finds and displays a feature entity.
      *
-     * @Route("/{id}/", name="searchEngine_feature_show")
+     * @Route("/{name}/{id}/", name="searchEngine_feature_show")
      * @Method("GET")
      */
-    public function showAction(Feature $feature)
+    public function showAction($name, $id)
     {
-        $deleteForm = $this->createDeleteForm($feature);
+        $em = $this->getDoctrine()->getManager();
+        $feature = $em->getRepository('lpdwSearchEngineBundle:Feature')->findOneById($id);
+        $FeatureCategoryValue = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findBy( array('feature' => $id));
+
 
         return $this->render('lpdwSearchEngineBundle:feature:show.html.twig', array(
             'feature' => $feature,
-            'delete_form' => $deleteForm->createView(),
+            'FeatureCategoryValues' => $FeatureCategoryValue
         ));
     }
 

@@ -17,13 +17,13 @@
         <tbody>
         {% for feature in features %}
             <tr>
-                <td><a href="{{ path('searchEngine_feature_show', { 'id': feature.id }) }}">{{ feature.id }}</a></td>
+                <td><a href="{{ path('searchEngine_feature_show', { 'id': feature.id, 'name': name }) }}">{{ feature.id }}</a></td>
                 <td>{{ feature.name }}</td>
                 <td>{{ feature.type }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('searchEngine_feature_show', { 'id': feature.id }) }}">show</a>
+                            <a href="{{ path('searchEngine_feature_show', { 'id': feature.id, 'name': name }) }}">show</a>
                         </li>
                         <li>
                             <a href="{{ path('searchEngine_feature_edit', { 'id': feature.id }) }}">edit</a>
