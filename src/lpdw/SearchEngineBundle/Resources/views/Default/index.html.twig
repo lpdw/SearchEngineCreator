@@ -11,18 +11,20 @@
 
             <div class="col-md-8 col-sm-12">
                <div class="grid">
-                   {% set i = 0 %}
-                   {% for category in categories %}
+                   {% if categories is defined %}
+                       {% set i = 0 %}
+                       {% for category in categories %}
 
-                   <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
-                       <div class="grid-item visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}">
-                           <div class="w100">{{ category.name }}</div><br/>
-                           <div class="gutter-sizer"></div>
-                       </div>
-                   </a>
+                       <a onclick="loadMainForm({{category.id}})">
+                           <div class="grid-item visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}">
+                               <div class="w100">{{ category.name }}</div><br/>
+                               <div class="gutter-sizer"></div>
+                           </div>
+                       </a>
 
-                   {% set i = i + 1 %}
-                   {% endfor %}
+                       {% set i = i + 1 %}
+                       {% endfor %}
+                   {% endif %}
                </div>
            </div>
         </div>
