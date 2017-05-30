@@ -106,7 +106,7 @@ class FeatureController extends Controller
      * @Route("/{name}/{id}/edit", name="searchEngine_feature_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Feature $feature, $id)
+    public function editAction(Request $request, Feature $feature, $id, $name)
     {
         $insertFCV = $this->container->get('app.insertfcv');
 
