@@ -82,10 +82,13 @@ class FeatureValueController extends Controller
         if ($request->get('form') != NULL) {
             //on parcout les champs du form submit
             foreach ($request->get('form') as $key => $value) {
+
+//                dump($request->get('form'));die;
                 //si le champ commande par value il s'agit d'une ligne correcte
                 if (substr($key, 0, 5) == "value") {
                     //si le champ un tableau
                     if (is_array($value)) {
+
                         //parcourt du tableau
                         foreach ($value as $item) {
                             //creation de chaque feature value
@@ -98,12 +101,25 @@ class FeatureValueController extends Controller
                         }
 
                     } else { //si le champ n'est pas un tableau
-                        $featureValue = new FeatureValue();
-                        $featureValue->setElement($element);
-                        $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($value);
-                        $featureValue->setFeatureCV($featureCatVal);
-                        $em->persist($featureValue);
-                        $em->flush($featureValue);
+                        if(strstr($key, 'RangeType')){
+                            $chaine = strstr($key, 'RangeType');
+                            $id = str_replace("RangeType", "",$chaine );
+                            $featureValue = new FeatureValue();
+                            $featureValue->setElement($element);
+                            $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
+                            $featureValue->setFeatureCV($featureCatVal);
+                            $featureValue->setValue($value);
+                            $em->persist($featureValue);
+                            $em->flush($featureValue);
+                        } else {
+                            $featureValue = new FeatureValue();
+                            $featureValue->setElement($element);
+                            $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($value);
+                            $featureValue->setFeatureCV($featureCatVal);
+                            $em->persist($featureValue);
+                            $em->flush($featureValue);
+                        }
+
                     }
                 }
             }
@@ -192,12 +208,24 @@ class FeatureValueController extends Controller
                         }
 
                     } else { //si le champ n'est pas un tableau
-                        $featureValue = new FeatureValue();
-                        $featureValue->setElement($element);
-                        $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($value);
-                        $featureValue->setFeatureCV($featureCatVal);
-                        $em->persist($featureValue);
-                        $em->flush($featureValue);
+                        if(strstr($key, 'RangeType')){
+                            $chaine = strstr($key, 'RangeType');
+                            $id = str_replace("RangeType", "",$chaine );
+                            $featureValue = new FeatureValue();
+                            $featureValue->setElement($element);
+                            $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
+                            $featureValue->setFeatureCV($featureCatVal);
+                            $featureValue->setValue($value);
+                            $em->persist($featureValue);
+                            $em->flush($featureValue);
+                        } else {
+                            $featureValue = new FeatureValue();
+                            $featureValue->setElement($element);
+                            $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($value);
+                            $featureValue->setFeatureCV($featureCatVal);
+                            $em->persist($featureValue);
+                            $em->flush($featureValue);
+                        }
                     }
                 }
             }

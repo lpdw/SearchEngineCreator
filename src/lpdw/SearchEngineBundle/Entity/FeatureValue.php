@@ -22,6 +22,13 @@ class FeatureValue
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=255, nullable=true)
+     */
+    private $value;
+
+    /**
      * Many FeatureValue have One Element.
      * @ORM\ManyToOne(targetEntity="Element")
      * @ORM\JoinColumn(name="element_id", referencedColumnName="id")
@@ -168,5 +175,29 @@ class FeatureValue
     public function getFeatureCV()
     {
         return $this->featureCV;
+    }
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     *
+     * @return FeatureValue
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }
