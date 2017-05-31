@@ -30,6 +30,14 @@ body {
 
 /** font **/
 
+.fontClemente {
+    font-family: "Clemente";
+}
+
+.fontChampagne {
+    font-family: "Champagne";
+}
+
 .ft-10 {
     font-size: 10px;
 }
@@ -72,6 +80,27 @@ body {
 
 .fontTitle {
     font-family: 'Champagne', cursive;
+}
+
+/** margin **/
+
+.mTop5 {
+    margin-top: 5px;
+}
+.mTop10 {
+    margin-top: 10px;
+}
+.mTop15 {
+    margin-top: 15px;
+}
+.mTop20 {
+    margin-top: 20px;
+}
+.mTop25 {
+    margin-top: 25px;
+}
+.mTop30 {
+    margin-top: 30px;
 }
 
 /** font style **/
@@ -239,4 +268,22 @@ body {
 
 #step2 {
     opacity: .5;
+}
+
+/** form **/
+
+input[type="text"] {
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid #484040;
+    font-size: 20px;
+}
+input[type="text"]:focus {
+    outline: none;
+    border-bottom: 1px solid #247885;
+}
+
+.buttonStyle {
+    border: 2px solid #247885;
+    background: none;
 }
