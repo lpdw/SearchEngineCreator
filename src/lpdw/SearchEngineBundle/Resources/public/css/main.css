@@ -287,3 +287,31 @@ input[type="text"]:focus {
     border: 2px solid #247885;
     background: none;
 }
+.buttonStyle:hover {
+    background-color: #247885;
+    color: #FFF;
+}
+
+.deleteButton {
+    border: 2px solid #A40E0E;
+    background: none;
+}
+.deleteButton:hover {
+    background-color: #A40E0E;
+    color: #FFF;
+}
+
+a.buttonStyle {
+    color: #484040;
+    display: inline-block;
+    border: 2px solid #247885;
+    background: none;
+    text-decoration: none;
+    padding: 2.4px 5px;
+}
+
+/** display **/
+
+.inlineBlock {
+    display: inline-block;
+}
