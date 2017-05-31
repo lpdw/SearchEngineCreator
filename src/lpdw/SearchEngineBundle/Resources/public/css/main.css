@@ -138,6 +138,13 @@ body {
     box-shadow: 2px 2px 10px;
 }
 
+.grid-item:hover {
+    background-color: #464040;
+}
+.grid-item:hover .w100 {
+    color: #FFF;
+}
+
 .grid-item::after {
     content: '';
     position: absolute;
@@ -164,7 +171,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #422222;
+    color: #000;
     font-family: "Clemente";
 }
 
