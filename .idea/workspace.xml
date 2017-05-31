@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32aca5a3-5c2f-4c2b-9ab7-61f6de37a577" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/config/services.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +20,8 @@
       <file leaf-file-name="FeatureValue.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -37,51 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/feature/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/category/new.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/category/edit.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="56" lean-forward="false" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FeatureValueController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="204" column="69" lean-forward="false" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="69" />
+            <state relative-caret-position="375">
+              <caret line="227" column="25" lean-forward="false" selection-start-line="227" selection-start-column="25" selection-end-line="227" selection-end-column="25" />
               <folding>
                 <element signature="e#54#102#0#PHP" expanded="true" />
               </folding>
@@ -89,35 +49,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeatureValueService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php">
+      <file leaf-file-name="FeatureValueType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-237">
-              <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
-              <folding>
-                <element signature="e#133#164#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/config/services.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="46" lean-forward="false" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+            <state relative-caret-position="197">
+              <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insertFCV.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/insertFCV.php">
+      <file leaf-file-name="FeatureValueService.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="162" column="0" lean-forward="true" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
               <folding>
-                <element signature="e#50#81#0#PHP" expanded="true" />
+                <element signature="e#133#164#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,16 +103,16 @@
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/index.html.twig" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/new.html.twig" />
-        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Repository/FeatureValueRepository.php" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php" />
-        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php" />
+        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
+        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php" />
       </list>
     </option>
   </component>
@@ -198,6 +146,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -689,7 +638,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -804,18 +752,19 @@
       <workItem from="1494573145071" duration="5804000" />
       <workItem from="1496064927465" duration="648000" />
       <workItem from="1496128474565" duration="14000" />
-      <workItem from="1496128502389" duration="16058000" />
+      <workItem from="1496128502389" duration="16705000" />
+      <workItem from="1496216608023" duration="6051000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45376000" />
+    <option name="totallyTimeSpent" value="52074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26869658" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2633547" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1036,20 +985,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureCategoryValue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
           <caret line="59" column="35" lean-forward="true" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
           <folding>
-            <element signature="e#54#98#0#PHP" expanded="true" />
+            <element signature="e#54#98#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1066,7 +1007,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,7 +1014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1090,7 +1029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1108,7 +1046,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1724">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1124,7 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1132,7 +1068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1140,15 +1075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1184,22 +1110,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Repository/FeatureValueRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="53" lean-forward="false" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/insertFCV.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1214,7 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1223,26 +1132,6 @@
         <state relative-caret-position="119">
           <caret line="7" column="46" lean-forward="false" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-237">
-          <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
-          <folding>
-            <element signature="e#133#164#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="204" column="69" lean-forward="false" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="69" />
-          <folding>
-            <element signature="e#54#102#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1262,6 +1151,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="56" lean-forward="false" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/category/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1270,11 +1167,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureCategoryValue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="29" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Repository/FeatureValueRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="53" lean-forward="false" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureValue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/FeatureValueType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="227" column="25" lean-forward="false" selection-start-line="227" selection-start-column="25" selection-end-line="227" selection-end-column="25" />
+          <folding>
+            <element signature="e#54#102#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="56" lean-forward="false" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
-          <folding />
+          <caret line="162" column="0" lean-forward="true" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <folding>
+            <element signature="e#133#164#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
