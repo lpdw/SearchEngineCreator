@@ -188,14 +188,3 @@ function addCheckbox(){
     '<input type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'
   );
 }
-
-function loadMainForm(categoryId) {
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:8000/searchEngine/generateForm",
-        data: "categoryId="+categoryId,
-        success: function(returnData){
-            console.log(returnData);
-        }
-    });
-}

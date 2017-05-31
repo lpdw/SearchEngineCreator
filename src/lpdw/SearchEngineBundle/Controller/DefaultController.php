@@ -29,37 +29,21 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("searchEngine/generateForm", name="generateForm")
+     * @Route("searchEngine/{name}", name="generateForm")
      */
-    public function generateFormAction(Request $req)
+    public function generateFormAction(Request $req, $name)
     {
-        if($req->isXmlHttpRequest()) {
-            $category_id = $req->get('categoryId');
+        $em = $this->getDoctrine()->getManager();
 
-            $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
+        $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($category);
 
-            $category = $em->getRepository('lpdwSearchEngineBundle:Category')->find($category_id);
-            $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($category);
+        $form = $this->createFormBuilder();
 
-            if(empty($features)) {
-                return new Response('Error : no features');
-            }
+        $form = $this->get("app.featureValService")->newForm($features,$form);
 
-            $form = $this->createFormBuilder();
-
-            $form = $this->get("app.featureValService")->newForm($features,$form);
-
-            return new JsonResponse($form);
-
-            $fields = ['fields' => []];
-
-            foreach ($form->all() as $field) {
-                $name = $field->getName();
-                $type = $field->getConfig()->getType()->getBlockPrefix();
-                $fields['fields'][$name] = ['type' => $type];
-            }
-
-            return new JsonResponse(json_encode($fields, JSON_PRETTY_PRINT));
-        }
+        return $this->render('lpdwSearchEngineBundle:Default:step2.html.twig', array(
+            'form' => $form->getForm()->createView(),
+        ));
     }
 }
