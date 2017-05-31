@@ -23,17 +23,9 @@
         </div>
         <div class="row">
             <div class="everyCategories col-md-12 col-sm-12">
-               <div id="grid" data-columns>
-                   {% set i = 0 %}
-                   {% for category in categories %}
-                       <a href="{{ path('generateForm', {'name': category.name}) }}">
-                           <div class="grid-item text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}">
-                               <div class="w100 ft-20">{{ category.name }}</div><br/>
-                           </div>
-                       </a>
-                       {% set i = i + 1 %}
-                   {% endfor %}
-                </div>
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                {{ form_end(form) }}
            </div>
         </div>
     </div>
