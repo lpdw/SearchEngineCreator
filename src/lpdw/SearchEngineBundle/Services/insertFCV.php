@@ -25,35 +25,37 @@ class insertFCV
         //GENERATE SYMFONY
         $taille = ceil((count($request->request->get('form'))-1)/2);
         for($i=1; $i<=$taille; $i++){
-          $FCV = new FeatureCategoryValue();
-          $FCV->setValue($request->request->get('form')["value".$i]);
-          $FCV->setFeature($feature);
-          $FCV->setComment($request->request->get('form')["comment".$i]);
+          if($request->request->get('form')["value".$i]){
+            $FCV = new FeatureCategoryValue();
+            $FCV->setValue($request->request->get('form')["value".$i]);
+            $FCV->setFeature($feature);
+            $FCV->setComment($request->request->get('form')["comment".$i]);
 
-          $file = $request->files->get('form')['image'.$i];
+            $file = $request->files->get('form')['image'.$i];
 
-          if($file) {
-              $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            if($file) {
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-              $file->move(
-                  $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
-                  $fileName
-              );
+                $file->move(
+                    $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+                    $fileName
+                );
 
-              $FCV->setImage($fileName);
+                $FCV->setImage($fileName);
 
-              if($form->get('image'.$i)->getData()) {
-                  unlink($this->container->getParameter('kernel.root_dir') . '/../web/uploads/images/'.$form->get('image'.$i)->getData()->getFileName());
-              }
+                if($form->get('image'.$i)->getData()) {
+                    unlink($this->container->getParameter('kernel.root_dir') . '/../web/uploads/images/'.$form->get('image'.$i)->getData()->getFileName());
+                }
 
-          } else if($form->get('image'.$i)->getData()) {
-              $file = $form->get('image'.$i)->getData();
+            } else if($form->get('image'.$i)->getData()) {
+                $file = $form->get('image'.$i)->getData();
 
-              $FCV->setImage($file->getFileName());
+                $FCV->setImage($file->getFileName());
+            }
+
+            $em->persist($FCV);
+            $em->flush($FCV);
           }
-
-          $em->persist($FCV);
-          $em->flush($FCV);
         }
 
 
@@ -89,26 +91,28 @@ class insertFCV
 
         $taille = ceil((count($request->request)-1)/2);
         for($i=1; $i<=$taille; $i++){
-          $FCV = new FeatureCategoryValue();
-          $FCV->setValue($request->request->get('input_checkbox_'.$i));
-          $FCV->setFeature($feature);
-          $FCV->setComment($request->request->get('comment_checkbox_'.$i));
+          if($request->request->get('input_checkbox_'.$i)){
+            $FCV = new FeatureCategoryValue();
+            $FCV->setValue($request->request->get('input_checkbox_'.$i));
+            $FCV->setFeature($feature);
+            $FCV->setComment($request->request->get('comment_checkbox_'.$i));
 
-          $file = $request->files->get('image_checkbox_'.$i);
+            $file = $request->files->get('image_checkbox_'.$i);
 
-          if($file) {
-              $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            if($file) {
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-              $file->move(
-                  $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
-                  $fileName
-              );
+                $file->move(
+                    $this->container->getParameter('kernel.root_dir') . '/../web/uploads/images',
+                    $fileName
+                );
 
-              $FCV->setImage($fileName);
+                $FCV->setImage($fileName);
+            }
+
+            $em->persist($FCV);
+            $em->flush($FCV);
           }
-
-          $em->persist($FCV);
-          $em->flush($FCV);
         }
       }
     }
@@ -130,11 +134,8 @@ class insertFCV
       }
     }
     else{
-
       if($request->request->get('form')){
-        dump($request->request->get('form'));die;
-
-        for($i=1; $i<(count($request->request)); $i++){
+       for($i=1; $i<(count($request->request->get('form'))); $i++){
           if($request->request->get('form')['value'.$i]){
             $FCV = new FeatureCategoryValue();
             $FCV->setValue($request->request->get('form')['value'.$i]);
@@ -143,25 +144,31 @@ class insertFCV
             $em->flush($FCV);
           }
         }
-        for($i=1; $i<=count($request->request); $i++){
-          if($request->request->get('input_select_'.$i)){
+
+        $count=count($request->request->get('form'))-1;
+        for($i=3; $i<=count($request->request); $i++){
+          $count++;
+          $name_request = 'input_select_'.$count;
+          if($request->request->get($name_request)){
             $FCV = new FeatureCategoryValue();
-            $FCV->setValue($request->request->get('input_select_'.$i));
+            $FCV->setValue($request->request->get($name_request));
             $FCV->setFeature($feature);
             $em->persist($FCV);
             $em->flush($FCV);
           }
         }
+
       }
       else{
         foreach ($request->request as $key => $value) {
-
           if (strstr($key, 'input')) {
+            if($value){
               $FCV = new FeatureCategoryValue();
               $FCV->setValue($value);
               $FCV->setFeature($feature);
               $em->persist($FCV);
               $em->flush($FCV);
+            }
           }
         }
       }
