@@ -259,7 +259,7 @@ class FeatureValueController extends Controller
                 }
             }
 
-            return $this->redirectToRoute('searchEngine_element_index');
+            return $this->redirectToRoute('searchEngine_element_index', ['name' => $element->getCategory()->getName()]);
 
         }
         return $this->render('lpdwSearchEngineBundle:featurevalue:edit.html.twig', array(
