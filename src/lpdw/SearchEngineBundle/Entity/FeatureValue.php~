@@ -24,9 +24,11 @@ class FeatureValue
     /**
      * @var string
      *
-     * @ORM\Column(name="value", type="string", length=255)
+     * @ORM\Column(name="value", type="string", length=255, nullable=true)
      */
     private $value;
+
+
 
     /**
      * Many FeatureValue have One Element.
@@ -51,29 +53,6 @@ class FeatureValue
         return $this->id;
     }
 
-    /**
-     * Set value
-     *
-     * @param string $value
-     *
-     * @return FeatureValue
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get value
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
     /**
      * Constructor
      */
@@ -150,5 +129,53 @@ class FeatureValue
     public function getFeaturesCV()
     {
         return $this->featuresCV;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \lpdw\SearchEngineBundle\Entity\Element $element
+     *
+     * @return FeatureValue
+     */
+    public function setElement(\lpdw\SearchEngineBundle\Entity\Element $element = null)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \lpdw\SearchEngineBundle\Entity\Element
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+
+    /**
+     * Set featureCV
+     *
+     * @param \lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featureCV
+     *
+     * @return FeatureValue
+     */
+    public function setFeatureCV(\lpdw\SearchEngineBundle\Entity\FeatureCategoryValue $featureCV = null)
+    {
+        $this->featureCV = $featureCV;
+
+        return $this;
+    }
+
+    /**
+     * Get featureCV
+     *
+     * @return \lpdw\SearchEngineBundle\Entity\FeatureCategoryValue
+     */
+    public function getFeatureCV()
+    {
+        return $this->featureCV;
     }
 }
