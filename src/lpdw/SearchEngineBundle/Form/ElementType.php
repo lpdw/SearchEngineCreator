@@ -16,10 +16,14 @@ class ElementType extends AbstractType
     {
         $builder
             ->add('name',TextType::class, [
-            'label' => 'Name:'
+                'label' => false,
+                'attr' => array(
+                    'placeholder'   => 'Nom de l\'élément',
+                    'class'         => 'fontClemente'
+                )
         ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
