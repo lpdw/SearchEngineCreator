@@ -19,7 +19,8 @@ Récupérer l’application:
 
 Installer & mettre à jours les dépendance
 > Composer install
-> Définir les paramètre de votre base de donnée
+
+Définir les paramètre de votre base de donnée
 
 Créer la base de donnée
 >php bin/console doctrine:schema:update
