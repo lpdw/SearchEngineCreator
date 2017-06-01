@@ -74,7 +74,11 @@ class FeatureController extends Controller
             return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId(), 'name' => $name));
         }
 
+        $em = $this->getDoctrine()->getManager();
+        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
+
         return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
+            'category' => $category,
             'feature' => $feature,
             'form' => $form->createView(),
         ));

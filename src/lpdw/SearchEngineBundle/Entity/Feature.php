@@ -4,6 +4,7 @@ namespace lpdw\SearchEngineBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Feature
  *

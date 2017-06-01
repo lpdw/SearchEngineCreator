@@ -68,6 +68,7 @@ class ElementController extends Controller
         }
 
         return $this->render('lpdwSearchEngineBundle:element:new.html.twig', array(
+            'category' => $category,
             'element' => $element,
             'form' => $form->createView(),
         ));
