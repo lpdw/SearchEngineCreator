@@ -8,6 +8,7 @@
 
 namespace lpdw\SearchEngineBundle\Services;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\NoResultException;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -41,7 +42,7 @@ class FeatureValueService
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
 
                 $form->add('value' . $i, NumberType::class, [
-                    'label' => $feature->getName(),'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                    'label' => false,'mapped' => false, ['attr' => ['class' => $featureCatVal->getId(), 'placeholder' => $feature->getName()]]
                 ]);
             }
             if ($feature->getType() == 'BooleanType') {
@@ -57,24 +58,26 @@ class FeatureValueService
 
                 $values = explode("-", $featureCatVal->getValue());
                 $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." min:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente pull-left inlineBlock mRight10",
+                        'placeholder' => $feature->getName()." min"
                     ],
 
                 ]);
                 $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." max:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente",
+                        'placeholder' => $feature->getName()." max"
                     ],
 
                 ]);
@@ -118,6 +121,7 @@ class FeatureValueService
                 }
                 $form->add('value' . $i, ChoiceType::class, [
                     'label' => $feature->getName(),
+                    'label_attr' => ['class' => 'displayBlock'],
                     'choices' => $tab,
                     'expanded' => false,
                     'multiple' => false,
@@ -170,28 +174,36 @@ class FeatureValueService
             }
             if ($feature->getType() == 'RangeType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
-                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
+
                 $values = explode("-", $featureCatVal->getValue());
-                $value = explode("-", $featureVal->getValue());
+                try{
+                    $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
+
+                    $value = explode("-", $featureVal->getValue());
+                } catch (NoResultException $nr){
+                    $value = [];
+                    $value[0] = (int)$values[0];
+                    $value[1] = (int)$values[1];
+                }
                 $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." min:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente pull-left inlineBlock mRight10",
                     ],
                     'data' => $value[0],
                 ]);
                 $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." max:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente",
                     ],
 
                     'data' => $value[1],
@@ -199,13 +211,19 @@ class FeatureValueService
             }
             if ($feature->getType() == 'checkbox') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
-                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal, $element);
+                try{
+                    $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal, $element);
+                    $data = [];
+                    foreach ($featureVal as $item) {
+                        $data[$item->getFeatureCV()->getValue()] = $item->getFeatureCV()->getId();
 
-                $data = [];
-                foreach ($featureVal as $item) {
-                    $data[$item->getFeatureCV()->getValue()] = $item->getFeatureCV()->getId();
-
+                    }
+                } catch (NoResultException $nr){
+                    $data = "";
                 }
+
+
+
                 $tab = [];
                 foreach ($featureCatVal as $key => $value) {
                     $tab[$value->getValue()] = $value->getId();
@@ -223,7 +241,12 @@ class FeatureValueService
 
             if ($feature->getType() == 'radio') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
-                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
+                try{
+                    $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
+                    $id = $featureVal->getFeatureCV()->getId();
+                } catch (NoResultException $nr){
+                    $id = "";
+                }
                 $tab = [];
                 foreach ($featureCatVal as $key => $value) {
                     $tab[$value->getValue()] = $value->getId();
@@ -235,15 +258,19 @@ class FeatureValueService
                     'multiple' => false,
                     'mapped' => false,
                     'required' => true,
-                    'data' => $featureVal->getFeatureCV()->getId()
+                    'data' => $id
                 ]);
             }
 
             if ($feature->getType() == 'select') {
 
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
-                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
-
+                try{
+                    $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
+                    $id = $featureVal->getFeatureCV()->getId();
+                } catch (NoResultException $nr){
+                    $id = "";
+                }
 
                 $tab = [];
                 foreach ($featureCatVal as $key => $value) {
@@ -251,12 +278,13 @@ class FeatureValueService
                 }
                 $form->add('value' . $i, ChoiceType::class, [
                     'label' => $feature->getName(),
+                    'label_attr' => ['class' => 'displayBlock'],
                     'choices' => $tab,
                     'expanded' => false,
                     'multiple' => false,
                     'mapped' => false,
                     'required' => true,
-                    'data' => $featureVal->getFeatureCV()->getId()
+                    'data' => $id
                 ]);
             }
 
