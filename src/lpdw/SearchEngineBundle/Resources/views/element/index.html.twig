@@ -4,32 +4,50 @@
 
     {{ parent() }}
 
-    <h1>Elements list</h1>
+    <div class="container-fluid">
+        <div class="chooseCategory">
+            <div class="content">
+                <h2 class="fontTitle ft-40 lightBlue">Liste des éléments de la catégorie <span class="darkBlue">{{elements[0].category.name}}</span></h2>
+                <p class="white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                    Morbi eu finibus nisi, ullamcorper faucibus est.
+                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                </p>
+            </div>
+        </div>
 
-
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for element in elements %}
-            <tr>
-                <td>{{ element.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('searchEngine_featureValue_new', { 'name': element.name }) }}">ajouter valeurs</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="row">
+            <div class="everyCategories col-md-12 col-sm-12">
+               <div id="grid" data-columns>
+                   {% set i = 0 %}
+                   {% for element in elements %}
+                       <div class="grid-item text-center {{ i is divisible by(2) ? 'bgDarkGreen' : 'bgLightGreen' }}" data-toggle="modal" data-target="#{{element.id}}">
+                           <!-- Button trigger modal -->
+                           <div class="w100 ft-20">{{ element.name }}</div><br/>
+                       </div>
+                       <div class="modal fade" id="{{element.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                   <div class="modal-header">
+                                       <h5 class="modal-title" id="exampleModalLabel">{{element.name}}</h5>
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">&times;</span>
+                                       </button>
+                                   </div>
+                                   <div class="modal-body">
+                                       <a href="{{ path('searchEngine_featureValue_new', { 'name': element.name }) }}">Ajouter une valeur</a>
+                                   </div>
+                                   <div class="modal-footer">
+                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       {% set i = i + 1 %}
+                   {% endfor %}
+                </div>
+                <a href="{{ path('searchEngine_category_index') }}">Retour aux catégories</a>
+           </div>
+        </div>
 
 {% endblock %}

@@ -3,31 +3,52 @@
 {% block body %}
     {{ parent() }}
 
-    <div class="container">
-
-        <div class="row">
-            <h2 class="fontTitle ft-40 lightBlue">1. Choisissez une <span class="darkBlue">catégorie</span></h2>
+    <div class="container-fluid">
+        <div class="chooseCategory">
+            <div class="content">
+                <h2 class="fontTitle ft-40 lightBlue">Toutes les <span class="darkBlue">catégories</span></h2>
+                <p class="white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                    Morbi eu finibus nisi, ullamcorper faucibus est.
+                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                </p>
+            </div>
         </div>
-
-        <div class="col-md-12 col-sm-12">
-           <div class="grid">
-               {% set i = 0 %}
-               {% for category in categories %}
-
-               <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
-                   <div class="grid-item visible text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}" data-cat="grande-salle">
-                        <a href="{{ path('searchEngine_element_new', { 'name': category.name }) }}">Create a new Element</a>
-                        <a href="{{ path('searchEngine_feature_new', { 'name': category.name }) }}">Create a new Feature</a>
-                        <div class="w100">{{ category.name }}</div><br/>
-                        <div class="gutter-sizer"></div>
-                   </div>
-               </a>
-
-               {% set i = i + 1 %}
-               {% endfor %}
-           </div>
-       </div>
-
+       <div class="row">
+           <div class="everyCategories col-md-12 col-sm-12">
+              <div id="grid" data-columns>
+                  {% set i = 0 %}
+                  {% for category in categories %}
+                      <div class="grid-item text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}" data-toggle="modal" data-target="#{{category.id}}">
+                          <!-- Button trigger modal -->
+                          <div class="w100 ft-20">{{ category.name }}</div><br/>
+                      </div>
+                      <div class="modal fade" id="{{category.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">{{category.name}}</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <h4>Etape 1</h4>
+                                      <a class="lightBlue" href="{{ path('searchEngine_element_new', { 'name': category.name }) }}">Créer un nouvel élément</a><br />
+                                      <a class="lightBlue" href="{{ path('searchEngine_feature_new', { 'name': category.name }) }}">Créer une nouvelle caractéristique</a>
+                                      <h4>Etape 2</h4>
+                                      <a class="lightBlue" href="{{ path('searchEngine_element_index', { 'name': category.name }) }}">Voir les éléments</a>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      {% set i = i + 1 %}
+                  {% endfor %}
+               </div>
+          </div>
 
     </div>
 {% endblock %}

@@ -22,7 +22,11 @@ class FeatureType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,[
-                'label' => 'Name:'
+                'label' => false,
+                'attr' => array(
+                    'placeholder'   => 'Nom de la caractéristique',
+                    'class'         => 'fontClemente'
+                )
             ])
             ->add('type', ChoiceType::class,[
                 'label' => 'Type:',

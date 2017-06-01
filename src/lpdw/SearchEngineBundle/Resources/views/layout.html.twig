@@ -31,7 +31,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catégorie<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ path('searchEngine_category_new') }}">Nouvelle catégorie</a></li>
                                 <li><a href="{{ path('searchEngine_category_index') }}">Toutes les catégories</a></li>
@@ -43,10 +43,9 @@
         </nav>
         {% endblock %}
 
-        <script src="{{ asset('bundles/lpdwsearchengine/js/jquery.js') }}"></script>
-
         {% block javascripts %}{% endblock %}
 
+        <script src="{{ asset('bundles/lpdwsearchengine/js/jquery.js') }}"></script>
         <script src="{{ asset('bundles/lpdwsearchengine/js/javascript.js') }}"></script>
         <script src="{{ asset('bundles/lpdwsearchengine/js/masonry/masonry.min.js') }}"></script>
         <script src="{{ asset('bundles/lpdwsearchengine/js/salvattore/salvattore.min.js') }}"></script>
