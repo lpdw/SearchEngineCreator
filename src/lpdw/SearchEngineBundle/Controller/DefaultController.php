@@ -65,7 +65,7 @@ class DefaultController extends Controller
 
         $name = $req->get('name');
         $results = [];
-        $searchValues = $req->request->get('searchValues');
+        $searchValues = $req->query->get('searchValues');
 
         foreach ($searchValues as $searchValue) {
             $featureCV = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->find($searchValue['id']);
@@ -79,11 +79,10 @@ class DefaultController extends Controller
                         $min_featureValue = split('-', $featureValue->getValue())[0];
                         $max_featureValue = split('-', $featureValue->getValue())[1];
 
-                        if($min_param <= $min_featureValue && $max_param >= $max_featureValue) {
-                            return new JsonResponse($min_featureValue);
+                        if($min_param >= $min_featureValue && $min_param <= $max_featureValue || $max_param >= $min_featureValue && $max_param <= $max_featureValue) {
+                            $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
+                            array_push($results, $jsonContent);
                         }
-                        $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
-                        array_push($results, $jsonContent);
                     }
                 }
             } else if($searchValue['type'] == 'checkbox' || $searchValue['type'] == 'radio') {
@@ -107,6 +106,11 @@ class DefaultController extends Controller
             }
         }
 
-        return new JsonResponse($results);
+        $vals = array_count_values($results);
+
+        dump($vals);
+        die();
+
+        return new JsonResponse($vals);
     }
 }

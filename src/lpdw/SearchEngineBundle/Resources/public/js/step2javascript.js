@@ -24,11 +24,16 @@ $( document ).ready(function() {
         });
 
         $.ajax({
-            method: "post",
+            method: "get",
             url: "http://localhost:8000/searchEngine/" + window.location.pathname.split('/')[2] + "/getResults",
             data: {searchValues: search_values},
             success: function(data) {
                 console.log(data);
+                let results = [];
+                /*for(let i = 0; i < data.length; i++) {
+                    results.push(JSON.parse(data[i]));
+                }
+                console.log(results);*/
             }
         });
     });
