@@ -4,6 +4,7 @@ namespace lpdw\SearchEngineBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,6 +24,7 @@ class ElementType extends AbstractType
                     'class'         => 'fontClemente'
                 )])
             ->add('image', FileType::class, array('label' => 'Photo (png, jpg)', 'required' => false))
+            ->add('comment', TextareaType::class, ["required" => false]);
         ;
     }
 
