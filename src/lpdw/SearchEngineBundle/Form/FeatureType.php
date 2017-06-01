@@ -30,10 +30,7 @@ class FeatureType extends AbstractType
                     'select' => 'select',
                     'checkbox' => 'checkbox',
                     'radio' => 'radio',
-                    'Text' => 'TextType',
-                    'Number' => 'NumberType',
                     'Range' => 'RangeType',
-                    'Boolean' => 'BooleanType',
                 ),
             ])
             /*->add('category', EntityType::class, [

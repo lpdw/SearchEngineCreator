@@ -70,20 +70,43 @@ class DefaultController extends Controller
         foreach ($searchValues as $searchValue) {
             $featureCV = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->find($searchValue['id']);
 
-            if($searchValue['type'] == 'checkbox' || $searchValue['type'] == 'radio') {
+            if($searchValue['type'] == 'number') {
+                $min_param = split('_', $searchValue['value'])[0];
+                $max_param = split('_', $searchValue['value'])[1];
+                $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
+                foreach($featureValues as $featureValue) {
+                    if($name == $featureValue->getElement()->getCategory()->getName()) {
+                        $min_featureValue = split('-', $featureValue->getValue())[0];
+                        $max_featureValue = split('-', $featureValue->getValue())[1];
+
+                        if($min_param <= $min_featureValue && $max_param >= $max_featureValue) {
+                            return new JsonResponse($min_featureValue);
+                        }
+                        $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
+                        array_push($results, $jsonContent);
+                    }
+                }
+            } else if($searchValue['type'] == 'checkbox' || $searchValue['type'] == 'radio') {
                 if($searchValue['checked'] == 'true') {
                     $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
                     foreach($featureValues as $featureValue) {
                         if($name == $featureValue->getElement()->getCategory()->getName()) {
                             $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
                             array_push($results, $jsonContent);
-                            return new JsonResponse($jsonContent);
                         }
                     }
                 }
-            } else if($searchValue['type'] == 'checkbox'){
-
+            } else if($searchValue['type'] == 'select-one') {
+                $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
+                foreach($featureValues as $featureValue) {
+                    if($name == $featureValue->getElement()->getCategory()->getName()) {
+                        $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
+                        array_push($results, $jsonContent);
+                    }
+                }
             }
         }
+
+        return new JsonResponse($results);
     }
 }
