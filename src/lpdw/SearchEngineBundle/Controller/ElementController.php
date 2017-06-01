@@ -18,14 +18,14 @@ class ElementController extends Controller
 {
     /**
      * Lists all element entities.
-     *
-     * @Route("/{name}", name="searchEngine_element_index")
+     * name = category
+     * @Route("/{category_name}", name="searchEngine_element_index")
      * @Method("GET")
      */
-    public function indexAction($name)
+    public function indexAction($category_name)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
+        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($category_name);
         if(empty($category)){
             return $this->redirectToRoute('searchEngine_category_index');
         }
@@ -38,17 +38,17 @@ class ElementController extends Controller
 
     /**
      * Creates a new element entity.
-     *
-     * @Route("/{name}/new", name="searchEngine_element_new")
+     * name = category
+     * @Route("/{category_name}/new", name="searchEngine_element_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request,$name)
+    public function newAction(Request $request,$category_name)
     {
         $em = $this->getDoctrine()->getManager();
 
         $element = new Element();
 
-        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
+        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($category_name);
 
 
 
@@ -60,6 +60,8 @@ class ElementController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $element->setCategory($category);
             if($element->getImage())
             {
                 $file = $element->getImage();
@@ -73,12 +75,12 @@ class ElementController extends Controller
                 $element->setImage($fileName);
             }
 
-            $element->setCategory($category[0]);
+            $element->setCategory($category);
             $em->persist($element);
 
             $em->flush($element);
 
-            return $this->redirectToRoute('searchEngine_element_show', array('id' => $element->getId()));
+            return $this->redirectToRoute('searchEngine_element_index', ['category_name' => $category->getName()]);
         }
 
         return $this->render('lpdwSearchEngineBundle:element:new.html.twig', array(
@@ -88,30 +90,36 @@ class ElementController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a element entity.
-     *
-     * @Route("/{id}", name="searchEngine_element_show")
-     * @Method("GET")
-     */
-    public function showAction(Element $element)
-    {
-        $deleteForm = $this->createDeleteForm($element);
-
-        return $this->render('lpdwSearchEngineBundle:element:show.html.twig', array(
-            'element' => $element,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+//    /**
+//     * Finds and displays a element entity.
+//     *
+//     * @Route("/{id}", name="searchEngine_element_show")
+//     * @Method("GET")
+//     */
+//    public function showAction(Element $element)
+//    {
+//        $deleteForm = $this->createDeleteForm($element);
+//
+//        return $this->render('lpdwSearchEngineBundle:element:show.html.twig', array(
+//            'element' => $element,
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
 
     /**
      * Displays a form to edit an existing element entity.
      *
-     * @Route("/{id}/edit", name="searchEngine_element_edit")
+     * @Route("/{category_name}/{element_name}/edit", name="searchEngine_element_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Element $element)
+    public function editAction(Request $request, $category_name,$element_name)
     {
+
+        $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($category_name);
+
+        $element = $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByCategoryAndName($category,$element_name);
+
         $oldImageName = $element->getImage();
 
         if($element->getImage()) {
@@ -147,7 +155,7 @@ class ElementController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('searchEngine_element_edit', array('id' => $element->getId()));
+            return $this->redirectToRoute('searchEngine_element_edit', ['category_name' => $category->getName()]);
         }
 
         return $this->render('lpdwSearchEngineBundle:element:edit.html.twig', array(
@@ -161,11 +169,15 @@ class ElementController extends Controller
     /**
      * Deletes a element entity.
      *
-     * @Route("/{id}", name="searchEngine_element_delete")
+     * @Route("/{category_name}/{element_name}", name="searchEngine_element_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Element $element)
+    public function deleteAction(Request $request,$category_name,$element_name)
     {
+
+        $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($category_name);
+        $element = $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByCategoryAndName($category,$element_name);
         $form = $this->createDeleteForm($element);
         $form->handleRequest($request);
 
@@ -179,7 +191,7 @@ class ElementController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('searchEngine_element_index');
+        return $this->redirectToRoute('searchEngine_element_index', ['category_name' => $element->getCategory()->getName()]);
     }
 
     /**
