@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="32aca5a3-5c2f-4c2b-9ab7-61f6de37a577" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Services/FeatureValueService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,8 +47,8 @@
       <file leaf-file-name="FeatureValueController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="261" column="118" lean-forward="false" selection-start-line="261" selection-start-column="118" selection-end-line="261" selection-end-column="118" />
+            <state relative-caret-position="359">
+              <caret line="262" column="0" lean-forward="true" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
               <folding>
                 <element signature="e#54#102#0#PHP" expanded="true" />
               </folding>
@@ -75,7 +73,38 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
               <caret line="54" column="23" lean-forward="false" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
-              <folding />
+              <folding>
+                <marker date="1496308798288" expanded="true" signature="1637:3016" ph="{...}" />
+                <marker date="1496308798288" expanded="true" signature="3025:3169" ph=" Finds and displays a feature entity. ..." />
+                <marker date="1496308798288" expanded="true" signature="3214:3695" ph="{...}" />
+                <marker date="1496308798288" expanded="true" signature="3526:3687" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="3704:3877" ph=" Displays a form to edit an existing feature entity. ..." />
+                <marker date="1496308798288" expanded="true" signature="3958:8095" ph="{...}" />
+                <marker date="1496308798288" expanded="true" signature="4569:7190" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="4600:4851" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="4655:4839" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="4885:5805" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="4940:5793" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="5457:5637" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="5836:6064" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="5891:6052" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="6098:6304" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="6153:6292" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="6340:6556" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="6395:6544" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="6591:6937" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="6646:6925" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="6974:7180" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="7029:7168" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="7295:7754" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="7544:7620" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="7786:8087" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="7841:8086" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="8104:8234" ph=" Deletes a feature entity. ..." />
+                <marker date="1496308798288" expanded="true" signature="8305:8729" ph="{...}" />
+                <marker date="1496308798288" expanded="true" signature="8499:8623" ph="..." />
+                <marker date="1496308798288" expanded="true" signature="8738:8911" ph=" Creates a form to delete a feature entity. ..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -502,12 +531,12 @@
       <workItem from="1496128474565" duration="14000" />
       <workItem from="1496128502389" duration="16705000" />
       <workItem from="1496216608023" duration="9082000" />
-      <workItem from="1496302107720" duration="6027000" />
+      <workItem from="1496302107720" duration="6679000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61132000" />
+    <option name="totallyTimeSpent" value="61784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
@@ -520,7 +549,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -955,14 +984,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="54" column="23" lean-forward="false" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
-          <folding />
+          <folding>
+            <marker date="1496308798288" expanded="true" signature="1637:3016" ph="{...}" />
+            <marker date="1496308798288" expanded="true" signature="3025:3169" ph=" Finds and displays a feature entity. ..." />
+            <marker date="1496308798288" expanded="true" signature="3214:3695" ph="{...}" />
+            <marker date="1496308798288" expanded="true" signature="3526:3687" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="3704:3877" ph=" Displays a form to edit an existing feature entity. ..." />
+            <marker date="1496308798288" expanded="true" signature="3958:8095" ph="{...}" />
+            <marker date="1496308798288" expanded="true" signature="4569:7190" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="4600:4851" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="4655:4839" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="4885:5805" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="4940:5793" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="5457:5637" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="5836:6064" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="5891:6052" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="6098:6304" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="6153:6292" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="6340:6556" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="6395:6544" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="6591:6937" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="6646:6925" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="6974:7180" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="7029:7168" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="7295:7754" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="7544:7620" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="7786:8087" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="7841:8086" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="8104:8234" ph=" Deletes a feature entity. ..." />
+            <marker date="1496308798288" expanded="true" signature="8305:8729" ph="{...}" />
+            <marker date="1496308798288" expanded="true" signature="8499:8623" ph="..." />
+            <marker date="1496308798288" expanded="true" signature="8738:8911" ph=" Creates a form to delete a feature entity. ..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="261" column="118" lean-forward="false" selection-start-line="261" selection-start-column="118" selection-end-line="261" selection-end-column="118" />
+        <state relative-caret-position="359">
+          <caret line="262" column="0" lean-forward="true" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
           <folding>
             <element signature="e#54#102#0#PHP" expanded="true" />
           </folding>
