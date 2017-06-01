@@ -84,8 +84,6 @@ class FeatureValueController extends Controller
             $val = [];
             $id = [];
             foreach ($request->get('form') as $key => $value) {
-
-//                dump($request->get('form'));die;
                 //si le champ commande par value il s'agit d'une ligne correcte
                 if (substr($key, 0, 5) == "value") {
                     //si le champ un tableau
@@ -119,7 +117,6 @@ class FeatureValueController extends Controller
                                     $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
                                     $featureValue->setFeatureCV($featureCatVal);
                                     $value = $val[0] . "-" . $val[1];
-                                    dump($value);
                                     $featureValue->setValue($value);
                                     $val = [];
                                     $id = [];
@@ -242,7 +239,6 @@ class FeatureValueController extends Controller
                                     $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
                                     $featureValue->setFeatureCV($featureCatVal);
                                     $value = $val[0] . "-" . $val[1];
-                                    dump($value);
                                     $featureValue->setValue($value);
                                     $val = [];
                                     $id = [];

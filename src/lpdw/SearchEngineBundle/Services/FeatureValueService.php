@@ -165,14 +165,9 @@ class FeatureValueService
                 ]);
             }
             if ($feature->getType() == 'RangeType') {
-//                dump("toto");die;
-
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
-
                 $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
-//                dump($featureVal);die;
 
-//                'data' => $featureVal->getValue(),
                 $values = explode("-", $featureCatVal->getValue());
                 $value = explode("-", $featureVal->getValue());
                 $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
