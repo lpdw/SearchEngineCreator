@@ -10,4 +10,17 @@ namespace lpdw\SearchEngineBundle\Repository;
  */
 class ElementRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findOneByCategoryAndName($category, $name){
+
+        $result = $this->createQueryBuilder('e')
+            ->where('e.category=:category')
+            ->AndWhere('e.name=:name')
+            ->setParameter("category", $category)
+            ->setParameter("name", $name)
+            ->getQuery()
+            ->getSingleResult();
+
+        return $result;
+    }
 }

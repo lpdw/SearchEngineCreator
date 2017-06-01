@@ -10,7 +10,7 @@
             <div class="chooseCategory">
                 <div class="content">
 
-                    <h2 class="fontTitle ft-40 lightBlue">Créer un nouvel élément pour la catégorie <span class="darkBlue">{{ category[0].name }}</span></h2>
+                    <h2 class="fontTitle ft-40 lightBlue">Créer un nouvel élément pour la catégorie <span class="darkBlue">{{ category.name }}</span></h2>
                     <p class="white">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
                         Morbi eu finibus nisi, ullamcorper faucibus est.
@@ -27,7 +27,7 @@
                     {{ form_widget(form) }}
                     <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Créer l'élément" />
                 {{ form_end(form) }}
-                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index', { 'name' : category[0].name }) }}">Retour à la liste des éléments</a>
+                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index', { 'category_name' : category.name }) }}">Retour à la liste des éléments</a>
            </div>
         </div>
 

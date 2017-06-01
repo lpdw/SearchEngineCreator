@@ -31,7 +31,7 @@
                     {{ form_start(delete_form, {'attr' : {'class': 'inlineBlock'}}) }}
                         <input class="deleteButton mTop20 ft-20 fontChampagne" type="submit" value="Supprimer l'élément">
                     {{ form_end(delete_form) }}
-                    <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index') }}">Retour à la liste des éléments</a>
+                    <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index', {'category_name': element.category.name }) }}">Retour à la liste des éléments</a>
                 </div>
            </div>
         </div>

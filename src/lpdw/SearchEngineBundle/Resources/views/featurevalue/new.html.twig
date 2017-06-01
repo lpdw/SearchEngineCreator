@@ -25,9 +25,8 @@
                     {{ form_widget(form) }}
                     <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Définir les valeurs" />
                 {{ form_end(form) }}
-                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index', { 'name' : category }) }}">Retour à la liste des éléments</a>
+                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index', { 'category_name' : category }) }}">Retour à la liste des éléments</a>
            </div>
         </div>
     </div>
-
 {% endblock %}

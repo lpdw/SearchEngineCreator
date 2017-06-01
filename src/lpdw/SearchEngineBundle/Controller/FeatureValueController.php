@@ -42,32 +42,33 @@ class FeatureValueController extends Controller
     /**
      * Creates a new featureValue entity.
      * name est le nom d'un element
-     * @Route("/{name}/new", name="searchEngine_featureValue_new")
+     * @Route("/{element_name}/new", name="searchEngine_featureValue_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, $name)
+    public function newAction(Request $request, $element_name)
     {
         $em = $this->getDoctrine()->getManager();
 
         //recupération des élément en fonction du nom en param
-        $element = $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByName($name);
+        $element = $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByName($element_name);
 
         //si le nom en param n'est pas un element valide on redirige vers la liste des element
         if (empty($element)) {
-            return $this->redirectToRoute('searchEngine_element_index');
+            return $this->redirectToRoute('searchEngine_element_index', ['category_name' => $element->getCategory()->getName()]);
+
         } else { //sinon
             //on recupere les features de cet element
             $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($element->getCategory());
             //si la categorie de l'element n'a pas de feature on redirige vers la page des feature de la categorie
             if (empty($features)) {
-                return $this->redirectToRoute('searchEngine_feature_index', ['name' => $element->getCategory()->getName()]);
+                return $this->redirectToRoute('searchEngine_feature_index', ['category_name' => $element->getCategory()->getName()]);
             }
 
             $featureValue = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByElement($element);
             //si l'element possèdes déjà des feature value
 
             if (!empty($featureValue)) {
-                return $this->redirectToRoute('searchEngine_featureValue_edit', ['name' => $name]);
+                return $this->redirectToRoute('searchEngine_featureValue_edit', ['element_name' => $element_name]);
             }
         }
         //var incrément
@@ -136,8 +137,7 @@ class FeatureValueController extends Controller
                     }
                 }
             }
-
-            return $this->redirectToRoute('searchEngine_element_index', ['name' => $element->getCategory()->getName()]);
+            return $this->redirectToRoute('searchEngine_element_index', ['category_name' => $element->getCategory()->getName()]);
         }
 
         return $this->render('lpdwSearchEngineBundle:featurevalue:new.html.twig', array(
@@ -147,49 +147,49 @@ class FeatureValueController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a featureValue entity.
-     *
-     * @Route("/{id}", name="searchEngine_featureValue_show")
-     * @Method("GET")
-     */
-    public function showAction(FeatureValue $featureValue)
-    {
-        $deleteForm = $this->createDeleteForm($featureValue);
-
-        return $this->render('lpdwSearchEngineBundle:featurevalue:show.html.twig', array(
-            'featureValue' => $featureValue,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+//    /**
+//     * Finds and displays a featureValue entity.
+//     *
+//     * @Route("/{id}", name="searchEngine_featureValue_show")
+//     * @Method("GET")
+//     */
+//    public function showAction(FeatureValue $featureValue)
+//    {
+//        $deleteForm = $this->createDeleteForm($featureValue);
+//
+//        return $this->render('lpdwSearchEngineBundle:featurevalue:show.html.twig', array(
+//            'featureValue' => $featureValue,
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
 
     /**
      * Displays a form to edit an existing featureValue entity.
      *
-     * @Route("/{name}/edit", name="searchEngine_featureValue_edit")
+     * @Route("/{element_name}/edit", name="searchEngine_featureValue_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, $name)
+    public function editAction(Request $request, $element_name)
     {
         $em = $this->getDoctrine()->getManager();
 
         //recupération des élément en fonction du nom en param
-        $element = $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByName($name);
+        $element = $em->getRepository('lpdwSearchEngineBundle:Element')->findOneByName($element_name);
 
         //si le nom en param n'est pas un element valide on redirige vers la liste des element
         if (empty($element)) {
-            return $this->redirectToRoute('searchEngine_element_index');
+            return $this->redirectToRoute('searchEngine_element_index', ['category_name' => $element->getCategory()->getName()]);
         } else { //sinon
             //on recupere les features de cet element
             $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($element->getCategory());
             //si la categorie de l'element n'a pas de feature on redirige vers la page des feature de la categorie
             if (empty($features)) {
-                return $this->redirectToRoute('searchEngine_feature_index', ['name' => $element->getCategory()->getName()]);
+                return $this->redirectToRoute('searchEngine_feature_index', ['element_name' => $element->getCategory()->getName()]);
             }
             $featureValue = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByElement($element);
 
             if (empty($featureValue)) {
-                return $this->redirectToRoute('searchEngine_featureValue_new', ['name' => $name]);
+                return $this->redirectToRoute('searchEngine_featureValue_new', ['element_name' => $element_name]);
             }
         }
 
@@ -260,7 +260,7 @@ class FeatureValueController extends Controller
                 }
             }
 
-            return $this->redirectToRoute('searchEngine_element_index', ['name' => $element->getCategory()->getName()]);
+            return $this->redirectToRoute('searchEngine_element_index', ['category_name' => $element->getCategory()->getName()]);
 
         }
         return $this->render('lpdwSearchEngineBundle:featurevalue:edit.html.twig', array(

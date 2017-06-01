@@ -21,7 +21,7 @@
             <a href="{{ path('searchEngine_featureValue_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('searchEngine_featureValue_edit', { 'id': featureValue.id }) }}">Edit</a>
+            <a href="{{ path('searchEngine_featureValue_edit', { 'element_name': featureValue.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

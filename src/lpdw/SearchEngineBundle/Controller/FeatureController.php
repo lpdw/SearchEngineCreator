@@ -25,28 +25,28 @@ class FeatureController extends Controller
     /**
      * Lists all feature entities.
      *
-     * @Route("/{name}/", name="searchEngine_feature_index")
+     * @Route("/{category_name}/", name="searchEngine_feature_index")
      * @Method("GET")
      */
-    public function indexAction($name)
+    public function indexAction($category_name)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($name);
+        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($category_name);
         $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($category);
         return $this->render('lpdwSearchEngineBundle:feature:index.html.twig', array(
             'features' => $features,
-            'name' => $name
+            'name' => $category_name
         ));
     }
 
     /**
      * Creates a new feature entity.
      *
-     * @Route("/{name}/new", name="searchEngine_feature_new")
+     * @Route("/{category_name}/new", name="searchEngine_feature_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, $name)
+    public function newAction(Request $request, $category_name)
     {
         $insertFCV = $this->container->get('app.insertfcv');
         $em = $this->getDoctrine()->getManager();
@@ -58,7 +58,7 @@ class FeatureController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $type = $feature->getType();
 
-            $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($name);
+            $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($category_name);
             if(empty($category)){
                 return $this->redirectToRoute('searchEngine_category_index');
             }
@@ -74,8 +74,7 @@ class FeatureController extends Controller
             return $this->redirectToRoute('searchEngine_category_index');
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
+        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($category_name);
 
         return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
             'category' => $category,
@@ -84,32 +83,32 @@ class FeatureController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a feature entity.
-     *
-     * @Route("/{name}/{id}/", name="searchEngine_feature_show")
-     * @Method("GET")
-     */
-    public function showAction($name, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $feature = $em->getRepository('lpdwSearchEngineBundle:Feature')->findOneById($id);
-        $FeatureCategoryValue = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findBy( array('feature' => $id));
-
-
-        return $this->render('lpdwSearchEngineBundle:feature:show.html.twig', array(
-            'feature' => $feature,
-            'FeatureCategoryValues' => $FeatureCategoryValue
-        ));
-    }
+//    /**
+//     * Finds and displays a feature entity.
+//     *
+//     * @Route("/{feature_name}/{id}/", name="searchEngine_feature_show")
+//     * @Method("GET")
+//     */
+//    public function showAction($name, $id)
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//        $feature = $em->getRepository('lpdwSearchEngineBundle:Feature')->findOneById($id);
+//        $FeatureCategoryValue = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findBy( array('feature' => $id));
+//
+//
+//        return $this->render('lpdwSearchEngineBundle:feature:show.html.twig', array(
+//            'feature' => $feature,
+//            'FeatureCategoryValues' => $FeatureCategoryValue
+//        ));
+//    }
 
     /**
      * Displays a form to edit an existing feature entity.
      *
-     * @Route("/{name}/{id}/edit", name="searchEngine_feature_edit")
+     * @Route("/{category_name}/{id}/edit", name="searchEngine_feature_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Feature $feature, $id, $name)
+    public function editAction(Request $request, Feature $feature, $id, $category_name)
     {
         $insertFCV = $this->container->get('app.insertfcv');
 
@@ -199,7 +198,7 @@ class FeatureController extends Controller
               $em->flush();
             }
 
-            return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId(), 'name' => $name));
+            return $this->redirectToRoute('searchEngine_feature_index',['category_name' => $category_name]);
         }
 
         return $this->render('lpdwSearchEngineBundle:feature:edit.html.twig', array(

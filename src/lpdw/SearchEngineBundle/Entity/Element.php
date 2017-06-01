@@ -5,12 +5,15 @@ namespace lpdw\SearchEngineBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Element
  *
  * @ORM\Table(name="element")
  * @ORM\Entity(repositoryClass="lpdw\SearchEngineBundle\Repository\ElementRepository")
+ *
+ * @UniqueEntity(fields="name", message="Le jeu  {{ value }} existe déjà.")
  */
 class Element
 {
