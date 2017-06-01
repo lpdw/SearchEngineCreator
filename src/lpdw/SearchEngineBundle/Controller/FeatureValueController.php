@@ -141,6 +141,7 @@ class FeatureValueController extends Controller
         }
 
         return $this->render('lpdwSearchEngineBundle:featurevalue:new.html.twig', array(
+            'element' => $element,
             'form' => $form->getForm()->createView(),
             'category' => $element->getCategory()->getName()
         ));
@@ -263,6 +264,7 @@ class FeatureValueController extends Controller
 
         }
         return $this->render('lpdwSearchEngineBundle:featurevalue:edit.html.twig', array(
+            'element' => $element,
             'edit_form' => $form->getForm()->createView(),
             'category' => $element->getCategory()->getName()
         ));

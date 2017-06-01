@@ -1,17 +1,33 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 
 {% block body %}
-    <h1>Featurevalue edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-    <ul>
-        <li>
-            <a href="{{ path('searchEngine_element_index', { 'name': category }) }}">Back to the list</a>
-        </li>
-        <li>
-        </li>
-    </ul>
+    {{ parent() }}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="chooseCategory">
+                <div class="content">
+                    <h2 class="fontTitle ft-40 lightBlue">Editez les caractéristiques de l'élément <span class="darkBlue">{{ element.name }}</span></h2>
+                    <p class="white">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                        Morbi eu finibus nisi, ullamcorper faucibus est.
+                        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="everyCategories col-md-12 col-sm-12 mTop30">
+                {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Editer les valeurs" />
+                {{ form_end(edit_form) }}
+                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index', { 'name' : category }) }}">Retour à la liste des éléments</a>
+           </div>
+        </div>
+    </div>
+
 {% endblock %}

@@ -6,18 +6,20 @@
 
     <div class="container-fluid">
 
+        <div class="row">
+            <div class="chooseCategory">
+                <div class="content">
 
-        <div class="chooseCategory">
-            <div class="content">
-
-                <h2 class="fontTitle ft-40 lightBlue">Créer une nouvelle caractéristique pour la catégorie <span class="darkBlue">{{ category[0].name }}</span></h2>
-                <p class="white">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
-                    Morbi eu finibus nisi, ullamcorper faucibus est.
-                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                </p>
+                    <h2 class="fontTitle ft-40 lightBlue">Créer une nouvelle caractéristique pour la catégorie <span class="darkBlue">{{ category[0].name }}</span></h2>
+                    <p class="white">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                        Morbi eu finibus nisi, ullamcorper faucibus est.
+                        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    </p>
+                </div>
             </div>
         </div>
+
 
         <div class="row">
             <div class="everyCategories col-md-12 col-sm-12 mTop30">
@@ -26,6 +28,7 @@
                     <div id="addInput"></div>
                     <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Ajouter la caractéristique" />
                 {{ form_end(form) }}
+                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_feature_index', { 'name' : category[0].name }) }}">Retour à la liste des caractéristiques</a>
            </div>
         </div>
 

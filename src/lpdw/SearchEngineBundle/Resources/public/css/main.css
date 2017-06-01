@@ -103,6 +103,25 @@ body {
     margin-top: 30px;
 }
 
+.mRight5 {
+    margin-right: 5px;
+}
+.mRight10 {
+    margin-right: 10px;
+}
+.mRight15 {
+    margin-right: 15px;
+}
+.mRight20 {
+    margin-right: 20px;
+}
+.mRight25 {
+    margin-right: 25px;
+}
+.mRight30 {
+    margin-right: 30px;
+}
+
 /** font style **/
 
 .smallCaps {
@@ -244,7 +263,7 @@ body {
     .chooseCategory {
         position : relative;
         width : 100%;
-        height: 150px;
+        height: 40vh;
     }
 
     .everyCategories {
@@ -288,12 +307,14 @@ body {
 /** form **/
 
 input[type="text"] {
+    width: 200px;
+    max-width: 90%;
     height: 25px;
     border: none;
     border-bottom: 1px solid #484040;
     font-size: 20px;
 }
-input[type="text"]:focus {
+input:focus {
     outline: none;
     border-bottom: 1px solid #247885;
 }
@@ -329,4 +350,46 @@ a.buttonStyle {
 
 .inlineBlock {
     display: inline-block;
+}
+.displayBlock {
+    display: block;
+}
+
+.icon-bar {
+    background-color: #FFF !important;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #484040 !important;
+}
+
+/** form **/
+
+.formStyle #form div {
+    margin: 10px 0;
+}
+
+.formStyle input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.formStyle input[type="number"] {
+    width: 200px;
+    max-width: 90%;
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid #484040;
+    font-size: 20px;
+}
+
+.formStyle input[type="checkbox"], .formStyle input[type="radio"] {
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.formStyle select {
+    width: 410px;
+    max-width: 90%;
+    height: 25px;
 }
