@@ -56,11 +56,31 @@ class FeatureController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $type = $feature->getType();
 
             $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($category_name);
             if(empty($category)){
                 return $this->redirectToRoute('searchEngine_category_index');
+            }
+
+            $featureNameExist = $em->getRepository('lpdwSearchEngineBundle:Feature')->findOneBy(array('name' => $feature->getName(), 'category' => $category));
+            if($featureNameExist){
+
+              return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
+                  'category' => $category,
+                  'feature' => $feature,
+                  'form' => $form->createView(),
+                  'erreur_name' => "Nom de la feature existante pour cette categorie",
+              ));
+            }
+            if($request->request->get('input_radio_1')==$request->request->get('input_radio_2')){
+              return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
+                  'category' => $category,
+                  'feature' => $feature,
+                  'form' => $form->createView(),
+                  'erreur_radio' => "Le label des radio doivent être different",
+              ));
             }
             $feature->setCategory($category);
 
@@ -74,7 +94,7 @@ class FeatureController extends Controller
             return $this->redirectToRoute('searchEngine_category_index');
         }
 
-        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($category_name);
+        $category =  $em->getRepository('lpdwSearchEngineBundle:Category')->findOneByName($category_name);
 
         return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
             'category' => $category,
