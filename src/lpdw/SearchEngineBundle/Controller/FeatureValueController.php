@@ -137,11 +137,12 @@ class FeatureValueController extends Controller
                 }
             }
 
-            return $this->redirectToRoute('searchEngine_element_index');
+            return $this->redirectToRoute('searchEngine_element_index', ['name' => $element->getCategory()->getName()]);
         }
 
         return $this->render('lpdwSearchEngineBundle:featurevalue:new.html.twig', array(
             'form' => $form->getForm()->createView(),
+            'category' => $element->getCategory()->getName()
         ));
     }
 
@@ -258,11 +259,12 @@ class FeatureValueController extends Controller
                 }
             }
 
-            return $this->redirectToRoute('searchEngine_element_index');
+            return $this->redirectToRoute('searchEngine_element_index', ['name' => $element->getCategory()->getName()]);
 
         }
         return $this->render('lpdwSearchEngineBundle:featurevalue:edit.html.twig', array(
             'edit_form' => $form->getForm()->createView(),
+            'category' => $element->getCategory()->getName()
         ));
     }
 

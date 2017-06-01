@@ -23,6 +23,9 @@ class FeatureValueService
         $this->doctrine = $doctrine;
     }
 
+    /**
+     *  return new featureValue Form
+     */
     public function newForm($features,$form){
         $em = $this->doctrine;
         $i = 0;
@@ -128,13 +131,15 @@ class FeatureValueService
         return $form;
     }
 
+    /**
+     *  return edit featureValue Form
+     */
     public function editForm($features,$form,$element){
 
         $em = $this->doctrine;
         $i = 0;
         foreach ($features as $feature) {
             if ($feature->getType() == 'TextType') {
-
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
                 $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal, $element);
                 $form->add('value' . $i, TextType::class, [
@@ -157,7 +162,6 @@ class FeatureValueService
                 $data = [];
                 foreach ($featureVal as $item) {
                     $data[$item->getFeatureCV()->getValue()] = $item->getFeatureCV()->getId();
-
                 }
                 $originFeature = $featureCatVal[0]->getFeature();
                 $form->add('value' . $i, [
@@ -167,7 +171,6 @@ class FeatureValueService
             if ($feature->getType() == 'RangeType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
                 $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
-
                 $values = explode("-", $featureCatVal->getValue());
                 $value = explode("-", $featureVal->getValue());
                 $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
@@ -179,7 +182,6 @@ class FeatureValueService
                         'max' => (int)$values[1],
                         'class'=> $featureCatVal->getId(),
                     ],
-
                     'data' => $value[0],
                 ]);
                 $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
@@ -194,8 +196,6 @@ class FeatureValueService
 
                     'data' => $value[1],
                 ]);
-
-
             }
             if ($feature->getType() == 'checkbox') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
