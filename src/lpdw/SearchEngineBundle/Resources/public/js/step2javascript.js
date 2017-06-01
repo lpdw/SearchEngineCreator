@@ -2,13 +2,15 @@ $( document ).ready(function() {
     $('input, select').bind('keyup change', function(e) {
         var search_values = [];
         $("input[type!='hidden'], select").each(function() {
-            if($(this).attr('id').includes('form_value4RangeType')) {
-                if($(this).attr('id').includes('form_value4RangeType1')) {
+            if($(this).attr('id').includes('RangeType')) {
+                if($(this).attr('id').includes('RangeType1')) {
+                    let id2 = $(this).attr('id');
+                    id2 = id2.replace('RangeType1', 'RangeType2');
                     search_values.push(
                             {
                                 'type':$(this)[0].type,
-                                'id':$(this).attr('class'),
-                                'value':$(this).val() + '_' + $('#form_value4RangeType2' + $(this).attr('class')).val()
+                                'id':$(this).attr('class').split(' ')[0],
+                                'value':$(this).val() + '_' + $('#' + id2).val()
                             }
                     );
                 }
