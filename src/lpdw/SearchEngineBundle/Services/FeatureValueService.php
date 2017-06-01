@@ -42,7 +42,7 @@ class FeatureValueService
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
 
                 $form->add('value' . $i, NumberType::class, [
-                    'label' => $feature->getName(),'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                    'label' => false,'mapped' => false, ['attr' => ['class' => $featureCatVal->getId(), 'placeholder' => $feature->getName()]]
                 ]);
             }
             if ($feature->getType() == 'BooleanType') {
@@ -58,24 +58,26 @@ class FeatureValueService
 
                 $values = explode("-", $featureCatVal->getValue());
                 $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." min:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente pull-left inlineBlock mRight10",
+                        'placeholder' => $feature->getName()." min"
                     ],
 
                 ]);
                 $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." max:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente",
+                        'placeholder' => $feature->getName()." max"
                     ],
 
                 ]);
@@ -119,6 +121,7 @@ class FeatureValueService
                 }
                 $form->add('value' . $i, ChoiceType::class, [
                     'label' => $feature->getName(),
+                    'label_attr' => ['class' => 'displayBlock'],
                     'choices' => $tab,
                     'expanded' => false,
                     'multiple' => false,
@@ -183,24 +186,24 @@ class FeatureValueService
                     $value[1] = (int)$values[1];
                 }
                 $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." min:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente pull-left inlineBlock mRight10",
                     ],
                     'data' => $value[0],
                 ]);
                 $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName()." max:",
+                    'label' => false,
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
-                        'class'=> $featureCatVal->getId(),
+                        'class'=> $featureCatVal->getId()." fontClemente",
                     ],
 
                     'data' => $value[1],
@@ -275,6 +278,7 @@ class FeatureValueService
                 }
                 $form->add('value' . $i, ChoiceType::class, [
                     'label' => $feature->getName(),
+                    'label_attr' => ['class' => 'displayBlock'],
                     'choices' => $tab,
                     'expanded' => false,
                     'multiple' => false,

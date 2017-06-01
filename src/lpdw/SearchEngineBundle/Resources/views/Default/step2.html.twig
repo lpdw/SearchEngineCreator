@@ -5,23 +5,30 @@
     {{ parent() }}
 
     <div class="container-fluid">
-        <div class="chooseCategory">
-            <div class="content">
+        <div class="row">
+            <div class="chooseCategory">
+                <div class="content">
 
-                <div class="text-center stepsNumber white">
-                    <div id="step1"><span class="ft-30">1</span></div>
-                    <div class="line"></div>
-                    <div id="step2"><span class="ft-30">2</span></div>
+                    <div class="text-center stepsNumber white">
+                        <a href="{{ path('home') }}">
+                            <div id="step1"><span class="ft-30 white">1</span></div>
+                        </a>
+                        <div class="line"></div>
+                        <div><span class="ft-30">2</span></div>
+                    </div>
+
+                    <h2 class="fontTitle ft-40 lightBlue">Effectuez votre <span class="darkBlue">recherche</span></h2>
+                    <p class="white">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                        Morbi eu finibus nisi, ullamcorper faucibus est.
+                        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    </p>
+                    <a class="buttonStyle white" href="{{ path('home') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+     Retour à l'étape 1</a>
                 </div>
-
-                <h2 class="fontTitle ft-40 lightBlue">Choisissez une <span class="darkBlue">catégorie</span></h2>
-                <p class="white">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
-                    Morbi eu finibus nisi, ullamcorper faucibus est.
-                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                </p>
             </div>
         </div>
+
         <div class="row">
             <div class="everyCategories col-md-12 col-sm-12">
                 {{ form_start(form) }}
