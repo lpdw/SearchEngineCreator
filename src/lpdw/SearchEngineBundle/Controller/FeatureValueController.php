@@ -75,15 +75,15 @@ class FeatureValueController extends Controller
         //nouveau formulaire
         $form = $this->createFormBuilder();
         // boucle de parcourt des features
-        $form = $this->get("app.featureValService")->newForm($features,$form);
+        $form = $this->get("app.featureValService")->newForm($features, $form);
 
 
         //traitement du form
         if ($request->get('form') != NULL) {
             //on parcout les champs du form submit
+            $val = [];
+            $id = [];
             foreach ($request->get('form') as $key => $value) {
-
-//                dump($request->get('form'));die;
                 //si le champ commande par value il s'agit d'une ligne correcte
                 if (substr($key, 0, 5) == "value") {
                     //si le champ un tableau
@@ -96,21 +96,34 @@ class FeatureValueController extends Controller
                             $featureValue->setElement($element);
                             $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($item);
                             $featureValue->setFeatureCV($featureCatVal);
-                            $em->persist($featureValue);
-                            $em->flush($featureValue);
+//                            $em->persist($featureValue);
+//                            $em->flush($featureValue);
                         }
 
                     } else { //si le champ n'est pas un tableau
-                        if(strstr($key, 'RangeType')){
-                            $chaine = strstr($key, 'RangeType');
-                            $id = str_replace("RangeType", "",$chaine );
-                            $featureValue = new FeatureValue();
-                            $featureValue->setElement($element);
-                            $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
-                            $featureValue->setFeatureCV($featureCatVal);
-                            $featureValue->setValue($value);
-                            $em->persist($featureValue);
-                            $em->flush($featureValue);
+                        if (strstr($key, 'RangeType')) {
+                            $chaine1 = strstr($key, 'RangeType1');
+                            $chaine2 = strstr($key, 'RangeType2');
+
+                            if ($chaine1 != false)
+                                $id[] = str_replace("RangeType1", "", $chaine1);
+                            if ($chaine2 != false)
+                                $id[] = str_replace("RangeType2", "", $chaine2);
+                            $val[] = $value;
+                            if (count($id) == 2) {
+                                if ($id[0] == $id[1]) {
+                                    $featureValue = new FeatureValue();
+                                    $featureValue->setElement($element);
+                                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
+                                    $featureValue->setFeatureCV($featureCatVal);
+                                    $value = $val[0] . "-" . $val[1];
+                                    $featureValue->setValue($value);
+                                    $val = [];
+                                    $id = [];
+                                    $em->persist($featureValue);
+                                    $em->flush($featureValue);
+                                }
+                            }
                         } else {
                             $featureValue = new FeatureValue();
                             $featureValue->setElement($element);
@@ -180,7 +193,7 @@ class FeatureValueController extends Controller
 
         //nouveau formulaire
         $form = $this->createFormBuilder();
-        $form = $this->get("app.featureValService")->editForm($features,$form,$element);
+        $form = $this->get("app.featureValService")->editForm($features, $form, $element);
 
 
 //        traitement du form
@@ -190,6 +203,8 @@ class FeatureValueController extends Controller
                 $em->remove($featVal);
                 $em->flush();
             }
+            $val = [];
+            $id = [];
             //on parcout les champs du form submit
             foreach ($request->get('form') as $key => $value) {
                 //si le champ commande par value il s'agit d'une ligne correcte
@@ -208,16 +223,29 @@ class FeatureValueController extends Controller
                         }
 
                     } else { //si le champ n'est pas un tableau
-                        if(strstr($key, 'RangeType')){
-                            $chaine = strstr($key, 'RangeType');
-                            $id = str_replace("RangeType", "",$chaine );
-                            $featureValue = new FeatureValue();
-                            $featureValue->setElement($element);
-                            $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
-                            $featureValue->setFeatureCV($featureCatVal);
-                            $featureValue->setValue($value);
-                            $em->persist($featureValue);
-                            $em->flush($featureValue);
+                        if (strstr($key, 'RangeType')) {
+                            $chaine1 = strstr($key, 'RangeType1');
+                            $chaine2 = strstr($key, 'RangeType2');
+
+                            if ($chaine1 != false)
+                                $id[] = str_replace("RangeType1", "", $chaine1);
+                            if ($chaine2 != false)
+                                $id[] = str_replace("RangeType2", "", $chaine2);
+                            $val[] = $value;
+                            if (count($id) == 2) {
+                                if ($id[0] == $id[1]) {
+                                    $featureValue = new FeatureValue();
+                                    $featureValue->setElement($element);
+                                    $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneById($id);
+                                    $featureValue->setFeatureCV($featureCatVal);
+                                    $value = $val[0] . "-" . $val[1];
+                                    $featureValue->setValue($value);
+                                    $val = [];
+                                    $id = [];
+                                    $em->persist($featureValue);
+                                    $em->flush($featureValue);
+                                }
+                            }
                         } else {
                             $featureValue = new FeatureValue();
                             $featureValue->setElement($element);

@@ -53,8 +53,19 @@ class FeatureValueService
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
 
                 $values = explode("-", $featureCatVal->getValue());
-                $form->add('value' . $i . 'RangeType'.$featureCatVal->getId(), IntegerType::class, [
-                    'label' => $feature->getName(),
+                $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." min:",
+                    'required' => true,
+                    'mapped' => false,
+                    'attr' => [
+                        'min' => (int)$values[0],
+                        'max' => (int)$values[1],
+                        'class'=> $featureCatVal->getId(),
+                    ],
+
+                ]);
+                $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." max:",
                     'required' => true,
                     'mapped' => false,
                     'attr' => [
@@ -154,30 +165,37 @@ class FeatureValueService
                 ]);
             }
             if ($feature->getType() == 'RangeType') {
-//                dump("toto");die;
-
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
-
                 $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
-//                dump($featureVal);die;
 
                 $values = explode("-", $featureCatVal->getValue());
-                $form->add('value' . $i, IntegerType::class, [
-                    'label' => $feature->getName(),
-
-
+                $value = explode("-", $featureVal->getValue());
+                $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." min:",
                     'required' => true,
-
                     'mapped' => false,
                     'attr' => [
-
                         'min' => (int)$values[0],
                         'max' => (int)$values[1],
                         'class'=> $featureCatVal->getId(),
                     ],
 
-                    'data' => $featureVal->getValue(),
+                    'data' => $value[0],
                 ]);
+                $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." max:",
+                    'required' => true,
+                    'mapped' => false,
+                    'attr' => [
+                        'min' => (int)$values[0],
+                        'max' => (int)$values[1],
+                        'class'=> $featureCatVal->getId(),
+                    ],
+
+                    'data' => $value[1],
+                ]);
+
+
             }
             if ($feature->getType() == 'checkbox') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
