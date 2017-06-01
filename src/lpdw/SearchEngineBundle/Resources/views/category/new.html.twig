@@ -4,11 +4,45 @@
 
     {{ parent() }}
 
-    <h1>Category creation</h1>
+    <div class="container-fluid">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+
+        <div class="chooseCategory">
+            <div class="content">
+
+                <h2 class="fontTitle ft-40 lightBlue">Créer une nouvelle <span class="darkBlue">catégorie</span></h2>
+                <p class="white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                    Morbi eu finibus nisi, ullamcorper faucibus est.
+                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="everyCategories col-md-12 col-sm-12 mTop30">
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Créer la catégorie" />
+                {{ form_end(form) }}
+           </div>
+
+           <div class="everyCategories col-md-12 col-sm-12">
+              <h3 class="fontClemente">Dernières catégories créées</h3>
+              <div id="grid" data-columns>
+                  {% set i = 0 %}
+                  {% for category in lastCat %}
+                      <a href="{{ path('searchEngine_category_show', { 'id': category.id }) }}">
+                          <div class="grid-item text-center {{ i is divisible by(2) ? 'bgDarkBlue' : 'bgLightBlue' }}">
+                              <div class="w100 ft-20">{{ category.name }}</div><br/>
+                          </div>
+                      </a>
+                      {% set i = i + 1 %}
+                  {% endfor %}
+               </div>
+          </div>
+        </div>
+
+    </div>
 
 {% endblock %}
