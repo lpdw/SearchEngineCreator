@@ -171,6 +171,9 @@ class FeatureValueController extends Controller
      */
     public function editAction(Request $request, $element_name)
     {
+
+
+
         $em = $this->getDoctrine()->getManager();
 
         //recupération des élément en fonction du nom en param
@@ -194,13 +197,16 @@ class FeatureValueController extends Controller
         }
 
         //nouveau formulaire
+        
         $form = $this->createFormBuilder();
         $form = $this->get("app.featureValService")->editForm($features, $form, $element);
 
 
 //        traitement du form
+
         if ($request->get('form') != NULL) {
             $featValOld = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByElement($element);
+
             foreach ($featValOld as $featVal) {
                 $em->remove($featVal);
                 $em->flush();
@@ -210,11 +216,13 @@ class FeatureValueController extends Controller
             //on parcout les champs du form submit
             foreach ($request->get('form') as $key => $value) {
                 //si le champ commande par value il s'agit d'une ligne correcte
+
                 if (substr($key, 0, 5) == "value") {
                     //si le champ un tableau
                     if (is_array($value)) {
                         //parcourt du tableau
                         foreach ($value as $item) {
+
                             //creation de chaque feature value
                             $featureValue = new FeatureValue();
                             $featureValue->setElement($element);
