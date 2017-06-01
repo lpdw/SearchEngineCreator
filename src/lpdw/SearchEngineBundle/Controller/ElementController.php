@@ -18,14 +18,17 @@ class ElementController extends Controller
     /**
      * Lists all element entities.
      *
-     * @Route("/", name="searchEngine_element_index")
+     * @Route("/{name}", name="searchEngine_element_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($name)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $elements = $em->getRepository('lpdwSearchEngineBundle:Element')->findAll();
+        $category = $em->getRepository('lpdwSearchEngineBundle:Category')->findByName($name);
+        if(empty($category)){
+            return $this->redirectToRoute('searchEngine_category_index');
+        }
+        $elements = $em->getRepository('lpdwSearchEngineBundle:Element')->findByCategory($category);
 
         return $this->render('lpdwSearchEngineBundle:element:index.html.twig', array(
             'elements' => $elements,
