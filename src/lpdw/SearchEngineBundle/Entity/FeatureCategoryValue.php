@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="feature_category_value")
  * @ORM\Entity(repositoryClass="lpdw\SearchEngineBundle\Repository\FeatureCategoryValueRepository")
+ *
  */
 class FeatureCategoryValue
 {
