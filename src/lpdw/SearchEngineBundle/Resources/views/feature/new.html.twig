@@ -1,15 +1,33 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 
 {% block body %}
-    <h1>Feature creation</h1>
 
-    {{ form_start(form, {'multipart': 'true'}) }}
-        {{ form_widget(form) }}
+    {{ parent() }}
 
-        <div id="addInput"></div>
+    <div class="container-fluid">
 
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+
+        <div class="chooseCategory">
+            <div class="content">
+
+                <h2 class="fontTitle ft-40 lightBlue">Créer une nouvelle caractéristique pour la catégorie <span class="darkBlue">{{ category[0].name }}</span></h2>
+                <p class="white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                    Morbi eu finibus nisi, ullamcorper faucibus est.
+                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="everyCategories col-md-12 col-sm-12 mTop30">
+                {{ form_start(form, {'multipart': 'true'}) }}
+                    {{ form_widget(form) }}
+                    <div id="addInput"></div>
+                    <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Ajouter la caractéristique" />
+                {{ form_end(form) }}
+           </div>
+        </div>
 
 
 {% endblock %}

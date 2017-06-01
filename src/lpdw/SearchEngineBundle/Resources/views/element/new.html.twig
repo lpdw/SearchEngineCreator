@@ -25,7 +25,7 @@
                     {{ form_widget(form) }}
                     <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Créer l'élément" />
                 {{ form_end(form) }}
-                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index') }}">Retour à la liste des éléments</a>
+                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_index', { 'name' : category[0].name }) }}">Retour à la liste des éléments</a>
            </div>
         </div>
 
