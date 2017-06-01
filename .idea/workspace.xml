@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32aca5a3-5c2f-4c2b-9ab7-61f6de37a577" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/CategoryController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/CategoryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/DefaultController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Category.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Element.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Element.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureCategoryValue.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/FeatureCategoryValue.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Repository/ElementRepository.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Repository/ElementRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/category/index.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/category/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/edit.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/index.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/new.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/show.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/new.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/show.html.twig" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/ElementType.php" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Form/ElementType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/public/js/step2javascript.js" afterPath="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/public/js/step2javascript.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,16 +28,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -60,7 +38,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeatureValueController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FeatureValueController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1623">
@@ -68,6 +46,16 @@
               <folding>
                 <element signature="e#54#102#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ElementController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="204" column="5" lean-forward="false" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Category.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Entity/Element.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Repository/ElementRepository.php" />
-        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/index.html.twig" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/category/index.html.twig" />
@@ -190,6 +177,7 @@
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/new.html.twig" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/element/show.html.twig" />
         <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/FeatureValueController.php" />
+        <option value="$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php" />
       </list>
     </option>
   </component>
@@ -655,12 +643,12 @@
       <workItem from="1496128474565" duration="14000" />
       <workItem from="1496128502389" duration="16705000" />
       <workItem from="1496216608023" duration="9082000" />
-      <workItem from="1496302107720" duration="11761000" />
+      <workItem from="1496302107720" duration="11967000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66866000" />
+    <option name="totallyTimeSpent" value="67072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
@@ -670,11 +658,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1044,14 +1032,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="20" column="51" lean-forward="false" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Resources/views/featurevalue/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1131,6 +1111,14 @@
           <folding>
             <element signature="e#54#102#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lpdw/SearchEngineBundle/Controller/ElementController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="204" column="5" lean-forward="false" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
