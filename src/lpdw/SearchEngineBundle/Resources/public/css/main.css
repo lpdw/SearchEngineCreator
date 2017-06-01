@@ -162,6 +162,7 @@ body {
 .size-1of3 { width: 33.333%; }
 
 .grid-item {
+    cursor: pointer;
     position: relative;
     margin: 12px 6px 0 6px;
     box-shadow: 2px 2px 10px;
@@ -192,6 +193,16 @@ body {
 
 .bgLightBlue {
     background-color: #5CA7A5;
+    transition: all .3s;
+}
+
+.bgLightGreen {
+    background-color: #529C23;
+    transition: all .3s;
+}
+
+.bgDarkGreen {
+    background-color: #40771E;
     transition: all .3s;
 }
 
@@ -267,6 +278,10 @@ body {
 }
 
 #step2 {
+    opacity: .5;
+}
+
+#step1 {
     opacity: .5;
 }
 

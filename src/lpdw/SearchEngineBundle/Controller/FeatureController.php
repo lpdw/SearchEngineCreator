@@ -71,7 +71,7 @@ class FeatureController extends Controller
             //self::insertFCV($request, $feature, $type);
             $insertFCV->insertFCV($request, $feature, $type);
 
-            return $this->redirectToRoute('searchEngine_feature_show', array('id' => $feature->getId(), 'name' => $name));
+            return $this->redirectToRoute('searchEngine_category_index');
         }
 
         $em = $this->getDoctrine()->getManager();
