@@ -7,6 +7,7 @@ use lpdw\SearchEngineBundle\Entity\Element;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Element controller.
@@ -59,6 +60,19 @@ class ElementController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($element->getImage())
+            {
+                $file = $element->getImage();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+
+                $element->setImage($fileName);
+            }
+
             $element->setCategory($category[0]);
             $em->persist($element);
 
@@ -98,11 +112,39 @@ class ElementController extends Controller
      */
     public function editAction(Request $request, Element $element)
     {
+        $oldImageName = $element->getImage();
+
+        if($element->getImage()) {
+            //Transform the string filename in a file object for the FileType field
+            $element->setImage(
+                new File($this->getParameter('images_directory').'/'.$element->getImage())
+            );
+        }
+
         $deleteForm = $this->createDeleteForm($element);
         $editForm = $this->createForm('lpdw\SearchEngineBundle\Form\ElementType', $element);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if($element->getImage()) {
+                if($oldImageName)
+                    unlink($this->getParameter('images_directory').'/'.$oldImageName);
+
+                $file = $element->getImage();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+
+                $element->setImage($fileName);
+            }
+            //else we keep the old image
+            else {
+                $element->setImage($oldImageName);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('searchEngine_element_edit', array('id' => $element->getId()));
@@ -110,6 +152,7 @@ class ElementController extends Controller
 
         return $this->render('lpdwSearchEngineBundle:element:edit.html.twig', array(
             'element' => $element,
+            'oldImageName' => $oldImageName,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -127,6 +170,10 @@ class ElementController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($element->getImage())
+            {
+                unlink($this->getParameter('images_directory').'/'.$element->getImage());
+            }
             $em = $this->getDoctrine()->getManager();
             $em->remove($element);
             $em->flush();

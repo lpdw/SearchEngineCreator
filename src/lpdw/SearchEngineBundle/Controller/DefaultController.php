@@ -67,12 +67,17 @@ class DefaultController extends Controller
         $results = [];
         $searchValues = $req->query->get('searchValues');
 
+        $nbActiveFields = 0;
+
         foreach ($searchValues as $searchValue) {
             $featureCV = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->find($searchValue['id']);
 
             if($searchValue['type'] == 'number') {
                 $min_param = split('_', $searchValue['value'])[0];
                 $max_param = split('_', $searchValue['value'])[1];
+                if($min_param != '' || $max_param != '') {
+                    $nbActiveFields++;
+                }
                 $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
                 foreach($featureValues as $featureValue) {
                     if($name == $featureValue->getElement()->getCategory()->getName()) {
@@ -88,6 +93,7 @@ class DefaultController extends Controller
             } else if($searchValue['type'] == 'checkbox' || $searchValue['type'] == 'radio') {
                 if($searchValue['checked'] == 'true') {
                     $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
+                    $nbActiveFields++;
                     foreach($featureValues as $featureValue) {
                         if($name == $featureValue->getElement()->getCategory()->getName()) {
                             $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
@@ -97,6 +103,7 @@ class DefaultController extends Controller
                 }
             } else if($searchValue['type'] == 'select-one') {
                 $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
+                $nbActiveFields++;
                 foreach($featureValues as $featureValue) {
                     if($name == $featureValue->getElement()->getCategory()->getName()) {
                         $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
@@ -107,10 +114,15 @@ class DefaultController extends Controller
         }
 
         $vals = array_count_values($results);
+        $results = [];
 
-        dump($vals);
-        die();
+        foreach ($vals as $key => $val) {
+            $tmp_key = $key;
+            $matching = floor(($val / $nbActiveFields) * 100);
+            $tmp_key = preg_replace('/{/', '{"matching":"'.$matching.'%",', $tmp_key, 1);
+            array_push($results, $tmp_key);
+        }
 
-        return new JsonResponse($vals);
+        return new JsonResponse($results);
     }
 }
