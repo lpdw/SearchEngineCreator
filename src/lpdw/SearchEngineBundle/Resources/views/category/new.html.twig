@@ -48,10 +48,10 @@
                                   </div>
                                   <div class="modal-body">
                                       <h4>Etape 1</h4>
-                                      <a class="lightBlue" href="{{ path('searchEngine_element_new', { 'name': category.name }) }}">Créer un nouvel élément</a><br />
-                                      <a class="lightBlue" href="{{ path('searchEngine_feature_new', { 'name': category.name }) }}">Créer une nouvelle caractéristique</a>
+                                      <a class="lightBlue" href="{{ path('searchEngine_element_new', { 'category_name': category.name }) }}">Créer un nouvel élément</a><br />
+                                      <a class="lightBlue" href="{{ path('searchEngine_feature_new', { 'category_name': category.name }) }}">Créer une nouvelle caractéristique</a>
                                       <h4>Etape 2</h4>
-                                      <a class="lightBlue" href="{{ path('searchEngine_element_index', { 'name': category.name }) }}">Voir les éléments</a>
+                                      <a class="lightBlue" href="{{ path('searchEngine_element_index', { 'category_name': category.name }) }}">Voir les éléments</a>
                                   </div>
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
