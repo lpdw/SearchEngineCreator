@@ -172,7 +172,13 @@ $( document ).ready(function() {
 function addSelect(){
   old_i = $("#form > div").length;
   new_i = $("#addInputEdit > input").length;
-  i = old_i + new_i;
+  if($("#addInput > input").length!=0){
+    input_i = $("#addInput > input").length + 1;
+  }
+  else{
+    input_i=0;
+  }
+  i = old_i + new_i + input_i;
   $('#add_select').before(
     '<label for="select_'+i+'">Value'+i+'</label>'+
     '<input type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'
@@ -182,7 +188,13 @@ function addSelect(){
 function addCheckbox(){
   old_i = $("#form > div").length;
   new_i = $("#addInputEdit > input").length;
-  i = Math.ceil((old_i + new_i)/2);
+  if($("#addInput > input").length!=0){
+    input_i = $("#addInput > input").length + 1;
+  }
+  else{
+    input_i=0;
+  }
+  i = Math.ceil((old_i + new_i + input_i)/2);
   $('#add_select').before(
     '<label for="checkbox_'+i+'">Value'+i+'</label>'+
     '<input type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'">'+
