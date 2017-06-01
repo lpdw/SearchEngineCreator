@@ -8,6 +8,7 @@
 
 namespace lpdw\SearchEngineBundle\Services;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\BooleanType;
@@ -30,14 +31,14 @@ class FeatureValueService
             if ($feature->getType() == 'TextType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
                 $form->add('value' . $i, TextType::class, [
-                    'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                    'label' => $feature->getName(),'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
                 ]);
             }
             if ($feature->getType() == 'NumberType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
 
                 $form->add('value' . $i, NumberType::class, [
-                    'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                    'label' => $feature->getName(),'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
                 ]);
             }
             if ($feature->getType() == 'BooleanType') {
@@ -52,10 +53,27 @@ class FeatureValueService
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
 
                 $values = explode("-", $featureCatVal->getValue());
-                $form->add('value' . $i, NumberType::class, [
-                    'label' => $feature->getName(),
-                    'attr' => ['min' => $values[0],
-                        'max' => $values[1]], 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." min:",
+                    'required' => true,
+                    'mapped' => false,
+                    'attr' => [
+                        'min' => (int)$values[0],
+                        'max' => (int)$values[1],
+                        'class'=> $featureCatVal->getId(),
+                    ],
+
+                ]);
+                $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." max:",
+                    'required' => true,
+                    'mapped' => false,
+                    'attr' => [
+                        'min' => (int)$values[0],
+                        'max' => (int)$values[1],
+                        'class'=> $featureCatVal->getId(),
+                    ],
+
                 ]);
             }
             if ($feature->getType() == 'checkbox') {
@@ -120,7 +138,7 @@ class FeatureValueService
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
                 $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal, $element);
                 $form->add('value' . $i, TextType::class, [
-                    'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                    'label' => $feature->getName(), 'required' => true,'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
                 ]);
             }
             if ($feature->getType() == 'NumberType') {
@@ -129,7 +147,7 @@ class FeatureValueService
                 $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal, $element);
 
                 $form->add('value' . $i, NumberType::class, [
-                    'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                    'label' => $feature->getName(), 'required' => true, ['attr' => ['class' => $featureCatVal->getId()]]
                 ]);
             }
             if ($feature->getType() == 'BooleanType') {
@@ -143,25 +161,41 @@ class FeatureValueService
                 }
                 $originFeature = $featureCatVal[0]->getFeature();
                 $form->add('value' . $i, [
-                    'label' => $feature->getName(), 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                    'label' => $feature->getName(), 'required' => true, 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
                 ]);
             }
             if ($feature->getType() == 'RangeType') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findOneByFeature($feature);
-
-                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCVandElement($featureCatVal, $element);
-                $data = [];
-                foreach ($featureVal as $item) {
-                    $data[$item->getFeatureCV()->getValue()] = $item->getFeatureCV()->getId();
-
-                }
+                $featureVal = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findOneByFeatureCVandElement($featureCatVal, $element);
 
                 $values = explode("-", $featureCatVal->getValue());
-                $form->add('value' . $i, NumberType::class, [
-                    'label' => $feature->getName(),
-                    'attr' => ['min' => $values[0],
-                        'max' => $values[1]], 'mapped' => false, ['attr' => ['class' => $featureCatVal->getId()]]
+                $value = explode("-", $featureVal->getValue());
+                $form->add('value' . $i . 'RangeType1'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." min:",
+                    'required' => true,
+                    'mapped' => false,
+                    'attr' => [
+                        'min' => (int)$values[0],
+                        'max' => (int)$values[1],
+                        'class'=> $featureCatVal->getId(),
+                    ],
+
+                    'data' => $value[0],
                 ]);
+                $form->add('value' . $i . 'RangeType2'.$featureCatVal->getId(), IntegerType::class, [
+                    'label' => $feature->getName()." max:",
+                    'required' => true,
+                    'mapped' => false,
+                    'attr' => [
+                        'min' => (int)$values[0],
+                        'max' => (int)$values[1],
+                        'class'=> $featureCatVal->getId(),
+                    ],
+
+                    'data' => $value[1],
+                ]);
+
+
             }
             if ($feature->getType() == 'checkbox') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
@@ -182,6 +216,7 @@ class FeatureValueService
                     'expanded' => true,
                     'multiple' => true,
                     'mapped' => false,
+                    'required' => true,
                     'data' => $data
                 ]);
             }
@@ -199,6 +234,7 @@ class FeatureValueService
                     'expanded' => true,
                     'multiple' => false,
                     'mapped' => false,
+                    'required' => true,
                     'data' => $featureVal->getFeatureCV()->getId()
                 ]);
             }
@@ -219,7 +255,7 @@ class FeatureValueService
                     'expanded' => false,
                     'multiple' => false,
                     'mapped' => false,
-
+                    'required' => true,
                     'data' => $featureVal->getFeatureCV()->getId()
                 ]);
             }

@@ -43,6 +43,9 @@ class CategoryController extends Controller
         $form = $this->createForm('lpdw\SearchEngineBundle\Form\CategoryType', $category);
         $form->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('lpdwSearchEngineBundle:Category')->lastCat();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
@@ -54,6 +57,7 @@ class CategoryController extends Controller
         return $this->render('lpdwSearchEngineBundle:category:new.html.twig', array(
             'category' => $category,
             'form' => $form->createView(),
+            'lastCat' => $categories
         ));
     }
 

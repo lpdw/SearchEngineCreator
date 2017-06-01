@@ -10,4 +10,12 @@ namespace lpdw\SearchEngineBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function lastCat()
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->setMaxResults(5)
+           ->orderBy('p.id', 'DESC');
+        return $qb->getQuery()
+                  ->getResult();
+    }
 }
