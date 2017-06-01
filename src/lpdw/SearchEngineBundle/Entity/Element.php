@@ -4,6 +4,8 @@ namespace lpdw\SearchEngineBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Element
  *
@@ -34,6 +36,17 @@ class Element
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={"image/png", "image/jpeg"},
+     *             mimeTypesMessage="L'extension du fichier est invalide {{ type }}). Les extensions valides sont {{ types }}",
+     *             maxSize="1M",
+     *             maxSizeMessage="Le fichier ({{ size }} {{ suffix }}) dépasse la taille maximum autorisée ({{ limit }} {{ suffix }})")
+     */
+    private $image;
 
 
     /**
@@ -92,5 +105,29 @@ class Element
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Element
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
