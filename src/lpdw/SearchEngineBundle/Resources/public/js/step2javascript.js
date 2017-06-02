@@ -24,7 +24,6 @@ $( document ).ready(function() {
                 );
             }
         });
-
         $.ajax({
             method: "get",
             url: window.location.href + "/getResults",
@@ -80,3 +79,4 @@ $( document ).ready(function() {
         });
     });
 });
+
