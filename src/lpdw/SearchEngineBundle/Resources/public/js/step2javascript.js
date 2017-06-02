@@ -38,10 +38,10 @@ $( document ).ready(function() {
                     }
 
                     results.sort(function(a, b) {
-                        if (a.matching > b.matching) {
+                        if (Number(a.matching.split('%')[0]) > Number(b.matching.split('%')[0])) {
                             return -1;
                         }
-                        if (a.matching < b.matching) {
+                        if (Number(a.matching.split('%')[0]) < Number(b.matching.split('%')[0])) {
                             return 1;
                         }
                         return 0;
@@ -79,4 +79,3 @@ $( document ).ready(function() {
         });
     });
 });
-
