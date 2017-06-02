@@ -59,6 +59,11 @@
                    {% endfor %}
                 </div>
            </div>
+           <div class="everyCategories col-md-12 col-sm-12">
+               <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_element_new', {'category_name' : elements[0].category.name}) }}">
+                   Ajouter un élément
+               </a>
+           </div>
         </div>
 
 {% endblock %}

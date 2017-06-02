@@ -272,6 +272,12 @@ body {
     }
 }
 
+@media (max-width: 500px) {
+    .chooseCategory {
+        height: 55vh;
+    }
+}
+
 .stepsNumber div:not(.line) {
     position: relative;
     display: inline-block;
@@ -379,7 +385,7 @@ a.buttonStyle {
 }
 
 .formStyle input[type="number"] {
-    width: 200px;
+    width: 185px;
     max-width: 90%;
     height: 25px;
     border: none;
