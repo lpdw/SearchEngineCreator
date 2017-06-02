@@ -31,10 +31,39 @@ $( document ).ready(function() {
             data: {searchValues: search_values},
             success: function(data) {
                 let results = [];
-                for(let i = 0; i < data.length; i++) {
-                    results.push(JSON.parse(data[i]));
+                let display = "<li class='white fontChampagne ft-25 resultsTitle'>Résultats</li>";
+                let modal = "";
+                if (data.length > 0) {
+                    for(let i = 0; i < data.length; i++) {
+                        results.push(JSON.parse(data[i]));
+                        if (results[i].image) {
+                            var zoomImg = "<i class='fa fa-search-plus' aria-hidden='true' data-toggle='modal' data-target='#"+results[i].id+"'></i>";
+                            var img = "<img class='img-responsive' src='/uploads/images/"+results[i].image+"' />";
+                            modal +=
+                            "<div class='modal fade' id='"+results[i].id+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"+
+                                "<div class='modal-dialog' role='document'>"+
+                                    "<div class='modal-content'>"+
+                                        "<div class='modal-body'>"+img+"</div>"+
+                                        "<div class='modal-footer'>"+
+                                            "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fermer</button>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>";
+                        } else {
+                            var zoomImg = "";
+                            var img = "";
+                        }
+                        display += "<li>" + results[i].name + zoomImg + " <span>" + results[i].matching + "</span></li>";
+                        $(".modal_img").html(modal);
+                        console.log(modal);
+                        $(".results ul").html(display);
+                    }
+                } else {
+                    $(".results ul").html("<li class='white fontChampagne ft-25 resultsTitle'>Pas de résultats :(</li>");
                 }
-                console.log(results);
+
+                // console.log(results);
             }
         });
     });

@@ -30,11 +30,21 @@
         </div>
 
         <div class="row">
-            <div class="everyCategories col-md-12 col-sm-12">
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                {{ form_end(form) }}
+            <div class="everyCategories mTop30">
+                <div class=" col-md-6 col-sm-12">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+
+               <div class="results col-md-6 col-sm-12">
+                   <ul>
+
+                   </ul>
+                   <div class="modal_img"></div>
+               </div>
            </div>
+
         </div>
     </div>
 {% endblock %}
