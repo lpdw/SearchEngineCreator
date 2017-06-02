@@ -29,13 +29,16 @@ class FeatureType extends AbstractType
                 )
             ])
             ->add('type', ChoiceType::class,[
-                'label' => 'Type:',
+                'label' => 'Type',
                 'choices'  => array(
                     'select' => 'select',
                     'checkbox' => 'checkbox',
                     'radio' => 'radio',
                     'Range' => 'RangeType',
                 ),
+                'attr' => array(
+                    'class' => 'displayBlock'
+                )
             ])
             /*->add('category', EntityType::class, [
                 'class' => 'lpdwSearchEngineBundle:Category',

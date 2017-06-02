@@ -314,7 +314,7 @@ input[type="text"] {
     border-bottom: 1px solid #484040;
     font-size: 20px;
 }
-input:focus {
+input:focus, textarea:focus {
     outline: none;
     border-bottom: 1px solid #247885;
 }
@@ -365,6 +365,10 @@ a.buttonStyle {
 
 /** form **/
 
+.formStyle #form {
+    padding-left: 10px;
+}
+
 .formStyle #form div {
     margin: 10px 0;
 }
@@ -381,11 +385,31 @@ a.buttonStyle {
     border: none;
     border-bottom: 1px solid #484040;
     font-size: 20px;
+    background: none;
+}
+
+.formStyle input[type="text"] {
+    width: 410px;
+    max-width: 90%;
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid #484040;
+    font-size: 20px;
+    background: none;
+}
+
+.bgForm {
+    background-color: #EFE9E9;
 }
 
 .formStyle input[type="checkbox"], .formStyle input[type="radio"] {
     margin-right: 5px;
     margin-left: 15px;
+}
+
+.formStyle textarea {
+    width: 410px;
+    max-width: 90%;
 }
 
 .formStyle select {
@@ -402,11 +426,11 @@ a.buttonStyle {
     padding-left: 5px;
 }
 
-.results ul {
+.resultsStyle ul {
     padding-left: 0;
 }
 
-.results ul li {
+.resultsStyle ul li {
     list-style-type: none;
     width: 100%;
     padding: 4px 0;
@@ -415,13 +439,13 @@ a.buttonStyle {
     font-weight: bold;
 }
 
-.results ul li span {
+.resultsStyle ul li span {
     float: right;
     padding-right: 40px;
     padding-top: 27px;
 }
 
-.results ul li:hover {
+.resultsStyle ul li:hover {
     background-color: #d6d2d2;
 }
 
@@ -434,4 +458,24 @@ a.buttonStyle {
 .fa-search-plus {
     cursor: pointer;
     margin-left: 15px;
+}
+
+.labelUpload {
+    font-family: "Champagne";
+    text-align: center;
+    width: 200px;
+    max-width: 100%;
+    background-color: #247885;
+    color: #FFF;
+    margin: 10px 0;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+#lpdw_searchenginebundle_element_image {
+    display: none;
+}
+
+.modal-title {
+    float: left;
 }

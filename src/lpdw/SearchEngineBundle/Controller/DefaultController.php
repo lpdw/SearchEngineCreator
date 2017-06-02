@@ -47,6 +47,7 @@ class DefaultController extends Controller
         $form = $this->get("app.featureValService")->newForm($features,$form);
 
         return $this->render('lpdwSearchEngineBundle:Default:step2.html.twig', array(
+            'category' => $category,
             'form' => $form->getForm()->createView(),
         ));
     }
