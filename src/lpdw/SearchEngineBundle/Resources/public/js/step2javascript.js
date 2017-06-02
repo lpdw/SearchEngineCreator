@@ -23,10 +23,10 @@ $( document ).ready(function() {
                         }
                 );
             }
-
+        });
         $.ajax({
             method: "get",
-            url: "http://localhost/SearchEngineCreator/web/app_dev.php/searchEngine/" + window.location.pathname.split('/')[2] + "/getResults",
+            url: window.location.href + "/getResults",
             data: {searchValues: search_values},
             success: function(data) {
                 let results = [];
@@ -66,3 +66,4 @@ $( document ).ready(function() {
         });
     });
 });
+

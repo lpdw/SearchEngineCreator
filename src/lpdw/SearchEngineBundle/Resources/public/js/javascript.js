@@ -4,8 +4,7 @@ $( document ).ready(function() {
 
   if(type=="select"){
     $('#addInput').html(
-      '<label for="select_'+i+'">Value'+i+'</label>'+
-      '<input type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'+
+      '<input class="fontClemente" placeholder="Value'+i+'" type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'+
       '<button id="add_select" type="button" onClick="addSelect()">+</button><br>'
     );
     $('#edit_value').before(
@@ -14,8 +13,7 @@ $( document ).ready(function() {
   }
   else if (type=="checkbox") {
     $('#addInput').html(
-      '<label for="checkbox_'+i+'">Value'+i+'</label>'+
-      '<input type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'"><br>'+
+      '<input class="fontClemente" placeholder="Value'+i+'" type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'"><br>'+
       '<label for="checkbox_comment_'+i+'">Commentaire '+i+'</label>'+
       '<textarea name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea><br>'+
       '<br><label for="checkbox_image_'+i+'">Image '+i+'</label>'+
@@ -28,10 +26,8 @@ $( document ).ready(function() {
   }
   else if (type=="radio") {
     $('#addInput').html(
-      '<label for="radio_1">Valeur 1</label>'+
-      '<input type="text" name="input_radio_1" id="radio_1" ><br>'+
-      '<label for="radio_2">Valeur 2</label>'+
-      '<input type="text" name="input_radio_2" id="radio_2" >'
+      '<input class="fontClemente" placeholder="Valeur 1" type="text" name="input_radio_1" id="radio_1" ><br>'+
+      '<input class="fontClemente" placeholder="Valeur 2" type="text" name="input_radio_2" id="radio_2" >'
     );
   }
   else if (type=="TextType") {
@@ -68,8 +64,7 @@ $( document ).ready(function() {
 
     if($(this).val()=="select"){
       $('#addInput').html(
-        '<label for="select_'+i+'">Value'+i+'</label>'+
-        '<input type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'+
+        '<input class="fontClemente" placehoder="Value'+i+'" type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'+
         '<button id="add_select" type="button" onClick="addSelect()">+</button><br>'
       );
       $('#addInputEdit').html(
@@ -81,12 +76,10 @@ $( document ).ready(function() {
     }
     else if($(this).val()=="checkbox"){
       $('#addInput').html(
-        '<label for="checkbox_'+i+'">Value'+i+'</label>'+
-        '<input type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'"><br>'+
-        '<label for="checkbox_comment_'+i+'">Commentaire '+i+'</label>'+
-        '<textarea name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea><br>'+
-        '<br><label for="checkbox_image_'+i+'">Image '+i+'</label>'+
-        '<input type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
+        '<input class="fontClemente" placeholder="Value'+i+'" type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'"><br>'+
+        '<textarea class="fontClemente" placeholder="Commentaire '+i+'" name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea><br>'+
+        '<label class="labelUpload" for="checkbox_image_'+i+'">Image '+i+'</label>'+
+        '<input style="display: none;" type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'+
         '<button id="add_select" type="button" onClick="addCheckbox()">+</button><br>'
       );
       $('#addInputEdit').html(
@@ -102,16 +95,12 @@ $( document ).ready(function() {
     }
     else if ($(this).val()=="radio") {
       $('#addInput').html(
-        '<label for="radio_1">Valeur 1</label>'+
-        '<input type="text" name="input_radio_1" id="radio_1" ><br>'+
-        '<label for="radio_2">Valeur 2</label>'+
-        '<input type="text" name="input_radio_2" id="radio_2" >'
+        '<input class="fontClemente" placeholder="Valeur 1" type="text" name="input_radio_1" id="radio_1" ><br>'+
+        '<input class="fontClemente" placeholder="Valeur 2" type="text" name="input_radio_2" id="radio_2" >'
       );
       $('#addInputEdit').html(
-        '<label for="radio_1">Valeur 1</label>'+
-        '<input type="text" name="input_radio_1" id="radio_1" ><br>'+
-        '<label for="radio_2">Valeur 2</label>'+
-        '<input type="text" name="input_radio_2" id="radio_2" >'+
+        '<input class="fontClemente" placeholder="Valeur 1" type="text" name="input_radio_1" id="radio_1" ><br>'+
+        '<input class="fontClemente" placeholder="Valeur 2" type="text" name="input_radio_2" id="radio_2" >'+
         '<input type="submit" value="Edit" id="edit_value"/>'
       );
     }
@@ -139,18 +128,12 @@ $( document ).ready(function() {
     }
     else if ($(this).val()=="RangeType") {
       $('#addInput').html(
-        '<label for="min">min</label>'+
-        '<input type="text" name="input_min" id="min" >'+
-        ' - '
-        +'<label for="max">max</label>'+
-        '<input type="text" name="input_max" id="max" >'
+        '<input class="fontClemente" placeholder="Valeur minimum" type="number" name="input_min" id="min" >'+
+        '<input class="fontClemente" placeholder="Valeur maximum" type="number" name="input_max" id="max" >'
       );
       $('#addInputEdit').html(
-        '<label for="min">min</label>'+
-        '<input type="text" name="input_min" id="min" >'+
-        ' - '
-        +'<label for="max">max</label>'+
-        '<input type="text" name="input_max" id="max" >'+
+        '<input class="fontClemente" placeholder="Valeur minimum" type="number" name="input_min" id="min" >'+
+        '<input class="fontClemente" placeholder="Valeur maximum" type="number" name="input_max" id="max" >'+
         '<input type="submit" value="Edit" id="edit_value"/>'
       );
     }
@@ -180,8 +163,7 @@ function addSelect(){
   }
   i = old_i + new_i + input_i;
   $('#add_select').before(
-    '<label for="select_'+i+'">Value'+i+'</label>'+
-    '<input type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'
+    '<input class="fontClemente" placeholder="Value'+i+'" type="text" name="input_select_'+i+'" id="select_'+i+'"><br>'
   );
 }
 
@@ -196,11 +178,9 @@ function addCheckbox(){
   }
   i = Math.ceil((old_i + new_i + input_i)/2);
   $('#add_select').before(
-    '<label for="checkbox_'+i+'">Value'+i+'</label>'+
-    '<input type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'">'+
-    '<br><label for="checkbox_comment_'+i+'">Commentaire '+i+'</label>'+
-    '<textarea name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea>'+
-    '<br><label for="checkbox_image_'+i+'">Image '+i+'</label>'+
-    '<input type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'
+    '<input class="fontClemente" placeholder="Value'+i+'" type="text" name="input_checkbox_'+i+'" id="checkbox_'+i+'"><br />'+
+    '<textarea class="fontClemente" placeholder="Commentaire '+i+'" name="comment_checkbox_'+i+'" id="checkbox_comment_'+i+'"></textarea><br />'+
+    '<label class="labelUpload" for="checkbox_image_'+i+'">Image '+i+'</label>'+
+    '<input style="display: none;" type="file" name="image_checkbox_'+i+'" id="checkbox_image_'+i+'"><br>'
   );
 }

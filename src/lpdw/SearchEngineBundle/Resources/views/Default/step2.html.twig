@@ -17,7 +17,7 @@
                         <div><span class="ft-30">2</span></div>
                     </div>
 
-                    <h2 class="fontTitle ft-40 lightBlue">Effectuez votre <span class="darkBlue">recherche</span></h2>
+                    <h2 class="fontTitle ft-40 lightBlue">Recherchez un élément dans la catégorie <span class="darkBlue">{{ category[0].name }}</span></h2>
                     <p class="white">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
                         Morbi eu finibus nisi, ullamcorper faucibus est.
@@ -32,12 +32,17 @@
         <div class="row">
             <div class="everyCategories mTop30">
                 <div class=" col-md-6 col-sm-12">
-                    {{ form_start(form, { 'attr' : { 'class' : 'formStyle '}} ) }}
-                        {{ form_widget(form) }}
-                    {{ form_end(form) }}
+                    <div class="bgForm resultsStyle">
+                        <ul class="resultsTitle">
+                            <li class="white fontChampagne ft-25 resultsTitle displayBlock">Critères de recherche</li>
+                        </ul>
+                        {{ form_start(form, { 'attr' : { 'class' : 'formStyle '}} ) }}
+                            {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                    </div>
                 </div>
 
-               <div class="results col-md-6 col-sm-12">
+               <div class="results resultsStyle col-md-6 col-sm-12">
                    <ul>
 
                    </ul>

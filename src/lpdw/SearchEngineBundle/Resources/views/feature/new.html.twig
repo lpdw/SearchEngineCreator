@@ -26,7 +26,7 @@
                 {% if erreur_name is defined %}
                   <p style="color:red;">{{erreur_name}}</p>
                 {% endif %}
-                {{ form_start(form, {'multipart': 'true'}) }}
+                {{ form_start(form, { 'attr' : { 'class' : 'formStyle' }}, {'multipart': 'true'}) }}
                     {{ form_widget(form) }}
                     {% if erreur_radio is defined %}
                       <p style="color:red;">{{erreur_radio}}</p>
@@ -34,7 +34,7 @@
                     <div id="addInput"></div>
                     <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Ajouter la caractéristique" />
                 {{ form_end(form) }}
-                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_feature_index', { 'category_name' : category.name }) }}">Retour à la liste des caractéristiques</a>
+                <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_category_index') }}">Retour à la liste des catégories</a>
            </div>
         </div>
 

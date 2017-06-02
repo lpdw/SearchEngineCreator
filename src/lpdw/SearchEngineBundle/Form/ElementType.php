@@ -23,8 +23,19 @@ class ElementType extends AbstractType
                     'placeholder'   => 'Nom de l\'élément',
                     'class'         => 'fontClemente'
                 )])
-            ->add('image', FileType::class, array('label' => 'Photo (png, jpg)', 'required' => false))
-            ->add('comment', TextareaType::class, ["required" => false]);
+            ->add('comment', TextareaType::class, [
+                "required" => false,
+                "label" => false,
+                'attr' => array(
+                "placeholder" => "Commentaire",
+                'class' => 'fontClemente'
+            )])
+            ->add('image', FileType::class, array(
+                'required' => false,
+                'label' => 'Ajouter une photo (png, jpg)',
+                'label_attr' => array(
+                'class' => 'labelUpload'
+            )));
         ;
     }
 

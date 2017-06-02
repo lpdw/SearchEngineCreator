@@ -47,6 +47,7 @@ class DefaultController extends Controller
         $form = $this->get("app.featureValService")->newForm($features,$form);
 
         return $this->render('lpdwSearchEngineBundle:Default:step2.html.twig', array(
+            'category' => $category,
             'form' => $form->getForm()->createView(),
         ));
     }
@@ -102,12 +103,14 @@ class DefaultController extends Controller
                     }
                 }
             } else if($searchValue['type'] == 'select-one') {
-                $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
-                $nbActiveFields++;
-                foreach($featureValues as $featureValue) {
-                    if($name == $featureValue->getElement()->getCategory()->getName()) {
-                        $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
-                        array_push($results, $jsonContent);
+                if($searchValue['id'] != 'default') {
+                    $featureValues = $em->getRepository('lpdwSearchEngineBundle:FeatureValue')->findByFeatureCV($featureCV);
+                    $nbActiveFields++;
+                    foreach($featureValues as $featureValue) {
+                        if($name == $featureValue->getElement()->getCategory()->getName()) {
+                            $jsonContent = $serializer->serialize($featureValue->getElement(), 'json');
+                            array_push($results, $jsonContent);
+                        }
                     }
                 }
             }

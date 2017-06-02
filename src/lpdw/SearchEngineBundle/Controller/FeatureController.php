@@ -74,13 +74,13 @@ class FeatureController extends Controller
                   'erreur_name' => "Nom de la feature existante pour cette categorie",
               ));
             }
-            if($request->request->get('input_radio_1')==$request->request->get('input_radio_2')){
+            if(($request->request->get('input_radio_1')==$request->request->get('input_radio_2')) && $request->request->get('lpdw_searchenginebundle_feature')['type']=="radio"){
               return $this->render('lpdwSearchEngineBundle:feature:new.html.twig', array(
                   'category' => $category,
                   'feature' => $feature,
                   'form' => $form->createView(),
                   'erreur_radio' => "Le label des radio doivent être different",
-              ));
+                ));
             }
             $feature->setCategory($category);
 
