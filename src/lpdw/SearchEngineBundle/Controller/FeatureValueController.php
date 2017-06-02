@@ -197,7 +197,7 @@ class FeatureValueController extends Controller
         }
 
         //nouveau formulaire
-        
+
         $form = $this->createFormBuilder();
         $form = $this->get("app.featureValService")->editForm($features, $form, $element);
 

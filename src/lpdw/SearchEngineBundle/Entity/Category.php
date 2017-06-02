@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="lpdw\SearchEngineBundle\Repository\CategoryRepository")
  *
- * @UniqueEntity(fields="name", message="Le jeu  {{ value }} existe déjà.")
+ * @UniqueEntity(fields="name", message="La catégorie  {{ value }} existe déjà.")
  */
 class Category
 {

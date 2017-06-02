@@ -8,12 +8,19 @@
         <div class="row">
             <div class="chooseCategory">
                 <div class="content">
-                    <h2 class="fontTitle ft-40 lightBlue">Liste des éléments de la catégorie <span class="darkBlue">{{elements[0].category.name}}</span></h2>
-                    <p class="white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
-                        Morbi eu finibus nisi, ullamcorper faucibus est.
-                        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                    </p>
+                    {% if not elements is empty %}
+                        <h2 class="fontTitle ft-40 lightBlue">Liste des éléments de la catégorie <span class="darkBlue">{{elements[0].category.name}}</span></h2>
+                        <p class="white">
+                            Cliquez sur un des éléments de la catégorie {{elements[0].category.name}} pour lui définir ses valeurs.
+                        </p>
+                        <p class="white">
+                            Ces valeurs permettront à l'élément d'être recherché et identifié par la suite grâce au moteur de recherche de la page d'accueil.
+                        </p>
+                    {% else %}
+                        <p class="white">
+                            Aucun élément n'a été crée pour cette catégorie !
+                        </p>
+                    {% endif %}
                     <a class="buttonStyle white" href="{{ path('searchEngine_category_index') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
      Retour aux catégories</a>
                 </div>

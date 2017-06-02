@@ -19,9 +19,13 @@
 
                     <h2 class="fontTitle ft-40 lightBlue">Recherchez un élément dans la catégorie <span class="darkBlue">{{ category[0].name }}</span></h2>
                     <p class="white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
-                        Morbi eu finibus nisi, ullamcorper faucibus est.
-                        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Utilisez les critères de recherche pour trouver des éléments de la catégorie {{ category[0].name }}.
+                    </p>
+                    <p class="white">
+                        Les résultats de recherche sont automatiquement mis à jour à la modification d'un critère et sont classés par ordre de correspondance.
+                    </p>
+                    <p class="white">
+                        Une fois les résultats affichés vous pouvez continuer à affiner votre recherche à l'aide des différents critères.
                     </p>
                     <a class="buttonStyle white" href="{{ path('home') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
      Retour à l'étape 1</a>
