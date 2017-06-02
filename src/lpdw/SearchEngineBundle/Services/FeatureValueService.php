@@ -116,6 +116,7 @@ class FeatureValueService
             if ($feature->getType() == 'select') {
                 $featureCatVal = $em->getRepository('lpdwSearchEngineBundle:FeatureCategoryValue')->findByFeature($feature);
                 $tab = [];
+                $tab[''] = 'default';
                 foreach ($featureCatVal as $key => $value) {
                     $tab[$value->getValue()] = $value->getId();
                 }
