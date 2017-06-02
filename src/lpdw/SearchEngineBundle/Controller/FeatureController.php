@@ -36,7 +36,7 @@ class FeatureController extends Controller
         $features = $em->getRepository('lpdwSearchEngineBundle:Feature')->findByCategory($category);
         return $this->render('lpdwSearchEngineBundle:feature:index.html.twig', array(
             'features' => $features,
-            'name' => $category_name
+            'category_name' => $category_name
         ));
     }
 

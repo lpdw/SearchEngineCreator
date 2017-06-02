@@ -1,36 +1,45 @@
 {% extends 'lpdwSearchEngineBundle::layout.html.twig' %}
 
 {% block body %}
-    <h1>Features list :</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Multiple</th>
-                <th>Margin</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for feature in features %}
-            <tr>
-                <td><a href="{{ path('searchEngine_feature_show', { 'id': feature.id, 'name': name }) }}">{{ feature.id }}</a></td>
-                <td>{{ feature.name }}</td>
-                <td>{{ feature.type }}</td>
-                <td>
-                    <ul>
-                    
-                        <li>
-                            <a href="{{ path('searchEngine_feature_edit', { 'id': feature.id, 'name': name }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {{ parent() }}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="chooseCategory">
+                <div class="content">
+                    <h2 class="fontTitle ft-40 lightBlue">Liste des caractéristiques de la catégorie <span class="darkBlue"></span></h2>
+                    <p class="white">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tellus dui.
+                        Morbi eu finibus nisi, ullamcorper faucibus est.
+                        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    </p>
+                    <a class="buttonStyle white" href="{{ path('searchEngine_category_index') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+     Retour aux catégories</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="everyCategories col-md-12 col-sm-12">
+               <div id="grid" data-columns>
+                   {% set i = 0 %}
+                   {% for feature in features %}
+                       <div class="grid-item text-center {{ i is divisible by(2) ? 'bgDarkGreen' : 'bgLightGreen' }}">
+                           <!-- Button trigger modal -->
+                           <div class="w100 ft-20">{{ feature.name }}</div><br/>
+                       </div>
+                       {% set i = i + 1 %}
+                   {% endfor %}
+                </div>
+           </div>
+           <div class="everyCategories col-md-12 col-sm-12">
+               <a class="buttonStyle mTop20 ft-20 fontChampagne" href="{{ path('searchEngine_feature_new', {'category_name' : category_name}) }}">
+                   Ajouter une caractéristique
+               </a>
+           </div>
+        </div>
+
+    </div>
 
 {% endblock %}
