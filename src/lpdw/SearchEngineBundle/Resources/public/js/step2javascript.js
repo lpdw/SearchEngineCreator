@@ -23,11 +23,10 @@ $( document ).ready(function() {
                         }
                 );
             }
-        });
 
         $.ajax({
             method: "get",
-            url: "http://localhost:8000/searchEngine/" + window.location.pathname.split('/')[2] + "/getResults",
+            url: "http://localhost/SearchEngineCreator/web/app_dev.php/searchEngine/" + window.location.pathname.split('/')[2] + "/getResults",
             data: {searchValues: search_values},
             success: function(data) {
                 let results = [];
