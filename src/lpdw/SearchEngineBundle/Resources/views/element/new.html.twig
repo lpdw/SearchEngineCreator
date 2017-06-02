@@ -23,7 +23,7 @@
 
         <div class="row">
             <div class="everyCategories col-md-12 col-sm-12 mTop30">
-                {{ form_start(form) }}
+                {{ form_start(form, { 'attr' : { 'class' : 'formStyle' }}) }}
                     {{ form_widget(form) }}
                     <input class="buttonStyle mTop20 ft-20 fontChampagne" type="submit" value="Créer l'élément" />
                 {{ form_end(form) }}
