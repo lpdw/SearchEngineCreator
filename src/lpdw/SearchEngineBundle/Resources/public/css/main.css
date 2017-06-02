@@ -418,6 +418,7 @@ a.buttonStyle {
 .results ul li span {
     float: right;
     padding-right: 40px;
+    padding-top: 27px;
 }
 
 .results ul li:hover {

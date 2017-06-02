@@ -38,7 +38,7 @@ $( document ).ready(function() {
                         results.push(JSON.parse(data[i]));
                         if (results[i].image) {
                             var zoomImg = "<i class='fa fa-search-plus' aria-hidden='true' data-toggle='modal' data-target='#"+results[i].id+"'></i>";
-                            var img = "<img class='img-responsive' src='/uploads/images/"+results[i].image+"' />";
+                            var img = "<img style='width: 100%; height: 100%; object-fit: cover;' src='/uploads/images/"+results[i].image+"' />";
                             modal +=
                             "<div class='modal fade' id='"+results[i].id+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"+
                                 "<div class='modal-dialog' role='document'>"+
@@ -52,11 +52,10 @@ $( document ).ready(function() {
                             "</div>";
                         } else {
                             var zoomImg = "";
-                            var img = "";
+                            var img = "<img style='width: 100%; height: 100%; object-fit: cover;' src='/bundles/lpdwsearchengine/images/no_image.png' />";
                         }
-                        display += "<li>" + results[i].name + zoomImg + " <span>" + results[i].matching + "</span></li>";
+                        display += "<li><div style='margin-right: 10px; display: inline-block; width: 75px; height: 75px;'>" + img + "</div>" + results[i].name + zoomImg + " <span>" + results[i].matching + "</span></li>";
                         $(".modal_img").html(modal);
-                        console.log(modal);
                         $(".results ul").html(display);
                     }
                 } else {
