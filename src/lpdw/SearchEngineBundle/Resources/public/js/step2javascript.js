@@ -48,24 +48,28 @@ $( document ).ready(function() {
                     })
 
                     for(let i = 0; i < results.length; i++) {
+                        var zoomImg = "<i class='fa fa-search-plus' aria-hidden='true' data-toggle='modal' data-target='#"+results[i].id+"'></i>";
                         if (results[i].image) {
-                            var zoomImg = "<i class='fa fa-search-plus' aria-hidden='true' data-toggle='modal' data-target='#"+results[i].id+"'></i>";
                             var img = "<img style='width: 100%; height: 100%; object-fit: cover;' src='/uploads/images/"+results[i].image+"' />";
-                            modal +=
-                            "<div class='modal fade' id='"+results[i].id+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"+
-                                "<div class='modal-dialog' role='document'>"+
-                                    "<div class='modal-content'>"+
-                                        "<div class='modal-body'>"+img+"</div>"+
-                                        "<div class='modal-footer'>"+
-                                            "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fermer</button>"+
-                                        "</div>"+
-                                    "</div>"+
-                                "</div>"+
-                            "</div>";
                         } else {
-                            var zoomImg = "";
                             var img = "<img style='width: 100%; height: 100%; object-fit: cover;' src='/bundles/lpdwsearchengine/images/no_image.png' />";
                         }
+                        if (results[i].comment) {
+                            var comment = results[i].comment;
+                        } else {
+                            var comment = "Pas de commentaire pour cet élément.";
+                        }
+                        modal +=
+                        "<div class='modal fade' id='"+results[i].id+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>"+
+                            "<div class='modal-dialog' role='document'>"+
+                                "<div class='modal-content'>"+
+                                    "<div class='modal-body'>" + img + "<div>"+ comment +"</div></div>"+
+                                    "<div class='modal-footer'>"+
+                                        "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fermer</button>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>"+
+                        "</div>";
                         display += "<li><div style='margin-right: 10px; display: inline-block; width: 75px; height: 75px;'>" + img + "</div>" + results[i].name + zoomImg + " <span>" + results[i].matching + "</span></li>";
                         $(".modal_img").html(modal);
                         $(".results ul").html(display);
