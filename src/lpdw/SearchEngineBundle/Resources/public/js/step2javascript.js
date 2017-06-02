@@ -27,7 +27,7 @@ $( document ).ready(function() {
 
         $.ajax({
             method: "get",
-            url: "http://localhost:8000/searchEngine/" + window.location.pathname.split('/')[2] + "/getResults",
+            url: window.location.href + "/getResults",
             data: {searchValues: search_values},
             success: function(data) {
                 let results = [];
