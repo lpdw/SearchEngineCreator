@@ -35,6 +35,19 @@ $( document ).ready(function() {
                 if (data.length > 0) {
                     for(let i = 0; i < data.length; i++) {
                         results.push(JSON.parse(data[i]));
+                    }
+
+                    results.sort(function(a, b) {
+                        if (Number(a.matching.split('%')[0]) > Number(b.matching.split('%')[0])) {
+                            return -1;
+                        }
+                        if (Number(a.matching.split('%')[0]) < Number(b.matching.split('%')[0])) {
+                            return 1;
+                        }
+                        return 0;
+                    })
+
+                    for(let i = 0; i < results.length; i++) {
                         if (results[i].image) {
                             var zoomImg = "<i class='fa fa-search-plus' aria-hidden='true' data-toggle='modal' data-target='#"+results[i].id+"'></i>";
                             var img = "<img style='width: 100%; height: 100%; object-fit: cover;' src='/uploads/images/"+results[i].image+"' />";
