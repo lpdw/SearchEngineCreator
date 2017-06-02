@@ -274,7 +274,7 @@ body {
 
 @media (max-width: 500px) {
     .chooseCategory {
-        height: 55vh;
+        height: 600px;
     }
 }
 
